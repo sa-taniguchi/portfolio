@@ -1,0 +1,15 @@
+
+footer{
+
+    text-align: center;
+    .footer_logo{
+        padding: 2em 0;
+        border-bottom: 1px solid $m-black;
+        margin-bottom: 2em;
+    }
+    .footer_cp{
+        padding-bottom: 2em;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+}

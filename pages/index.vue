@@ -1,5 +1,4 @@
 <template>
-    <Header />
         <main id="top">
             <article>
                 <section id="top-fv" class="top-fv">
@@ -12,5 +11,4 @@
                 </section>
             </article>
         </main>
-    <Footer />
 </template>

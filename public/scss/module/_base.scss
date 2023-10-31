@@ -529,7 +529,7 @@ html {
 
 
 body {
-  font-family: sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
   font-weight: 500;
   line-height: 1.4;
   color: $m-black;
@@ -620,6 +620,24 @@ ol.decimal{
 a.underline{
   text-decoration: underline;
   @include opacity-anime;
+}
+
+.md-container{
+  margin: 0 3%;
+  padding: 0 2%;
+  max-width: $md;
+  @include bp-md{
+    margin: 0 auto;
+  }
+}
+
+.lg-container{
+  margin: 0 3%;
+  padding: 0 2%;
+  max-width: $lg;
+  @include bp-lg{
+    margin: 0 auto;
+  }
 }
 
 .xl-container{

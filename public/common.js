@@ -3,12 +3,13 @@
 
 //ハンバーガーメニュー全般
 
-  const mediaQueryList = window.matchMedia('(min-width: 1280px)');
+  const mediaQueryList = window.matchMedia('(min-width: 996px)');
   
   const html = document.documentElement;
   const hmbg = document.getElementById('js-header-hmbg');
   const headerNav = document.getElementById('js-header-nav');
-  const headerNavBg = document.querySelector('.header_nav_bg');
+  const headerNavLink = document.querySelectorAll('.header_nav_list a');
+  // const headerNavBg = document.querySelector('.header_nav_bg');
 
 
   const listener = (event) => {
@@ -20,7 +21,7 @@
       hmbg.setAttribute('aria-hidden', true);
       hmbg.setAttribute('aria-expanded', false);
       html.classList.remove('is-menuOpen');
-      headerNavBg.classList.remove('is-show');
+      // headerNavBg.classList.remove('is-show');
     } else {
       headerNav.setAttribute('aria-hidden', true);
       hmbg.setAttribute('aria-hidden', false);
@@ -33,15 +34,25 @@
   listener(mediaQueryList);
 
 
-  headerNavBg.addEventListener('click',function(){
-    headerNavBg.classList.remove('is-show');
-    headerNav.classList.remove('is-show');
-    headerNav.setAttribute('aria-hidden', false);
-    hmbg.classList.remove('is-show');
-    hmbg.setAttribute('aria-hidden', true);
-    hmbg.setAttribute('aria-expanded', false);
-    html.classList.remove('is-menuOpen');
-  });
+  for(let i=0; i<headerNavLink.length;i++){
+    headerNavLink[i].addEventListener('click',()=>{
+      headerNav.classList.remove('is-show');
+      headerNav.setAttribute('aria-hidden', false);
+      hmbg.classList.remove('is-show');
+      hmbg.setAttribute('aria-hidden', true);
+      hmbg.setAttribute('aria-expanded', false);
+      html.classList.remove('is-menuOpen');
+    })
+  }
+  // headerNavBg.addEventListener('click',function(){
+    // headerNavBg.classList.remove('is-show');
+  //   headerNav.classList.remove('is-show');
+  //   headerNav.setAttribute('aria-hidden', false);
+  //   hmbg.classList.remove('is-show');
+  //   hmbg.setAttribute('aria-hidden', true);
+  //   hmbg.setAttribute('aria-expanded', false);
+  //   html.classList.remove('is-menuOpen');
+  // });
 
 
   // ハンバーガーメニューの開閉
@@ -49,7 +60,7 @@
   hmbg.addEventListener('click',function(){
     this.classList.toggle('is-show');
     headerNav.classList.toggle('is-show');
-    headerNavBg.classList.toggle('is-show');
+    // headerNavBg.classList.toggle('is-show');
     // if(hmbg.getAttribute('aria-expanded') === 'false' && (this.classList.contains('is-show')) ){
     if(hmbg.getAttribute('aria-expanded') === 'false'){
       hmbg.setAttribute('aria-expanded', true);
@@ -88,12 +99,12 @@
 
 
 // コピーライト年更新
-// {
-//   let date = new Date();
-//   let current = date.getFullYear();
-//   let year = document.getElementById('js-current-year');
-//   year.textContent = current;
-// }
+{
+  let date = new Date();
+  let current = date.getFullYear();
+  let year = document.getElementById('js-is-year');
+  year.textContent = current;
+}
 
 
 

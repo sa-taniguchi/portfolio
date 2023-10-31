@@ -1,0 +1,60 @@
+
+
+header{
+    padding: 2em 0 1em;
+    >div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h1{
+        font-weight: 900;
+        @include opacity-anime;
+        img{
+            display: block;
+            width: 160px;
+        }
+    }
+
+    .hmbg_btn{
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        @include bp-lg{
+            display: none;
+        }
+    }
+
+    .hmbg_bar{
+        &::before,&::after{
+            content: '';
+            width: 22px;
+            height: 3px;
+            background: $m-black;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transform-origin: center;
+            transition: transform .3s;
+        }
+        &::before{
+            top: 16px;
+        }
+        &::after{
+            top: 24px;
+        }
+    }
+
+    .hmbg_btn.is-show{
+        .hmbg_bar{
+            &::before{
+                transform: translate(-50%, 4px)rotate(45deg);
+            }
+            &::after{
+                transform: translate(-50%, -4px)rotate(-45deg);
+            }
+        }
+    }
+}

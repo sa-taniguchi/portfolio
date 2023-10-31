@@ -1,0 +1,51 @@
+
+
+.header_nav{
+    max-height: 0;
+    transition: max-height 0s, padding 0s;
+    overflow: hidden;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background-color: $l-gray;
+    padding: 0;
+    z-index: 10;
+    &.is-show{
+        padding: 4em 0;
+        max-height: 100vh;
+        transition: max-height .2s, padding .2s;
+    }
+    @include bp-lg{
+        display: block;
+        position: static;
+        overflow: auto;
+        background-color: transparent;
+        max-height: none;
+    }
+
+    .header_nav_list{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        @include bp-lg{
+            flex-direction: row;
+        }
+        >li{
+            a{
+                display: block;
+                @include opacity-anime;
+                letter-spacing: 1.3px;
+                font-weight: 700;
+                font-size: .9em;
+                padding: .8em 0;
+                text-align: center;
+                @include bp-lg{
+                    padding: .5em .85em;
+                    font-size: .65em;
+                }
+            }
+        }
+    }
+}
