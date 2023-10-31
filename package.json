@@ -11,8 +11,19 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "autoprefixer": "^10.4.16",
     "nuxt": "^3.2.3",
+    "postcss": "^8.4.31",
+    "postcss-sort-media-queries": "^5.2.0",
+    "sass": "^1.69.5",
     "vue": "^3.3.7",
     "vue-router": "^4.2.5"
+  },
+  "browserslist": [
+    "> 1%, not dead",
+    "not IE 11"
+  ],
+  "dependencies": {
+    "@nuxt/image": "^1.0.0"
   }
 }

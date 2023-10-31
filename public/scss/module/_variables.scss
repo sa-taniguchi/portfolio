@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+
+// 色まとめる
+
+$m-black: #23221E;
+$d-black: #000;
+$l-gray:#E9E9E9;
+$d-gray: #BDBAB7;
+$white: #fff;
+$beige: #F7F5F2;
+$d-beige: #F5CCB5;
+$l-blue: #14C4F8;
+$ll-blue: #B5E3F4;
+$l-pink: #F4CDB5;
+$l-green: #CBF4B5;
+
+$yellow: #E6ED32;
+
+
+
+//ブレイクポイント
+
+$xxl :1440px;
+$xl :1280px;
+$lg: 992px;
+$slg: 840px;
+$md: 768px;
+$xs: 576px;
+$sp: 480px;
+
+
+
+
+
+
+
+@mixin opacity-anime {
+  transition: opacity .3s linear;
+  &:hover,&:focus{
+    opacity: .6;
+  }
+}
+
+
+@mixin scroll-showUp{
+  opacity: 0;
+  transform: translateY(20px);
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      transition: transform .27s #{$i * 0.15}s, opacity .27s #{$i * 0.15}s;
+    }
+  }
+  &.is-inview{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@mixin arrow-right($color) {
+    position: relative;
+    display: block;
+    width: 12px;
+    height: 1px;
+    border-radius: 5px;
+    background-color: $color;
+    &::before,&::after{
+      content: "";
+      position: absolute;
+      display: block;
+      width: 6px;
+      height: 1px;
+      border-radius: 5px;
+      background-color: inherit;
+      right: -1px;
+    }
+    &::before {
+      top: 2px;
+      transform: rotate(-45deg);
+    }
+    &::after {
+      bottom: 2px;
+      transform: rotate(45deg);
+    }
+  }
+
+
+// moreボタン
+@mixin moreBtn($color,$trans-color){
+  .more_btn{
+    display: block;
+    width: 70%;
+    height: 60px;
+    text-align: center;
+    color: $color;
+    border: 1px solid $color;
+    border-radius: 40px;
+    line-height: 60px;
+    position: relative;
+    background-color: $trans-color;
+    @include arrow-right($color);
+    .arrow_round{
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    @include bp-sm{
+      width: 172px;
+    }
+    @include bp-lg{
+      transition: background-color .3s;
+      &:hover{
+        background-color: $color;
+        color: $trans-color;
+        border: 1px solid $trans-color;
+        .arrow_round{
+          background-color: $trans-color;
+        }
+      }
+    }
+  }
+  }
+
+
+
+
+@mixin bp-sm {
+  @media (min-width: ($xs)) {
+    @content;
+  }
+}
+@mixin bp-md {
+  @media (min-width: ($md)) {
+    @content;
+  }
+}
+
+
+@mixin bp-lg {
+  @media (min-width: ($lg)) {
+    @content;
+  }
+}
+
+@mixin bp-xl {
+  @media (min-width: ($xl)) {
+    @content;
+  }
+}
+
+@mixin bp-xxl {
+  @media (min-width: ($xxl)) {
+    @content;
+  }
+}
+

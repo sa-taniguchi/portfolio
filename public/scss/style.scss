@@ -1,0 +1,62 @@
+// @use 'module/base' as*;
+// @use 'module/variables' as*;
+// @use 'module/header' as*;
+
+// @use 'module/footer' as*;
+
+
+
+// @use 'module/margin' as*;
+// @use 'module/btn' as*;
+// @use 'module/breadcrumb' as*;
+// @use 'module/swiper' as*;
+
+
+
+
+// @use 'pages/top' as*;
+// @use 'pages/application' as*;
+// @use 'pages/support_system_top' as*;
+// @use 'pages/support_system_article' as*;
+// @use 'pages/senpai' as*;
+// @use 'pages/news' as*;
+
+
+
+
+
+
+
+// トップページ
+
+#top{
+    .top-fv{
+        padding: 5% 0;
+    }
+    .top-fv_list{
+        display: flex;
+        gap: 1.8em 3.5em;
+        flex-direction: column;
+        @include bp-sm{
+            flex-direction: row;
+        }
+        >li{
+            width: 60%;
+            @include bp-sm{
+                width: calc(50% - 1.5em);
+            }
+            img{
+                display: block;
+                object-fit: cover;
+                aspect-ratio: 1/1;
+                width: 100%;
+            }
+            &:last-of-type{
+                align-self: flex-end;
+                @include bp-sm{
+                    margin-top: 4em;
+                }
+            }
+        }
+    }
+}
