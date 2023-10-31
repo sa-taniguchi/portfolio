@@ -1,25 +1,85 @@
+<!-- <script setup>
+    import { useField } from 'vee-validate';
+    import * as yup from 'yup';
+
+    const schema = yup.object({
+    name: yup
+        .string()
+        .required("この項目は必須です")
+        .min(8, "８文字以上で入力してください"),
+    email: yup
+        .string()
+        .required("この項目は必須です")
+        .email("メールアドレスの形式で入力してください"),
+    });
+
+    const { errors } = useForm({
+    validationSchema: schema,
+    });
+
+    const { value: name } = useField('name');
+    const { value: email } = useField('email');
+
+</script> -->
+
 <template>
     <main id="contact">
         <article>
             <section>
                 <div class="lg-container">
-                    <h2></h2>
-                    <form name="contact" method="POST" data-netlify="true">
-                    <p>
-                        <label>Your Name: <input type="text" name="name" /></label>
-                    </p>
-                    <p>
-                        <label>Your Email: <input type="email" name="email" /></label>
-                    </p>
-                    <p>
-                        <label>Message: <textarea name="message"></textarea></label>
-                    </p>
-                    <p>
-                        <button type="submit">Send</button>
-                    </p>
+                    <div class="subpage_fv">
+                        <h2>
+                            Contact
+                            <span>お問い合わせ</span>
+                        </h2>
+                    </div>
+                    <form 
+                        name="contact" 
+                        action="/complete" 
+                        method="POST" 
+                        data-netlify-recaptcha="true"
+                        data-netlify="true" 
+                        class="form_wrapper">
+                        <dl class="form_box">
+                            <dt><span class="required">必須</span><label for="form-name">お名前</label></dt>
+                            <dd>
+                                <input type="text" name="name" id="form-name">
+                                <p>例）山田太郎</p>
+                                <!-- <p>{{ erros.name }}</p> -->
+                            </dd>
+                        </dl>
+                        <dl class="form_box">
+                            <dt><span class="required">必須</span><label for="form-email">メールアドレス</label></dt>
+                            <dd>
+                                <input type="email" name="email" id="form-email">
+                                <p>例）portfolio@mail.com</p>
+                                <!-- <p>{{ errors.email }}</p> -->
+                            </dd>
+                        </dl>
+                        <dl class="form_box">
+                            <dt><span class="non-required">任意</span><label for="form-tel">電話番号</label></dt>
+                            <dd>
+                                <input type="tel" name="tel" id="form-tel">
+                                <p>例）07001234567(*ハイフンなしでご記入ください)</p>
+                            </dd>
+                        </dl>
+                        <dl class="form_box">
+                            <dt><span class="required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
+                            <dd>
+                                <!-- <p v-if="errors.textarea">{{ errors.textarea }}</p> -->
+                                <textarea name="textarea"  id="form-textarea"></textarea>
+                                <p>お問い合わせ内容をお書き下さい。</p>
+                            </dd>
+                        </dl>
+                        <div data-netlify-recaptcha="true"></div>
+
+                        <div><button type="submit">Send</button></div>
+
+                        
                     </form>
                 </div>
             </section>
         </article>
     </main>
 </template>
+

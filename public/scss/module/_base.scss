@@ -533,9 +533,9 @@ body {
   font-weight: 500;
   line-height: 1.4;
   color: $m-black;
-  font-size: clamp(1.8rem, 1.634rem + 0.442vw, 2.2rem); word-break: break-all;
+  font-size: clamp(1.6rem, 1.478rem + 0.324vw, 1.8rem);
   @include bp-lg() { 
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -646,6 +646,25 @@ a.underline{
   max-width: $xl;
   @include bp-xl{
     margin: 0 auto;
+  }
+}
+
+
+.subpage_fv{
+  padding: 2em 0 4em;
+  h2{
+    font-size: clamp(4.8rem, 3.828rem + 2.593vw, 6.4rem);
+    font-weight: 900;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    @include bp-lg{
+      font-size: 6.4rem;
+    }
+    >span{
+      display: block;
+      font-size: .35em;
+      font-weight: 700;
+    }
   }
 }
 

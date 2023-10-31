@@ -36,14 +36,15 @@
             a{
                 display: block;
                 @include opacity-anime;
-                letter-spacing: 1.3px;
+                letter-spacing: 1px;
                 font-weight: 700;
                 font-size: .9em;
                 padding: .8em 0;
                 text-align: center;
+                width: 100%;
                 @include bp-lg{
-                    padding: .5em .85em;
-                    font-size: .65em;
+                    padding: .6em 1.2em;
+                    font-size: .9em;
                 }
             }
         }
