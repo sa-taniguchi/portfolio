@@ -1,4 +1,3 @@
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app:{
@@ -26,6 +25,12 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/image',
   ],
+  image: {
+    provider: 'netlify',
+    netlify: {
+      baseURl: process.env.IMAGES_URL
+    },
+  },
   // Viteのビルドの際に、SCSSのパーシャルファイルを読み込むよう指定する
   vite: {
     css: {
