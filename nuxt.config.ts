@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
   image: {
+    quality: 80,
     provider: 'netlify',
     netlify: {
       baseURl: process.env.IMAGES_URL
