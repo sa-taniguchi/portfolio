@@ -51,5 +51,8 @@ export default defineNuxtConfig({
       devSourcemap: true,
     },
   },
+  routeRules: {
+    '/contact': { prerender: true },
+  },
   
 })
