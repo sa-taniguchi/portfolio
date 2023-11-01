@@ -8,7 +8,7 @@
   const html = document.documentElement;
   const hmbg = document.getElementById('js-header-hmbg');
   const headerNav = document.getElementById('js-header-nav');
-  const headerNavLink = document.querySelectorAll('.header_nav_list a');
+  const headerNavLinks = document.querySelectorAll('.header_nav_list li a');
   // const headerNavBg = document.querySelector('.header_nav_bg');
 
 
@@ -25,7 +25,7 @@
     } else {
       headerNav.setAttribute('aria-hidden', true);
       hmbg.setAttribute('aria-hidden', false);
-      hmbg.setAttribute('aria-expanded', false);
+      hmbg.setAttribute('aria-expanded', true);
     }
   };
   mediaQueryList.addEventListener("change", listener);
@@ -34,13 +34,13 @@
   listener(mediaQueryList);
 
 
-  for(let i=0; i<headerNavLink.length;i++){
-    headerNavLink[i].addEventListener('click',()=>{
+  for(let i=0; i<headerNavLinks.length;i++){
+    headerNavLinks[i].addEventListener('click',()=>{
       headerNav.classList.remove('is-show');
-      headerNav.setAttribute('aria-hidden', false);
+      headerNav.setAttribute('aria-hidden', true);
       hmbg.classList.remove('is-show');
-      hmbg.setAttribute('aria-hidden', true);
-      hmbg.setAttribute('aria-expanded', false);
+      hmbg.setAttribute('aria-hidden', false);
+      hmbg.setAttribute('aria-expanded', true);
       html.classList.remove('is-menuOpen');
     })
   }
@@ -62,15 +62,15 @@
     headerNav.classList.toggle('is-show');
     // headerNavBg.classList.toggle('is-show');
     // if(hmbg.getAttribute('aria-expanded') === 'false' && (this.classList.contains('is-show')) ){
-    if(hmbg.getAttribute('aria-expanded') === 'false'){
-      hmbg.setAttribute('aria-expanded', true);
+    if(headerNav.getAttribute('aria-hidden') === 'true'){
+      hmbg.setAttribute('aria-expanded', false);
       headerNav.setAttribute('aria-hidden', false);
       scrollpos = window.scrollY;
       document.body.style.top = scrollpos * -1 + 'px';
       html.classList.add('is-menuOpen');
     } 
     else {
-      hmbg.setAttribute('aria-expanded', false);
+      hmbg.setAttribute('aria-expanded', true);
       headerNav.setAttribute('aria-hidden', true);
       html.classList.remove('is-menuOpen');
       window.scrollTo(0, scrollpos);

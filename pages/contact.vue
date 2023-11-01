@@ -23,7 +23,6 @@
 </script> -->
 
 <template>
-    <Header />
     <main id="contact">
         <article>
             <section>

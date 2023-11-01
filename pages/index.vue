@@ -1,5 +1,4 @@
 <template>
-        <Header class="is-top" />
         <main id="top">
             <article>
                 <section id="top-fv" class="top-fv">

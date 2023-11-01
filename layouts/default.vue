@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <slot />
+    <Header class="is-top" />
+    <slot />
     <Footer />
-    </div>
   </template>
