@@ -531,7 +531,7 @@ html {
 body {
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.5;
   color: $m-black;
   font-size: clamp(1.6rem, 1.478rem + 0.324vw, 1.8rem);
   @include bp-lg() { 

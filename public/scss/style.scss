@@ -68,6 +68,63 @@
             }
         }
     }
+
+
+    .top-about{
+        padding: 6em 0;
+        @include bp-lg{
+            padding: 10em 0;
+        }
+        .about_wrapper{
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 2em 8%;
+            @include bp-md{
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .about_img{
+            max-width: 450px;
+            margin: 0 auto;
+            @include bp-md{
+                max-width: none;
+                width: calc(60% - 8%);
+            }
+        }
+
+        .about_info{
+            width: 100%;
+            @include bp-md{
+                width: 50%;
+            }
+
+            h3{
+                font-size: clamp(5.6rem, 4.871rem + 1.945vw, 6.8rem);
+                font-weight: 900;
+                letter-spacing: 1.5px;
+                margin-bottom: 2rem;
+                @include bp-lg{
+                    font-size: 6.8rem;
+                }
+            }
+
+            p{
+                font-size: .92em;
+                line-height: 1.7;
+                letter-spacing: .8px;
+                font-feature-settings: "palt";
+                &.is-small{
+                    font-size: .83em;
+                    padding: .3em 0;
+                }
+            }
+        }
+    }
+    .swiper-wrapper {
+        transition-timing-function: linear;
+    }
 }
 
 
