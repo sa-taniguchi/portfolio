@@ -535,7 +535,7 @@ body {
   color: $m-black;
   font-size: clamp(1.6rem, 1.478rem + 0.324vw, 1.8rem);
   @include bp-lg() { 
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 }
 
@@ -651,14 +651,17 @@ a.underline{
 
 
 .subpage_fv{
-  padding: 2em 0 4em;
+  padding: 3em 0 5em;
+  @include bp-md{
+    padding: 6em 0 7em;
+  }
   h2{
-    font-size: clamp(4.8rem, 3.828rem + 2.593vw, 6.4rem);
+    font-size: clamp(3.8rem, 2.584rem + 3.241vw, 5.8rem);
     font-weight: 900;
     line-height: 1.5;
     letter-spacing: 1px;
     @include bp-lg{
-      font-size: 6.4rem;
+      font-size: 5.6rem;
     }
     >span{
       display: block;
@@ -669,6 +672,23 @@ a.underline{
 }
 
 
+.btn_wrapper{
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn{
+  text-align: center;
+  padding: 1.2em 1em;
+  font-size: .9em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  min-width: 200px;
+  border-radius: 5px;
+}
 
 
 

@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/public/scss/module/_variables.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_header.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_footer.scss"; @import "@/public/scss/module/_nav.scss";'
+          additionalData: '@import "@/public/scss/module/_variables.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_header.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_margin.scss"; @import "@/public/scss/module/_footer.scss"; @import "@/public/scss/module/_nav.scss";'
         },
       },
       devSourcemap: true,

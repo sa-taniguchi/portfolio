@@ -1,21 +1,18 @@
 <template>
     <Header />
-    <main id="complete">
+    <main id="error">
         <article>
             <section>
                 <div class="lg-container">
                     <div class="subpage_fv">
                         <h2>
-                            Contact
-                            <span>お問い合わせ</span>
+                            404 NOT FOUND
                         </h2>
                     </div>
-                    <div class="complete_wrapper">
-                        <h3 class="complete_ttl">お問い合わせが完了しました</h3>
-                        <p>お問い合わせいただきありがとうございました。</p>
+                    <div class="error_wrapper">
+                        <h3 class="error_ttl">お探しのページは見つかりませんでした。</h3>
                         <p class="mb3">
-                        折り返し、ご連絡いたしますので、
-                        恐れ入りますが、しばらくお待ちください。
+                            申し訳ございません。お探しのページは移動または削除された可能性がございます。
                         </p>
                         <div class="btn_wrapper"><nuxtLink to="/" role="button" class="btn">トップへ戻る</nuxtLink></div>
                     </div>

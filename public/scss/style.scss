@@ -73,13 +73,14 @@
 
 #contact{
     .form_wrapper{
-        // background: $l-gray;
-        padding: 4em 5%;
+        padding: 4em .5em 7em;
     }
     
     .form_box{
-        max-width: $md;
         margin: 0 auto 2em;
+        &:last-of-type{
+            margin: 0 auto 3em;
+        }
         dt{
             margin-bottom: 8px;
             display: flex;
@@ -93,6 +94,12 @@
                 width: 50%;
                 padding: .4em .6em;
                 border: rgba($d-gray, .3) 1px solid;
+                &.is-half{
+                    width: 100%;
+                    @include bp-sm{
+                        width: 50%;
+                    }
+                }
             }
             >p{
                 padding-top: .35em;
@@ -107,26 +114,55 @@
                 width: 100%;
                 height: 10em;
                 border: rgba($d-gray, .3) 1px solid;
+                padding: .4em .6em;
             };
         }
+
 
         .required{
             display: inline-block;
             padding: .1em .5em;
             border-radius: 5px;
             color: $white;
-            font-size: .75em;
-            background-color: red;
-            margin-right: 1em;
+            font-size: .72em;
+            background-color: $red;
+            margin-right: .7em;
         }
 
         .non-required{
             display: inline-block;
             padding: .1em .5em;
             border-radius: 5px;
-            font-size: .75em;
+            font-size: .72em;
             background-color: $l-gray;
-            margin-right: 1em;
+            margin-right: .7em;
         }
+    }
+
+    .btn{
+        background-color: $m-black;
+        color: $white;
+    }
+}
+
+
+#complete, #error{
+    .complete_ttl, .error_ttl{
+        font-size: clamp(2rem, 1.696rem + 0.81vw, 2.5rem);
+        margin-bottom: 1em;
+        @include bp-lg{
+            font-size: 2.5rem;
+        }
+    }
+
+    .complete_wrapper, .error_wrapper{
+        background: $ll-gray;
+        padding: 4em 5%;
+        text-align: center;
+    }
+
+    .btn{
+        background-color: $m-black;
+        color: $white;
     }
 }

@@ -1,8 +1,9 @@
 <template>
+        <Header class="is-top" />
         <main id="top">
             <article>
                 <section id="top-fv" class="top-fv">
-                    <div class="xl-container">
+                    <div class="lg-container">
                         <ul class="top-fv_list">
                             <li><NuxtPicture src="/img/top/top01.jpg" alt=""></NuxtPicture></li>
                             <li><NuxtPicture src="/img/top/top02.jpg" alt=""></NuxtPicture></li>
