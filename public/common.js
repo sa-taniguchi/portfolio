@@ -133,7 +133,21 @@ const options = {
 
 
 
-
+ const links = document.querySelectorAll('a[href^="#"]');
+ for ( let i = 0; i < links.length; i++ ) {
+ links[i].addEventListener('click', (e) => {
+     e.preventDefault();
+     const targetId = e.target.hash;
+     const targetElement = document.querySelector(decodeURI(targetId));
+     const elementY = targetElement.getBoundingClientRect().top;
+     const scrollY = window.pageYOffset;
+     const offset = 60; // スクロール位置をずらす（px）
+     window.scrollTo({
+     top: scrollY + elementY - offset, 
+     behavior: 'smooth' 
+     });
+ });
+ }
 
 
 

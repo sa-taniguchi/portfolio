@@ -16,6 +16,17 @@ export default defineNuxtConfig({
           body: true,
         },
       ],
+      link: [
+        {
+          rel: "preconnect",
+          href: "https://fonts.googleapis.com",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@800;900&family=Montserrat:wght@700;800&family=Permanent+Marker&display=swap",
+          crossorigin: "",
+        },
+      ],
     },
   },
 
@@ -32,7 +43,9 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/image',
+    'nuxt-swiper',
   ],
+  swiper: {},
   image: {
     quality: 80,
     provider: 'netlify',
@@ -45,7 +58,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/public/scss/module/_variables.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_header.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_footer.scss"; @import "@/public/scss/module/_nav.scss"; '
+          additionalData: '@import "@/public/scss/module/_variables.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_header.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_margin.scss"; @import "@/public/scss/module/_footer.scss"; @import "@/public/scss/module/_nav.scss"; '
         },
       },
       devSourcemap: true,

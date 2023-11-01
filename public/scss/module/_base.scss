@@ -517,6 +517,7 @@ html {
   box-sizing: border-box;
   color: $m-black;
   font-size: 62.5%; 
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   &.is-menuOpen {
     position: fixed;
@@ -538,6 +539,10 @@ body {
     font-size: 1.7rem;
   }
 }
+
+// :target {
+//   scroll-margin-top: 100px;
+// }
 
 h1,h2,h3,h4,h5,h6{
   font-weight: 900;

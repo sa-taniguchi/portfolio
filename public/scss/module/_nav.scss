@@ -43,8 +43,29 @@
                 text-align: center;
                 width: 100%;
                 @include bp-lg{
-                    padding: .6em 1.2em;
+                    padding: 0 1.2em;
                     font-size: .9em;
+                    overflow-x: hidden;
+                    perspective-origin: 50% 50%;
+                    span{
+                        display: inline-block;
+                        transform-origin: 50% 0%;
+                        transform-style: preserve-3d;
+                        position: relative;
+                        transition: transform .2s;
+                        &::after{
+                            content: attr(data-text);
+                            display: inline-block;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            transform-origin: 50% 0%;
+                            transform: translate3d(0, 105%, 0) rotateX(-90deg);
+                        }
+                    }
+                    &:hover span{
+                        transform: translate3d(0, 0, -30px) rotateX(90deg);
+                    }
                 }
             }
         }
