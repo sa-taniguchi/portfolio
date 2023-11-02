@@ -23,7 +23,7 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@800;900&family=Montserrat:wght@700;800&family=Permanent+Marker&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap",
           crossorigin: "",
         },
       ],
@@ -32,7 +32,7 @@ export default defineNuxtConfig({
 
 
   // 使用するscssファイルを指定
-  css: ["@/public/scss/style.scss"],
+  css: ["@/assets/scss/style.scss"],
   build: {
     postcss: {
       plugins: {
@@ -58,7 +58,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/public/scss/module/_variables.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_header.scss"; @import "@/public/scss/module/_base.scss"; @import "@/public/scss/module/_margin.scss"; @import "@/public/scss/module/_footer.scss"; @import "@/public/scss/module/_nav.scss"; '
+          additionalData: '@import "@/assets/scss/module/_variables.scss"; @import "@/assets/scss/module/_base.scss"; @import "@/assets/scss/module/_header.scss"; @import "@/assets/scss/module/_base.scss"; @import "@/assets/scss/module/_margin.scss"; @import "@/assets/scss/module/_footer.scss"; @import "@/assets/scss/module/_nav.scss"; '
         },
       },
       devSourcemap: true,

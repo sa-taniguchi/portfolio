@@ -6,11 +6,12 @@
 $m-black: #23221E;
 $d-black: #000;
 $ll-gray:#f5f5f5;
-$l-gray:#cfcfcf;
+$l-gray:#d8d8d8;
 $d-gray: #6d6d6d;
 $white: #fff;
 $beige: #F7F5F2;
 $red: #c44343;
+$l-brown: #9f7356;
 
 
 
@@ -151,3 +152,22 @@ $sp: 480px;
   }
 }
 
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('../../font/NotoSansJP-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('../../font/NotoSansJP-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@mixin fontRaleway(){
+  font-family: 'Raleway', sans-serif;
+}

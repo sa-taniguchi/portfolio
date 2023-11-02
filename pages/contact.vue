@@ -27,7 +27,7 @@
     <main id="contact">
         <article>
             <section>
-                <div class="lg-container">
+                <div class="md-container">
                     <div class="subpage_fv">
                         <h2>
                             Contact
