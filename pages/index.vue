@@ -1,33 +1,26 @@
 
 <!-- <script setup lang="ts"> -->
-<script setup lang="ts">
+<script setup>
 
 
 import { ref } from "vue";
 import { register } from 'swiper/element/bundle';
-import type { Work } from "~/types/blog"
+// import type { Work } from "~/types/blog"
 
-const { data } = await useMicroCMSGetList<Work>({
-    endpoint : "work",
-})
+// const { data } = await useMicroCMSGetList<Work>({
+//     endpoint : "work",
+// })
 register();
 
-// const ctx = useRuntimeConfig();
 
-// const { data } = await useFetch("/work", {
-//   baseURL: ctx.baseUrl,
-//   headers: {
-//     "X-MICROCMS-API-KEY": ctx.apiKey,
-//   },
-// });
 
-// const ctx = useRuntimeConfig();
-// const { data } = await useFetch("/work", {
-//     baseURL: ctx.public.baseUrl,
-//     headers: {
-//     "X-MICROCMS-API-KEY": ctx.public.apiKey,
-//     },
-// });
+const ctx = useRuntimeConfig();
+const { data } = await useFetch("/work", {
+    baseURL: ctx.public.baseUrl,
+    headers: {
+    "X-MICROCMS-API-KEY": ctx.public.apiKey,
+    },
+});
 
 
 let breakpoints = ref(null);
