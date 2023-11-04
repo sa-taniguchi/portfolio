@@ -1,4 +1,4 @@
-const { SERVICE_DOMAIN, API_KEY } = process.env
+const { API_URL, API_KEY } = process.env
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -50,7 +50,7 @@ export default defineNuxtConfig({
   ],
 
   microCMS: {
-    serviceDomain: SERVICE_DOMAIN,
+    serviceDomain: API_URL,
     apiKey: API_KEY,
   },
 
