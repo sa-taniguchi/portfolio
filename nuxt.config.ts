@@ -46,20 +46,20 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/image',
     'nuxt-swiper',
-    // 'nuxt-microcms-module'
+    'nuxt-microcms-module'
   ],
 
-  runtimeConfig: {
-    public: {
-      baseUrl: process.env.apiURL,
-      apiKey: process.env.apiKEY,
-    }
-  },
-
-  // microCMS: {
-  //   serviceDomain: process.env.apiURL,
-  //   apiKey: process.env.apiKEY,
+  // runtimeConfig: {
+  //   public: {
+  //     baseUrl: process.env.apiURL,
+  //     apiKey: process.env.apiKEI,
+  //   }
   // },
+
+  microCMS: {
+    serviceDomain: process.env.apiURL,
+    apiKey: process.env.apiKEY,
+  },
 
 
   swiper: {},

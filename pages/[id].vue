@@ -1,28 +1,23 @@
-<script setup>
+<script setup lang="ts">
 
+import type { Work } from "~/types/blog"
 
+const { params }  = useRoute();
 
-// import type { Work } from "~/types/blog"
-
-// const { params }  = useRoute();
-
-
-// const { data } = await useMicroCMSGetListDetail<Work>({
-//     endpoint: "work",
-//     contentId: Array.isArray(params.id) ? params.id[0] : params.id,
-// });
-
-const route = useRoute();
-const ctx = useRuntimeConfig();
-
-const { data } = await useFetch(`/work/${route}`, {
-baseURL: ctx.baseUrl,
-  headers: {
-    "X-MICROCMS-API-KEY": ctx.apiKey,
-  },
+const { data } = await useMicroCMSGetListDetail<Work>({
+    endpoint: "work",
+    contentId: Array.isArray(params.id) ? params.id[0] : params.id,
 });
 
+// const route = useRoute();
+// const ctx = useRuntimeConfig();
 
+// const { data } = await useFetch(`/work/${route}`, {
+// baseURL: ctx.public.baseUrl,
+//   headers: {
+//     "X-MICROCMS-API-KEY": ctx.public.apiKey,
+//   },
+// });
 </script>
 
 
