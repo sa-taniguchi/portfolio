@@ -12,13 +12,22 @@ import { register } from 'swiper/element/bundle';
 // })
 register();
 
-const { data } = await useFetch("/work", {
-  baseURL: "https://myportfolio2107.microcms.io/api/v1",
-  headers: {
-    "X-MICROCMS-API-KEY": "XRcvtRPav49DOJO8XrKsPXW20SeLA3Pza0W9",
-  },
-});
+// const ctx = useRuntimeConfig();
 
+// const { data } = await useFetch("/work", {
+//   baseURL: ctx.baseUrl,
+//   headers: {
+//     "X-MICROCMS-API-KEY": ctx.apiKey,
+//   },
+// });
+
+const ctx = useRuntimeConfig();
+const { data } = await useFetch("/work", {
+    baseURL: ctx.public.baseUrl,
+    headers: {
+    "X-MICROCMS-API-KEY": ctx.public.apiKey,
+    },
+});
 
 
 let breakpoints = ref(null);

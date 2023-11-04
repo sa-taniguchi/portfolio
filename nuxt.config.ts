@@ -49,6 +49,13 @@ export default defineNuxtConfig({
     // 'nuxt-microcms-module'
   ],
 
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.apiURL,
+      apiKey: process.env.apiKEY,
+    }
+  },
+
   // microCMS: {
   //   serviceDomain: process.env.apiURL,
   //   apiKey: process.env.apiKEY,

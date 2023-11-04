@@ -13,11 +13,12 @@
 // });
 
 const route = useRoute();
+const ctx = useRuntimeConfig();
 
 const { data } = await useFetch(`/work/${route}`, {
-  baseURL: "https://myportfolio2107.microcms.io/api/v1",
+baseURL: ctx.baseUrl,
   headers: {
-    "X-MICROCMS-API-KEY": "XRcvtRPav49DOJO8XrKsPXW20SeLA3Pza0W9",
+    "X-MICROCMS-API-KEY": ctx.apiKey,
   },
 });
 
