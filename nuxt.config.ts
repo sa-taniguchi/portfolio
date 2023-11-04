@@ -52,7 +52,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.apiURL,
-      apiKey: process.env.apiKEI,
+      apiKey: process.env.apiKEY,
     }
   },
 
