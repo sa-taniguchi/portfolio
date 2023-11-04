@@ -50,8 +50,8 @@ export default defineNuxtConfig({
   ],
 
   microCMS: {
-    serviceDomain: process.env.API_URL,
-    apiKey: process.env.API_KEY,
+    serviceDomain: process.env.myportfolio2107,
+    apiKey: process.env.XRcvtRPav49DOJO8XrKsPXW20SeLA3Pza0W9,
   },
 
 

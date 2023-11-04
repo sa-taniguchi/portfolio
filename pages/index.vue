@@ -9,6 +9,7 @@ import type { Work } from "~/types/blog"
 
 const {data} = await useMicroCMSGetList<Work>({
 endpoint : "work",
+queries: { fields: ['id', 'title', 'img','text'] }
 })
 register();
 
