@@ -1,4 +1,4 @@
-const { API_URL, API_KEY } = process.env
+
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -50,26 +50,18 @@ export default defineNuxtConfig({
   ],
 
   microCMS: {
-    serviceDomain: API_URL,
-    apiKey: API_KEY,
+    serviceDomain: process.env.API_URL,
+    apiKey: process.env.API_KEY,
   },
-
-  // microcms: {
-  //   options: {
-  //     serviceDomain: process.env.SERVICE_DOMAIN,
-  //     apiKey: process.env.GET_API_KEY,
-  //   },
-  //   mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
-  // },
 
 
   swiper: {},
   image: {
     quality: 80,
     provider: 'netlify',
-    // netlify: {
-    //   baseURl: process.env.IMAGES_URL
-    // },
+    netlify: {
+      baseURl: process.env.IMAGES_URL
+    },
     imgix: {
       baseURL: ''
     },
