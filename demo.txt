@@ -1,0 +1,29 @@
+  // srcDir: 'src/',
+  // runtimeConfig: {
+  //   apiKey: API_KEY,
+  //   serviceDomain: SERVICE_DOMAIN
+  // },
+
+  // microcms: {
+  //   options: {
+  //     serviceDomain: process.env.SERVICE_DOMAIN,
+  //     apiKey: process.env.API_KEY,
+  //   },
+  //   mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
+  // },
+
+  // runtimeConfig: {
+  //   apiKEY: process.env.API_KEY,
+  //   public: {
+  //     baseURL: process.env.BASE_URL,
+  //   },
+  // },
+
+  // microcms: {
+  //   options: {
+  //     serviceDomain: process.env.SERVICE_DOMAIN,
+  //     apiKey: process.env.GET_API_KEY,
+  //   },
+  //   mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
+  // },
+  

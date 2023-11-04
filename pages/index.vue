@@ -4,6 +4,7 @@
 
 import { ref } from "vue";
 import { register } from 'swiper/element/bundle';
+
 import type { Work } from "~/types/blog"
 
 const {data} = await useMicroCMSGetList<Work>({
