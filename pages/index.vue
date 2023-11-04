@@ -1,15 +1,23 @@
 
-<script setup lang="ts">
+<!-- <script setup lang="ts"> -->
+<script setup>
 
 
 import { ref } from "vue";
 import { register } from 'swiper/element/bundle';
-import type { Work } from "~/types/blog"
+// import type { Work } from "~/types/blog"
 
-const {data} = await useMicroCMSGetList<Work>({
-endpoint : "work",
-})
+// const {data} = await useMicroCMSGetList<Work>({
+// endpoint : "work",
+// })
 register();
+
+const { data } = await useFetch("/work", {
+  baseURL: "https://myportfolio2107.microcms.io/api/v1",
+  headers: {
+    "X-MICROCMS-API-KEY": "XRcvtRPav49DOJO8XrKsPXW20SeLA3Pza0W9",
+  },
+});
 
 
 

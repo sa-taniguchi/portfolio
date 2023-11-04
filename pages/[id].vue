@@ -1,16 +1,26 @@
-<script setup lang="ts">
+<script setup>
 
 
 
-import type { Work } from "~/types/blog"
+// import type { Work } from "~/types/blog"
 
-const { params }  = useRoute();
+// const { params }  = useRoute();
 
 
-const { data } = await useMicroCMSGetListDetail<Work>({
-    endpoint: "work",
-    contentId: Array.isArray(params.id) ? params.id[0] : params.id,
+// const { data } = await useMicroCMSGetListDetail<Work>({
+//     endpoint: "work",
+//     contentId: Array.isArray(params.id) ? params.id[0] : params.id,
+// });
+
+const route = useRoute();
+
+const { data } = await useFetch(`/work/${route}`, {
+  baseURL: "https://myportfolio2107.microcms.io/api/v1",
+  headers: {
+    "X-MICROCMS-API-KEY": "XRcvtRPav49DOJO8XrKsPXW20SeLA3Pza0W9",
+  },
 });
+
 
 </script>
 
