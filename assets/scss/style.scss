@@ -144,12 +144,19 @@
         .work_item_img{
             @include bp-lg{
                 overflow: hidden;
-                >img{
-                    display: block;
+            }
+            >img{
+                display: block;
+                width: 100%;
+                aspect-ratio: 16/9;
+                object-fit: contain;
+                background: $white;
+                @include bp-lg{
                     transition: transform .3s;
                     &:is(.top-work_item:hover *){
                         transform: scale(1.1);
                     }
+
                 }
             }
         }

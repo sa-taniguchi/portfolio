@@ -1,8 +1,17 @@
 
-<script setup>
+<script setup lang="ts">
+
+
 import { ref } from "vue";
 import { register } from 'swiper/element/bundle';
+import type { Work } from "~/types/blog"
+
+const {data} = await useMicroCMSGetList<Work>({
+endpoint : "work",
+})
 register();
+
+
 
 let breakpoints = ref(null);
 
@@ -72,46 +81,17 @@ useHead({
                             <span>制作実績</span>
                         </h2>
                         <ul class="top-work_list">
-                            <li class="top-work_item">
-                                <NuxtLink to="/" class="top-work_link">
-                                    <div class="work_item_img"><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></div>
+                            <li class="top-work_item" v-for="work in data?.contents" :key="work.id">
+                                <NuxtLink :to="`${work.id}`">
+                                    <div class="work_item_img">
+                                        <img
+                                            provider="imgix" 
+                                            :src="work.img?.url"
+                                            alt=""
+                                        />
+                                    </div>
                                     <span class="work_item_cat">カテゴリカテゴリ</span>
-                                    <h3 class="work_item_ttl"><span>テストテストテストテストテストテスト</span></h3>
-                                </NuxtLink>
-                            </li>
-                            <li class="top-work_item">
-                                <NuxtLink to="/">
-                                    <div class="work_item_img"><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></div>
-                                    <span class="work_item_cat">カテゴリカテゴリ</span>
-                                    <h3 class="work_item_ttl">テストテスト</h3>
-                                </NuxtLink>
-                            </li>
-                            <li class="top-work_item">
-                                <NuxtLink to="/">
-                                    <div class="work_item_img"><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></div>
-                                    <span class="work_item_cat">カテゴリカテゴリ</span>
-                                    <h3 class="work_item_ttl">テストテスト</h3>
-                                </NuxtLink>
-                            </li>
-                            <li class="top-work_item">
-                                <NuxtLink to="/">
-                                    <div class="work_item_img"><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></div>
-                                    <span class="work_item_cat">カテゴリカテゴリ</span>
-                                    <h3 class="work_item_ttl">テストテスト</h3>
-                                </NuxtLink>
-                            </li>
-                            <li class="top-work_item">
-                                <NuxtLink to="/">
-                                    <div class="work_item_img"><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></div>
-                                    <span class="work_item_cat">カテゴリカテゴリ</span>
-                                    <h3 class="work_item_ttl">テストテスト</h3>
-                                </NuxtLink>
-                            </li>
-                            <li class="top-work_item">
-                                <NuxtLink to="/">
-                                    <div class="work_item_img"><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></div>
-                                    <span class="work_item_cat">カテゴリカテゴリ</span>
-                                    <h3 class="work_item_ttl">テストテスト</h3>
+                                    <h3 class="work_item_ttl">{{ work.title }}</h3>
                                 </NuxtLink>
                             </li>
                         </ul>

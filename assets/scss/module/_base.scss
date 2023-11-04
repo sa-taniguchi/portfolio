@@ -662,6 +662,7 @@ a.underline{
     font-weight: 900;
     line-height: 1.5;
     letter-spacing: 1px;
+    @include fontRaleway;
     @include bp-lg{
       font-size: 5.6rem;
     }

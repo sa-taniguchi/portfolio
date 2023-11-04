@@ -1,3 +1,4 @@
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app:{
@@ -13,7 +14,7 @@ export default defineNuxtConfig({
       script: [ 
         { 
           src: 'common.js', 
-          body: true,
+          body: 'true',
         },
       ],
       link: [
@@ -44,13 +45,54 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/image',
     'nuxt-swiper',
+    'nuxt-microcms-module'
   ],
+
+  microCMS: {
+    serviceDomain: process.env.SERVICE_DOMAIN,
+    apiKey: process.env.API_KEY,
+  },
+
+  // srcDir: 'src/',
+  // runtimeConfig: {
+  //   apiKey: API_KEY,
+  //   serviceDomain: SERVICE_DOMAIN
+  // },
+
+  // microcms: {
+  //   options: {
+  //     serviceDomain: process.env.SERVICE_DOMAIN,
+  //     apiKey: process.env.API_KEY,
+  //   },
+  //   mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
+  // },
+
+  // runtimeConfig: {
+  //   apiKEY: process.env.API_KEY,
+  //   public: {
+  //     baseURL: process.env.BASE_URL,
+  //   },
+  // },
+
+  // microcms: {
+  //   options: {
+  //     serviceDomain: process.env.SERVICE_DOMAIN,
+  //     apiKey: process.env.GET_API_KEY,
+  //   },
+  //   mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
+  // },
+  
+
+
   swiper: {},
   image: {
     quality: 80,
     provider: 'netlify',
     netlify: {
       baseURl: process.env.IMAGES_URL
+    },
+    imgix: {
+      baseURL: ''
     },
   },
   // Viteのビルドの際に、SCSSのパーシャルファイルを読み込むよう指定する
@@ -64,14 +106,13 @@ export default defineNuxtConfig({
       devSourcemap: true,
     },
   },
-  routeRules: {
-    '/contact': { prerender: true },
-  },
+
 
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
     },
   },
-  
+
+
 })
