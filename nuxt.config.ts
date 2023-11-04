@@ -74,7 +74,6 @@ export default defineNuxtConfig({
       baseURL: ''
     },
   },
-  // Viteのビルドの際に、SCSSのパーシャルファイルを読み込むよう指定する
   vite: {
     css: {
       preprocessorOptions: {
