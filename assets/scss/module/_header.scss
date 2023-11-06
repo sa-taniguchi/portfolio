@@ -1,6 +1,19 @@
 
 
 #header{
+    &{
+        transform: translateY(-100%);
+        transition: transform .7s, opacity .5s;
+        position: relative;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        &.is-load{
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
     >div{
         display: flex;
         justify-content: space-between;
@@ -8,6 +21,9 @@
         border-bottom: 1px solid $m-black;
         padding: 1.7em 0 1.5em;
         margin: 0 5%;
+        @include bp-lg{
+            padding: 3em 0 2.5em;
+        }
         @include bp-xl{
             margin: 0 auto;
         }

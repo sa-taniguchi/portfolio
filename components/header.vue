@@ -12,6 +12,8 @@
 
 <script setup>
     onMounted(()=>{
+
+
         //ハンバーガーメニュー全般
 
         const mediaQueryList = window.matchMedia('(min-width: 996px)');
@@ -77,5 +79,15 @@
         }
         // /*ハンバーガーメニュー
 
+
+        const header = document.getElementById('header');
+        header.classList.add('is-load');
+
+
+        const topFvList = document.querySelectorAll('.top-fv_list li');
+
+        topFvList.forEach(element =>{
+            element.classList.add('is-load');
+        });
     })
 </script>

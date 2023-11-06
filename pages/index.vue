@@ -68,7 +68,14 @@ useHead({
                 <section id="top-about" class="top-about">
                     <div class="lg-container">
                         <div class="about_wrapper">
-                            <div class="about_img"><NuxtPicture src="/img/top/about.jpg" alt=""></NuxtPicture></div>
+                            <div class="about_img">
+                                <NuxtPicture 
+                                    src="/img/top/about.jpg" 
+                                    alt=""
+                                    decoding="async"
+                                >
+                                </NuxtPicture>
+                            </div>
                             <div class="about_info">
                                 <h2 class="common-ttl">About
                                     <span>自己紹介</span>
@@ -91,13 +98,14 @@ useHead({
                             <span>制作実績</span>
                         </h2>
                         <ul class="top-work_list">
-                            <li class="top-work_item" v-for="work in data?.contents" :key="work.id">
+                            <li class="top-work_item" v-for="work in data.contents" :key="work.id">
                                 <NuxtLink :to="`${work.id}`">
                                     <div class="work_item_img">
                                         <img
                                             provider="imgix" 
-                                            :src="work.img?.url"
+                                            :src="work.img.url"
                                             alt=""
+                                            decoding="async"
                                         />
                                     </div>
                                     <span class="work_item_cat">カテゴリカテゴリ</span>
@@ -111,178 +119,153 @@ useHead({
                 <section id="top-skill" class="top-skill">
                     <div class="xl-container">
                         <h2 class="common-ttl">SKILL
-                            <span>エンジニアスキル</span>
+                            <span>扱うスキル</span>
                         </h2>
                         <div class="skill_wrapper">
                             <nav class="skill_nav">
                                 <h3 class="skill_nav_ttl">SKILL</h3>
-                                <ul id="indexList" class="skill_nav_list">
+                                <ol id="indexList" class="skill_nav_list">
                                     <li><NuxtLink to="#skill_info_cording">コーディング</NuxtLink></li> 
                                     <li><NuxtLink to="#skill_info_design">デザイン</NuxtLink></li>
                                     <li><NuxtLink to="#skill_info_develop">開発環境</NuxtLink></li>
                                     <li><NuxtLink to="#skill_info_others">その他スキル</NuxtLink></li>
-                                </ul>
+                                </ol>
                             </nav>
                             <div class="skill_info">
                                 <div id="skill_info_cording" class="skill_info_box">
-                                    <h3 class="skill_info_ttl">コーディング</h3>
+                                    <h3 class="skill_info_ttl"><span class="is-large">コーディング</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-html5.png" alt="html5" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">HTML5</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">
+                                                セマンティックな記述を意識し、WAI-ARIAの記述にも取り組むなどアクセシビリティやユーザビリティを含めたマークアップを心掛けています。
+                                            </p>
+
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-css3.png" alt="html5" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">CSS3</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">DartSassを使用。コードの再利用を意識して記述を行っています。
+                                                <br>クラス設計の知見もあり、ファイルの構成規則や命名規則も学習しています。
+                                            </p>
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-js.png" alt="html5" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">JavaScript</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">ES6に基づいて、基礎的な実装（クリックイベントやループなどDOM操作で使用する関数）が可能です。
+                                                <br>jQueryの記法やライブラリの実装も対応できます。
+                                            </p>
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-php.png" alt="PHP" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">PHP(WordPress)</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">WordPressを使った制作が可能で、オリジナルテーマの作成やカスタマイズを経験しました。<br>
+                                                ローカルで作業する場合は、MAMPを使用して検証しています。
+                                            </p>
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-vue.png" alt="vue/Nuxt" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">skill-vue</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <h4 class="info_list_ttl">Vue.js</h4>
+                                            <p class="info_list_txt">Vue3のバージョンで日々学習中です。現時点では素のJavaScripやjQueryで記述していたコードをVueで置き換える程度で使用可能です。<br>
+                                                またNuxt3も併せて学習中です。（このポートフォリオで使用）</p>
                                         </li>
-
                                     </ul>
                                 </div>                                
                                 <div id="skill_info_design" class="skill_info_box">
-                                    <h3 class="skill_info_ttl">デザイン</h3>
+                                    <h3 class="skill_info_ttl"><span class="is-large">デザイン</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-ai.png" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">イラストレーター</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                        </li>
-                                        <li>
-                                            <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ps.png" alt="" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">フォトショップ</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">
+                                                ソフトの基本操作の知識を有しています。<br>
+                                                これまで、バナーの作成・デザインカンプ作成・SVGなど画像書き出し・地図イラスト作成などに使用してきました。
+                                            </p>
+
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-mockup.png" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">デザインカンプ作成ツール</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">これまでは主にAdobe XDを使用してデザインカンプの作成やデザイン確認（数値の確認、画像書き出しなど）を行ってきました。<br>
+                                                その他、Figmaは学習中で、基礎的な操作を把握しています。
+                                            </p>
+                                        </li>
+
+                                        <li>
+                                            <span></span>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ps.png" alt="" decoding="async"></NuxtImg></p>
+                                            <h4 class="info_list_ttl">フォトショップ</h4>
+                                            <p class="info_list_txt">
+                                                ソフトの基本操作の知識を有しています。<br>
+                                                これまで、写真のレタッチ（色調調整や消しゴムツールの使用）・白抜き作業などに対応可能です。
+                                            </p>
                                         </li>
                                     </ul>
                                 </div>                                
                                 <div id="skill_info_develop" class="skill_info_box">
-                                    <h3 class="skill_info_ttl">開発環境</h3>
+                                    <h3 class="skill_info_ttl"><span class="is-large">開発環境</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-editor.png" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">テキストエディタ</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">
+                                                現在は主にVSCodeを使用してコードを記述しています。<br>
+                                                その他、Adobe Dreamweaberも使用したことがあります。
+                                            </p>
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-build.png" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">ビルドツール</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p class="info_list_txt">
+                                                これまでは主にGulp4を使用して、Sass・画像・Javascriptのコンパイル環境を導入していました。<br>
+                                                その他に、WebPackも使用可能。Viteも現在学習中です。
+                                            </p>
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-git.png" alt="" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">ギット</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                        </li>
-                                        <li>
-                                            <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-build.png" alt="" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">ビルドツール</h4>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <h4 class="info_list_ttl">Git</h4>
+                                            <p class="info_list_txt">
+                                                Gitを使用したソースコードの管理の基礎的な知見があります。<br>
+                                                ステージングエリア・コミット文・リモートリポジトリへの追加作業が可能です。<br>
+                                                ブランチ作業やその他についてUdemyを使用し、現在習得中です。
+                                            </p>
                                         </li>
                                     </ul>
                                 </div>         
 
                                 <div id="skill_info_others" class="skill_info_box">
-                                    <h3 class="skill_info_ttl">その他スキル</h3>
+                                    <h3 class="skill_info_ttl"><span class="is-large">その他スキル</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-otf.png" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">色彩検定</h4>
+                                            <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p>テキストテキストテキスト</p> -->
                                         </li>
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-car.png" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">普通車免許</h4>
+                                            <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
+                                            <p>テキストテキストテキスト</p> -->
                                         </li>
                                     </ul>
                                 </div>                                
@@ -304,18 +287,18 @@ useHead({
                             disableOnInteraction: false
                         }"
                     >
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider02.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider03.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider04.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider05.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider06.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider01.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider02.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider03.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider04.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider05.jpg" alt=""></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider06.jpg" alt=""></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider01.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider02.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider03.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider04.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider05.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider06.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider01.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider02.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider03.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider04.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider05.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtImg src="/img/top/top-slider06.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
                     </Swiper>
                     <div class="top-contact_box">
                         <p>お気軽にお問い合わせください</p>
