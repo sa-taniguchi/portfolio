@@ -47,19 +47,41 @@ baseURL: ctx.public.baseUrl,
                 <h3 class="work_headline"><span>{{ work.title }}</span></h3>
                 <div class="mb2">
                     <h4 class="work_detail_ttl">担当</h4>
-                    <div>{{ work.part }}</div>
+                    <div>
+                        <span
+                            class="work_detail_skill"
+                            v-for="(part, p_index) in work.parts"
+                            :key="p_index"
+                        >
+                        {{ part.parts }}
+                        </span>
+                    </div>
                 </div>
                 <div class="mb2">
                     <h4 class="work_detail_ttl">使用スキル</h4>
-                    <div>{{ work.skill }}</div>
+                    <div>
+                        <span
+                            class="work_detail_skill"
+                            v-for="(skill,s_index) in work.skills"
+                            :key="s_index"
+                        >
+                            {{ skill.skills }}
+                        </span>
+                    </div>
                 </div>
                 <div class="mb2">
                     <h4 class="work_detail_ttl">制作について</h4>
-                    <p>{{ work.txt }}</p>
+                    <div v-html="work.body" class="work_body"></div>
                 </div>
-                <p class="work_detail_url"><span>website:</span><NuxtLink :to="work.url" target="_blank">{{ work.url }}<img src="~/public/img/common/link.svg" alt="" class="work_url_link"></NuxtLink></p>
+                <p v-if="work.url" class="work_detail_url"><span>website:</span><NuxtLink :to="work.url" target="_blank">{{ work.url }}<img src="~/public/img/common/link.svg" alt="" class="work_url_link"></NuxtLink></p>
                 <div class="btn_wrapper"><NuxtLink to="/#top-work" class="btn work_btn">戻る</NuxtLink></div>
             </div>
         </section>
     </main>
 </template>
+
+オリエントセラピースクール様のパンフレットで使用されるアクセス地図のイラストになります。
+
+道路や鉄道などの線幅や位置、また文字の大きさなど微調整しやすいように意識をして作業を進めました。
+
+またパンフレットの配色に合わせてイラスト内の配色を選定。目的地のスクールを起点に、目印となる建物や道路、鉄道路線が分かりやすくなるように心掛けました。

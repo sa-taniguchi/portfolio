@@ -80,14 +80,14 @@
         // /*ハンバーガーメニュー
 
 
-        const header = document.getElementById('header');
-        header.classList.add('is-load');
+        // const header = document.getElementById('header');
+        // header.classList.add('is-load');
 
 
-        const topFvList = document.querySelectorAll('.top-fv_list li');
+        // const topFvList = document.querySelectorAll('.top-fv_list li');
 
-        topFvList.forEach(element =>{
-            element.classList.add('is-load');
-        });
+        // topFvList.forEach(element =>{
+        //     element.classList.add('is-load');
+        // });
     })
 </script>

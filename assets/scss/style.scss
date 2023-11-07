@@ -45,15 +45,6 @@
         >li{
             width: 55%;
             overflow: hidden;
-            &::after{
-                content: '';
-                position: absolute;
-                top: -1px;
-                left: -1px;
-                bottom: -1px;
-                right: -1px;
-                background-color: $white;
-            }
             @include bp-sm{
                 width: calc(50% - 5%);
             }
@@ -168,14 +159,6 @@
             
         }
 
-        .work_item_cat{
-            font-size: .8em;
-            padding: 1.2em 0 .4em;
-            display: block;
-            font-weight: 900;
-            color: $l-brown;
-            letter-spacing: 0;
-        }
 
         .work_item_img{
             @include bp-lg{
@@ -198,8 +181,9 @@
         }
 
         .work_item_ttl{
-            font-size: 1.1em;
+            font-size: 1.05em;
             letter-spacing: 1px;
+            padding: .5em 0 .4em;
             display: grid;
             container-type: inline-size;
             white-space: nowrap;
@@ -321,7 +305,7 @@
                 }
                 @for $i from 1 through 10 {
                     &:nth-child(#{$i}){
-                        transform: translateY(-#{($i+1)*2 }em);
+                        transform: translateY(-#{($i+1)*1.5 }em);
                         @include bp-md{
                             transform: translateY(0);
                         }
@@ -379,7 +363,7 @@
         }
 
         .skill_info_ttl{
-            margin-bottom: 3.5em;
+            margin-bottom: 4.5em;
             color: $m-black;
             padding: 1em 1.5em;
             border: 2.5px solid $m-black;
@@ -397,8 +381,19 @@
             }
 
             >span:not(.is-large){
-                font-size: .7em;
-                letter-spacing: 2px;
+                font-size: .65em;
+                letter-spacing: 1px;
+                display: inline-block;
+                line-height: 1.8;
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    width: 2em;
+                    height: 2px;
+                    background-color: $m-black;
+                    margin-right: .7em;
+                    vertical-align: middle;
+                }
             }
         }
 
@@ -408,14 +403,16 @@
             line-height: 1.2;
             letter-spacing: 4px;
             &::after{
-                content: '';
-                position: absolute;
-                top: -1em;
-                right: -1.5em;
-                display: inline-block;
-                width: 2.5px;
-                height: calc(100% + 1.2em);
-                background-color: $m-black;
+                @include bp-md{
+                    content: '';
+                    position: absolute;
+                    top: -1em;
+                    right: -1.5em;
+                    display: inline-block;
+                    width: 2.5px;
+                    height: calc(100% + 1.2em);
+                    background-color: $m-black;
+                }
             }
         }
 
@@ -488,7 +485,7 @@
 
 #work{
     .work_detail_ttl{
-        font-size: 1.2em;
+        font-size: 1.1em;
         margin-bottom: .7em;
         letter-spacing: 2px;
         line-height: 1.2;
@@ -503,6 +500,7 @@
         img{   
             background-color: $beige;
             display: block;
+            margin: 0 auto;
             aspect-ratio: 16/9;
             object-fit: contain;
             object-position: top center;
@@ -520,14 +518,27 @@
     }
 
     .work_detail_url{
-        margin-bottom: 5em;
         >span{
             display: inline-block;
             margin-right: .5em;
         }
         >a{
-            border-bottom: 1px solid $m-black;
+            text-decoration: underline;
         }
+    }
+
+    .work_detail_skill{
+        &+.work_detail_skill{
+            &::before{
+                content: '/';
+                display: inline-block;
+                margin: 0 .7em;
+            }
+        }
+    }
+
+    .work_body{
+        line-height: 1.8;
     }
 
     .work_url_link{
@@ -541,6 +552,10 @@
 
     .btn_wrapper{
         margin-bottom: 5em;
+    }
+
+    .btn_wrapper{
+        margin-top: 5em;
     }
 
     .work_btn{

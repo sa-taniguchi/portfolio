@@ -108,7 +108,6 @@ useHead({
                                             decoding="async"
                                         />
                                     </div>
-                                    <span class="work_item_cat">カテゴリカテゴリ</span>
                                     <h3 class="work_item_ttl">{{ work.title }}</h3>
                                 </NuxtLink>
                             </li>
