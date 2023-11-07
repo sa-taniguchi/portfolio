@@ -11,6 +11,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: '<サイト名>' },
         { property: 'og:image', content: '<ogpに使われる画像の絶対パス>', },
+        { property: 'robots', content:  'noindex' }
       ],
       script: [ 
         { 
