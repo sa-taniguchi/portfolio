@@ -181,7 +181,6 @@
         }
 
         .work_item_ttl{
-            font-size: 1.05em;
             letter-spacing: 1px;
             padding: .5em 0 .4em;
             display: grid;
@@ -508,13 +507,13 @@
     }
 
     .work_headline{
-        margin-bottom: 7rem;
-        >span{
-            font-size: 1.5em;
-            letter-spacing: 2px;
-            padding-bottom: .7em;
-            border-bottom: 1px solid $d-black;
-        }
+        display: inline-block;
+        margin-bottom: 5rem;
+        font-size: 1.45em;
+        letter-spacing: 2px;
+        padding-bottom: .7em;
+        line-height: 1.4;
+        border-bottom: 1px solid $d-black;
     }
 
     .work_detail_url{
