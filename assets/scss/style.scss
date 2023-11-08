@@ -142,7 +142,6 @@
             display: flex;
             flex-direction: column;
             gap: 3em 3.6%;
-            justify-content: center;
             @include bp-sm{
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -352,13 +351,13 @@
         }
 
         .info_list_ttl{
-            font-size: 1.3em;
-            margin-bottom: .7em;
-            letter-spacing: 0;
+            font-size: 1.2em;
+            margin-bottom: .8em;
+            letter-spacing: 2px;
         }
 
         .skill_info_img{
-            margin-bottom: 1em;
+            margin-bottom: 1.2em;
         }
 
         .skill_info_ttl{
@@ -500,9 +499,11 @@
             background-color: $beige;
             display: block;
             margin: 0 auto;
-            aspect-ratio: 16/9;
-            object-fit: contain;
-            object-position: top center;
+            @include bp-sm{
+                aspect-ratio: 16/9;
+                object-fit: contain;
+                object-position: top center;
+            }
         }
     }
 
