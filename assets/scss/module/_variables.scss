@@ -158,6 +158,7 @@ $sp: 480px;
   src: url('../../font/NotoSansJP-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
+  font-display: swap; 
 }
 
 @font-face {
@@ -165,6 +166,7 @@ $sp: 480px;
   src: url('../../font/NotoSansJP-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
+  font-display: swap; 
 }
 
 
