@@ -60,8 +60,26 @@ useHead({
                 <section id="top-fv" class="top-fv">
                     <div class="lg-container">
                         <ul class="top-fv_list">
-                            <li><NuxtPicture src="/img/top/top01.jpg" alt="" width="340" height="340"></NuxtPicture></li>
-                            <li><NuxtPicture src="/img/top/top02.jpg" alt="" width="340" height="340"></NuxtPicture></li>
+                            <li>
+                                <NuxtPicture 
+                                    src="/img/top/top01.jpg" 
+                                    alt=""
+                                    width="340" 
+                                    height="340"
+                                    format="webp"
+                                    legacy-format="jpeg"
+                                />
+                            </li>
+                            <li>
+                                <NuxtPicture 
+                                    src="/img/top/top02.jpg" 
+                                    alt="" 
+                                    width="340" 
+                                    height="340"
+                                    format="webp"
+                                    legacy-format="jpeg"
+                                />
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -70,11 +88,11 @@ useHead({
                         <div class="about_wrapper">
                             <div class="about_img">
                                 <NuxtPicture 
-                                    src="/img/top/about.jpg" 
+                                    format="webp"
+                                    src="/img/top/about.jpg"
                                     alt=""
                                     decoding="async"
-                                >
-                                </NuxtPicture>
+                                />
                             </div>
                             <div class="about_info">
                                 <h2 class="common-ttl">About
@@ -101,7 +119,7 @@ useHead({
                             <li class="top-work_item" v-for="work in data.contents" :key="work.id">
                                 <NuxtLink :to="`${work.id}`">
                                     <div class="work_item_img">
-                                        <img
+                                        <NuxtPicture
                                             provider="imgix" 
                                             :src="work.img.url"
                                             alt=""

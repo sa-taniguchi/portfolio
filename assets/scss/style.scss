@@ -158,12 +158,11 @@
             
         }
 
-
         .work_item_img{
             @include bp-lg{
                 overflow: hidden;
             }
-            >img{
+            img{
                 display: block;
                 width: 100%;
                 aspect-ratio: 16/9;

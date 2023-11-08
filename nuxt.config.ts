@@ -65,10 +65,15 @@ export default defineNuxtConfig({
 
   swiper: {},
   image: {
-    quality: 80,
-    provider: 'netlify',
-    netlify: {
-      baseURl: process.env.IMAGES_URL
+    quality: 75,
+    // provider: 'netlify',
+    // netlify: {
+    //   baseURl: process.env.IMAGES_URL
+    // },
+    presets: {
+      common: {
+        'legacy-format': 'jpeg',
+      }
     },
     imgix: {
       baseURL: ''
