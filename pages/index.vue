@@ -155,7 +155,7 @@ useHead({
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-html5.png" alt="html5" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-html5.svg" alt="html5" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">HTML5</h4>
                                             <p class="info_list_txt">
                                                 セマンティックな記述を意識し、WAI-ARIAの記述にも取り組むなどアクセシビリティやユーザビリティを含めたマークアップを心掛けています。
@@ -164,7 +164,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-css3.png" alt="html5" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-css3.svg" alt="css3" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">CSS3</h4>
                                             <p class="info_list_txt">DartSassを使用。コードの再利用を意識して記述を行っています。
                                                 <br>クラス設計の知見もあり、ファイルの構成規則や命名規則も学習しています。
@@ -172,7 +172,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-js.png" alt="html5" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-js.svg" alt="html5" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">JavaScript</h4>
                                             <p class="info_list_txt">ES6に基づいて、基礎的な実装（クリックイベントやループなどDOM操作で使用する関数）が可能です。
                                                 <br>jQueryの記法やライブラリの実装も対応できます。
@@ -180,7 +180,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-php.png" alt="PHP" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-php.svg" alt="PHP" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">PHP(WordPress)</h4>
                                             <p class="info_list_txt">WordPressを使った制作が可能で、オリジナルテーマの作成やカスタマイズを経験しました。<br>
                                                 ローカルで作業する場合は、MAMPを使用して検証しています。
@@ -188,7 +188,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-vue.png" alt="vue/Nuxt" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-vue.svg" alt="vue/Nuxt" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Vue.js</h4>
                                             <p class="info_list_txt">Vue3のバージョンで日々学習中です。現時点では素のJavaScripやjQueryで記述していたコードをVueで置き換える程度で使用可能です。<br>
                                                 またNuxt3も併せて学習中です。（このポートフォリオで使用）</p>
@@ -200,7 +200,7 @@ useHead({
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ai.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ai.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">イラストレーター</h4>
                                             <p class="info_list_txt">
                                                 ソフトの基本操作の知識を有しています。<br>
@@ -210,7 +210,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-mockup.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-mockup.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">デザインカンプ作成ツール</h4>
                                             <p class="info_list_txt">これまでは主にAdobe XDを使用してデザインカンプの作成やデザイン確認（数値の確認、画像書き出しなど）を行ってきました。<br>
                                                 その他、Figmaは学習中で、基礎的な操作を把握しています。
@@ -219,7 +219,7 @@ useHead({
 
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ps.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ps.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">フォトショップ</h4>
                                             <p class="info_list_txt">
                                                 ソフトの基本操作の知識を有しています。<br>
@@ -233,7 +233,7 @@ useHead({
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-editor.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-editor.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">テキストエディタ</h4>
                                             <p class="info_list_txt">
                                                 現在は主にVSCodeを使用してコードを記述しています。<br>
@@ -242,7 +242,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-build.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-build.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">ビルドツール</h4>
                                             <p class="info_list_txt">
                                                 これまでは主にGulp4を使用して、Sass・画像・Javascriptのコンパイル環境を導入していました。<br>
@@ -251,7 +251,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-git.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-git.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Git</h4>
                                             <p class="info_list_txt">
                                                 Gitを使用したソースコードの管理の基礎的な知見があります。<br>
@@ -267,7 +267,7 @@ useHead({
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-otf.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-otf.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">色彩検定2級</h4>
                                             <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
@@ -277,7 +277,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-car.png" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-car.svg" alt="" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">普通自動車第一種</h4>
                                             <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
