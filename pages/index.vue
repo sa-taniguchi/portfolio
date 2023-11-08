@@ -299,6 +299,7 @@ useHead({
                         loop
                         :speed="6000"
                         :loopAdditionalSlides="5"
+                        :autoHeight=true
                         :breakpoints="breakpoints"
                         :autoplay="{
                             delay: 0,
