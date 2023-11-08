@@ -172,7 +172,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-js.svg" alt="html5" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-js.svg" alt="JavaScript" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">JavaScript</h4>
                                             <p class="info_list_txt">ES6に基づいて、基礎的な実装（クリックイベントやループなどDOM操作で使用する関数）が可能です。
                                                 <br>jQueryの記法やライブラリの実装も対応できます。
@@ -200,8 +200,8 @@ useHead({
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ai.svg" alt="" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">イラストレーター</h4>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ai.svg" alt="Illustrator" decoding="async"></NuxtImg></p>
+                                            <h4 class="info_list_ttl">Illustrator</h4>
                                             <p class="info_list_txt">
                                                 ソフトの基本操作の知識を有しています。<br>
                                                 これまで、バナーの作成・デザインカンプ作成・SVGなど画像書き出し・地図イラスト作成などに使用してきました。
@@ -210,7 +210,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-mockup.svg" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-mockup.svg" alt="デザインカンプ作成ツール" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">デザインカンプ作成ツール</h4>
                                             <p class="info_list_txt">これまでは主にAdobe XDを使用してデザインカンプの作成やデザイン確認（数値の確認、画像書き出しなど）を行ってきました。<br>
                                                 その他、Figmaは学習中で、基礎的な操作を把握しています。
@@ -219,8 +219,8 @@ useHead({
 
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ps.svg" alt="" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">フォトショップ</h4>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-ps.svg" alt="Photoshop" decoding="async"></NuxtImg></p>
+                                            <h4 class="info_list_ttl">Photoshop</h4>
                                             <p class="info_list_txt">
                                                 ソフトの基本操作の知識を有しています。<br>
                                                 これまで、写真のレタッチ（色調調整や消しゴムツールの使用）・白抜き作業などに対応可能です。
@@ -233,7 +233,7 @@ useHead({
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-editor.svg" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-editor.svg" alt="テキストエディタ" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">テキストエディタ</h4>
                                             <p class="info_list_txt">
                                                 現在は主にVSCodeを使用してコードを記述しています。<br>
@@ -242,7 +242,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-build.svg" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-build.svg" alt="ビルドツール" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">ビルドツール</h4>
                                             <p class="info_list_txt">
                                                 これまでは主にGulp4を使用して、Sass・画像・Javascriptのコンパイル環境を導入していました。<br>
@@ -251,7 +251,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-git.svg" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-git.svg" alt="Git" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Git</h4>
                                             <p class="info_list_txt">
                                                 Gitを使用したソースコードの管理の基礎的な知見があります。<br>
@@ -267,7 +267,7 @@ useHead({
                                     <ul class="skill_info_list">
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-otf.svg" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-otf.svg" alt="色彩検定2級" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">色彩検定2級</h4>
                                             <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
@@ -277,7 +277,7 @@ useHead({
                                         </li>
                                         <li>
                                             <span></span>
-                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-car.svg" alt="" decoding="async"></NuxtImg></p>
+                                            <p class="skill_info_img"><NuxtImg src="/img/top/skill-car.svg" alt="普通自動車第一種" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">普通自動車第一種</h4>
                                             <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
