@@ -124,6 +124,7 @@ useHead({
                                             :src="work.img.url"
                                             alt=""
                                             decoding="async"
+                                            format="webp"
                                         />
                                     </div>
                                     <h3 class="work_item_ttl">{{ work.title }}</h3>
@@ -267,7 +268,7 @@ useHead({
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-otf.png" alt="" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">色彩検定</h4>
+                                            <h4 class="info_list_ttl">色彩検定2級</h4>
                                             <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
@@ -277,7 +278,7 @@ useHead({
                                         <li>
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-car.png" alt="" decoding="async"></NuxtImg></p>
-                                            <h4 class="info_list_ttl">普通車免許</h4>
+                                            <h4 class="info_list_ttl">普通自動車第一種</h4>
                                             <!-- <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
                                             <p>テキストテキストテキスト</p>
@@ -304,18 +305,18 @@ useHead({
                             disableOnInteraction: false
                         }"
                     >
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider01.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider02.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider03.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider04.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider05.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider06.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider01.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider02.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider03.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider04.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider05.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
-                        <SwiperSlide><NuxtImg src="/img/top/top-slider06.jpg" alt="" decoding="async"></NuxtImg></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider01.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider02.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider03.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider04.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider05.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider06.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider01.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider02.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider03.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider04.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider05.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
+                        <SwiperSlide><NuxtPicture src="/img/top/top-slider06.jpg" alt="" decoding="async" format="webp"/></SwiperSlide>
                     </Swiper>
                     <div class="top-contact_box">
                         <p>お気軽にお問い合わせください</p>
