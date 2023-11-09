@@ -519,12 +519,27 @@ html {
   font-size: 62.5%; 
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  &::after{
+    content: '';
+    opacity: 0;
+    transition: opacity .3s;
+  }
   &.is-menuOpen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
+    &::after{
+      content: '';
+      background-color: rgba($m-black, .6);
+      position: fixed;
+      top: 90px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 1;
+    }
   }
 }
 

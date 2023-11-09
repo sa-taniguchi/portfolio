@@ -31,6 +31,17 @@
 }
 
 
+const wrapCharSpan = function(str){
+  return [...str].map(char => `<span>${char}</span>`).join('');
+}
+
+//対象の要素を取得する
+const targets = document.querySelectorAll('.js-span-wrap-text');
+//要素の内容を関数の実行結果で置き換える
+targets.forEach( (target) => {
+  target.innerHTML = wrapCharSpan(target.textContent);
+})
+
 
 
 
@@ -46,7 +57,7 @@ const cb = function(entries){
 }
 
 const options = {
-  threshold: .17
+  threshold: .2
 }
 
  const io = new IntersectionObserver(cb,options);

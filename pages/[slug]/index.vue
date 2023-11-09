@@ -40,6 +40,7 @@ baseURL: ctx.public.baseUrl,
                         provider="imgix" 
                         :src="work.img.url"
                         alt=""
+                        format="webp"
                     />
                 </p>
             </div>
@@ -79,9 +80,3 @@ baseURL: ctx.public.baseUrl,
         </section>
     </main>
 </template>
-
-オリエントセラピースクール様のパンフレットで使用されるアクセス地図のイラストになります。
-
-道路や鉄道などの線幅や位置、また文字の大きさなど微調整しやすいように意識をして作業を進めました。
-
-またパンフレットの配色に合わせてイラスト内の配色を選定。目的地のスクールを起点に、目印となる建物や道路、鉄道路線が分かりやすくなるように心掛けました。

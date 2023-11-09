@@ -3,7 +3,7 @@
 .header_nav{
     max-height: 0;
     transition: max-height 0s, padding 0s;
-    overflow: hidden;
+    // overflow: hidden;
     position: fixed;
     top: 90px;
     left: 0;
@@ -11,11 +11,6 @@
     background-color: $l-gray;
     padding: 0;
     z-index: 10;
-    &.is-show{
-        padding: 4em 0;
-        max-height: 100vh;
-        transition: max-height .2s, padding .2s;
-    }
     @include bp-lg{
         display: block;
         position: static;
@@ -23,6 +18,7 @@
         background-color: transparent;
         max-height: none;
     }
+    
 
     .header_nav_list{
         display: flex;
@@ -33,6 +29,7 @@
             flex-direction: row;
         }
         >li{
+            width: 100%;
             a{
                 display: block;
                 @include opacity-anime;
@@ -42,32 +39,58 @@
                 padding: .8em 0;
                 text-align: center;
                 width: 100%;
+                overflow: hidden;
                 @include bp-lg{
                     padding: 0 1.2em;
                     font-size: .9em;
-                    overflow-x: hidden;
                     perspective-origin: 50% 50%;
-                    span{
-                        display: inline-block;
-                        transform-origin: 50% 0%;
-                        transform-style: preserve-3d;
-                        position: relative;
-                        transition: transform .2s;
-                        &::after{
-                            content: attr(data-text);
-                            display: inline-block;
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            transform-origin: 50% 0%;
-                            transform: translate3d(0, 105%, 0) rotateX(-90deg);
-                        }
-                    }
                     &:hover span{
                         transform: translate3d(0, 0, -30px) rotateX(90deg);
                     }
                 }
             }
+        }
+
+        .nav_item_txt{
+            opacity: 0;
+            transform: translateY(calc(100% + .8em));
+            display: inline-block;
+            transition: transform 0s, opacity 0s;
+            @include bp-lg{
+                opacity: 1;
+                transform-origin: 50% 0%;
+                transform-style: preserve-3d;
+                transform: translateY(0);
+                position: relative;
+                transition: transform .2s;
+                &::after{
+                    content: attr(data-text);
+                    display: inline-block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transform-origin: 50% 0%;
+                    transform: translate3d(0, 105%, 0) rotateX(-90deg);
+                }
+            }
+        }
+    }
+
+}
+
+.header_nav{
+    &.is-show{
+        padding: 4em 0;
+        max-height: 100vh;
+        transition: max-height .2s, padding .2s;
+        &::after{
+            opacity: 1;
+            visibility: visible;
+        }
+        .nav_item_txt{
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform .3s .5s ease-in-out, opacity .3s .5s ease-in-out;
         }
     }
 }

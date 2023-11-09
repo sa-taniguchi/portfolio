@@ -53,6 +53,37 @@ $sp: 480px;
   }
 }
 
+@mixin scroll-showDown{
+  >span{
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-25px);
+    @for $i from 1 through 30 {
+      &:nth-child(#{$i}) {
+        transition: transform .5s #{$i * 0.1}s, opacity .5s #{$i * 0.1}s;
+      }
+    }
+  }
+  &.is-inview{
+    >span{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@mixin scroll-fadeUp($delay){
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform .5s #{$delay}s, opacity .5s #{$delay}s;
+  &.is-inview{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
 
 @mixin arrow-right($color) {
     position: relative;
@@ -172,4 +203,36 @@ $sp: 480px;
 
 @mixin fontRaleway(){
   font-family: 'Raleway', sans-serif;
+}
+
+
+@mixin btnSlideAnime($color){
+  background-color: $color;
+  color: $white;
+  border: 2px solid $color;
+  @include bp-lg{
+      background-color: transparent;
+      position: relative;
+      overflow: hidden;
+      &::after{
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          transform: translateX(0);
+          background: $color;
+          transition: transform .3s;
+          z-index: -1;
+      }
+      &:hover{
+          color: $color;
+          &::after{
+              transform: translateX(100%);
+          }
+      }
+  }
+
 }

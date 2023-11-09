@@ -95,14 +95,18 @@ useHead({
                                 />
                             </div>
                             <div class="about_info">
-                                <h2 class="common-ttl">About
-                                    <span>自己紹介</span>
-                                </h2>
-                                <p>はじめまして。谷口と申します。</p>
-                                <p class="mb1">HP制作を中心にHTMLコーダーとしてキャリアをスタートして3年程になります。</p>
-                                <p class="mb1">職業訓練校でWEB制作について半年間学習後、ホームページなどWEB制作携わる会社に就職。主にコーディング業務に従事し、ホームページ制作やLP制作、またデザイン制作の案件に携わってきました。</p>
-                                <p>現在では更なるスキルアップを求めて、これまで学んだ知識やスキルを活かして転職活動中です。</p>
-                                <p class="is-small">（2023年10月更新）</p>
+                                <div class="common-ttl_box">
+                                    <h2 class="common-ttl js-span-wrap-text js-io">About
+                                    </h2>
+                                    <span class="js-io">自己紹介</span>
+                                </div>
+                                <div class="about_txt js-io">
+                                    <p>はじめまして。谷口と申します。</p>
+                                    <p class="mb1">HP制作を中心にHTMLコーダーとしてキャリアをスタートして3年程になります。</p>
+                                    <p class="mb1">職業訓練校でWEB制作について半年間学習後、ホームページなどWEB制作携わる会社に就職。主にコーディング業務に従事し、ホームページ制作やLP制作、またデザイン制作の案件に携わってきました。</p>
+                                    <p>現在では更なるスキルアップを求めて、これまで学んだ知識やスキルを活かして転職活動中です。</p>
+                                    <p class="is-small">（2023年10月更新）</p>
+                                </div>
                             </div>
                         </div>
 
@@ -112,9 +116,10 @@ useHead({
 
                 <section id="top-work" class="top-work">
                     <div class="lg-container">
-                        <h2 class="common-ttl">WORKS
-                            <span>制作実績</span>
-                        </h2>
+                        <div class="common-ttl_box">
+                            <h2 class="common-ttl js-span-wrap-text js-io">WORKS</h2>
+                            <span class="js-io">制作実績</span>
+                        </div>
                         <ul class="top-work_list">
                             <li class="top-work_item" v-for="work in data.contents" :key="work.id">
                                 <NuxtLink :to="`${work.id}`">
@@ -136,9 +141,10 @@ useHead({
 
                 <section id="top-skill" class="top-skill">
                     <div class="xl-container">
-                        <h2 class="common-ttl">SKILL
-                            <span>扱うスキル</span>
-                        </h2>
+                        <div class="common-ttl_box">
+                            <h2 class="common-ttl js-span-wrap-text js-io">SKILL</h2>
+                            <span class="js-io">扱うスキル</span>
+                        </div>
                         <div class="skill_wrapper">
                             <nav class="skill_nav">
                                 <h3 class="skill_nav_ttl">SKILL</h3>
