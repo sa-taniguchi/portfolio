@@ -45,6 +45,15 @@
         >li{
             width: 55%;
             overflow: hidden;
+            &::after{
+                content: '';
+                background-color: $white;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
             @include bp-sm{
                 width: calc(50% - 5%);
             }

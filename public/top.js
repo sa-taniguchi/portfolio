@@ -30,4 +30,11 @@ function doWhenIntersect(entries) {
     const newActiveIndex = document.querySelector(`#indexList a[href*='#${element.id}']`);
     newActiveIndex.classList.add("is-active");
     }
+
+
+    const topFvList = document.querySelectorAll('.top-fv_list li');
+
+    topFvList.forEach(element =>{
+        element.classList.add('is-load');
+    });
 }
