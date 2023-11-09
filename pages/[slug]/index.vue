@@ -1,7 +1,5 @@
 <script setup>
 
-
-
 const route = useRoute();
 const slug = route.params.slug;
 const ctx = useRuntimeConfig();
@@ -14,18 +12,15 @@ baseURL: ctx.public.baseUrl,
 });
 
 
-gsap.registerPlugin(ScrollTrigger);
-
-
 onMounted(()=>{
     
     const wrapCharSpan = function(str){
         return [...str].map(char => `<span>${char}</span>`).join('');
         }
         const targets = document.querySelectorAll('.js-span-wrap-text');
-        targets.forEach( (target) => {
+        targets.forEach((target) => {
         target.innerHTML = wrapCharSpan(target.textContent);
-    })
+    });
 
      // // スクロール検知(画面に入ったらクラス付与 && 外す)
     let scrollCheck = document.querySelectorAll('.js-io');
