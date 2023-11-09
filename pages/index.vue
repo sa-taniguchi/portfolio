@@ -67,26 +67,24 @@
                             <h2 class="common-ttl js-span-wrap-text js-io">WORKS</h2>
                             <span class="js-io">制作実績</span>
                         </div>
-                    </div>
-                    <div class="xl-container">
-                        <div class="top-work_container">
-                            <ul class="top-work_list">
-                                <li class="top-work_item" v-for="work in data.contents" :key="work.id">
-                                    <NuxtLink :to="`${work.id}`">
-                                        <div class="work_item_img">
-                                            <NuxtPicture
-                                                provider="imgix" 
-                                                :src="work.img.url"
-                                                alt=""
-                                                decoding="async"
-                                                format="webp"
-                                            />
-                                        </div>
-                                        <h3 class="work_item_ttl">{{ work.title }}</h3>
-                                    </NuxtLink>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="top-work_container">
+                                <ul class="top-work_list">
+                                    <li class="top-work_item" v-for="work in data.contents" :key="work.id">
+                                        <NuxtLink :to="`${work.id}`">
+                                            <div class="work_item_img">
+                                                <NuxtPicture
+                                                    provider="imgix" 
+                                                    :src="work.img.url"
+                                                    alt=""
+                                                    decoding="async"
+                                                    format="webp"
+                                                />
+                                            </div>
+                                            <h3 class="work_item_ttl">{{ work.title }}</h3>
+                                        </NuxtLink>
+                                    </li>
+                                </ul>
+                            </div>
                     </div>
                 </section>
 
@@ -378,7 +376,7 @@ onMounted(()=>{
         scrollTrigger: {
             trigger: '.top-work',
             start: 'top top',
-            end: () => (list_wrap.clientWidth - container.clientWidth),
+            end: () => `+=${list_wrap.clientWidth -  container.clientWidth}`,
             scrub: true,
             pin: true,
             anticipatePin: 1,

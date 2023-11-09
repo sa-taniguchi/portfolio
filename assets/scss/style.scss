@@ -172,6 +172,8 @@
     .top-work{
         background-color: $beige;
         padding: 6em 0 8em!important;
+        height: 100vh;
+        overflow: hidden;
         // @include bp-lg{
         //     display: flex;
         //     justify-content: center;
@@ -179,10 +181,10 @@
         // }
 
         .top-work_container{
-            overflow: hidden;
-            height: 500px;
+            // overflow: hidden;
             width: 100%;
             position: relative;
+            height: 500px;
         }
 
         .top-work_list{
@@ -197,6 +199,7 @@
         }
         .top-work_item{
             width: 350px;
+            aspect-ratio: 4/3;
             display: flex;
             justify-content: center;
             align-items: center;

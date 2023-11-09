@@ -102,10 +102,4 @@ export default defineNuxtConfig({
       isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
     },
   },
-
-  nitro:{
-    prerender: {
-        failOnError: false,
-        },
-  },
 })
