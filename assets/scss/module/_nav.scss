@@ -11,12 +11,14 @@
     background-color: $l-gray;
     padding: 0;
     z-index: 10;
+    visibility: hidden;
     @include bp-lg{
         display: block;
         position: static;
         overflow: auto;
         background-color: transparent;
         max-height: none;
+        visibility: visible;
     }
     
 
@@ -82,6 +84,7 @@
     &.is-show{
         padding: 4em 0;
         max-height: 100vh;
+        visibility: visible;
         transition: max-height .2s, padding .2s;
         &::after{
             opacity: 1;

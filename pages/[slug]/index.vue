@@ -1,14 +1,5 @@
 <script setup>
 
-// import type { Work } from "~/types/blog"
-
-// const { params }  = useRoute();
-
-// const { data } = await useMicroCMSGetListDetail<Work>({
-//     endpoint: "work",
-//     contentId: Array.isArray(params.id) ? params.id[0] : params.id,
-// });
-
 const route = useRoute();
 const slug = route.params.slug;
 const ctx = useRuntimeConfig();
@@ -19,6 +10,38 @@ baseURL: ctx.public.baseUrl,
     "X-MICROCMS-API-KEY": ctx.public.apiKey,
   },
 });
+
+
+onMounted(()=>{
+    
+    const wrapCharSpan = function(str){
+        return [...str].map(char => `<span>${char}</span>`).join('');
+        }
+        const targets = document.querySelectorAll('.js-span-wrap-text');
+        targets.forEach( (target) => {
+        target.innerHTML = wrapCharSpan(target.textContent);
+    })
+
+     // // スクロール検知(画面に入ったらクラス付与 && 外す)
+    let scrollCheck = document.querySelectorAll('.js-io');
+    const cb = function(entries){
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('is-inview');
+            } 
+        });
+    }
+    
+    const options = {
+        threshold: .2
+    }
+    
+    const io = new IntersectionObserver(cb,options);
+    
+    scrollCheck.forEach(v => {
+        io.observe(v);
+    });
+});
 </script>
 
 
@@ -28,10 +51,8 @@ baseURL: ctx.public.baseUrl,
         <section>
             <div class="lg-container">
                 <div class="subpage_fv">
-                    <h2>
-                        WORKS
-                        <span>制作実績</span>
-                    </h2>
+                    <h2 class="js-span-wrap-text js-io">WORKS</h2>
+                    <span class="js-io">制作実績</span>
                 </div>
             </div>
             <div class="lg-container">

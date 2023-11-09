@@ -14,6 +14,7 @@ register();
 
 
 
+
 const ctx = useRuntimeConfig();
 const { data } = await useFetch("/work", {
     baseURL: ctx.public.baseUrl,
@@ -51,9 +52,40 @@ useHead({
     ],
 })
 
+onMounted(()=>{
+    
+    const wrapCharSpan = function(str){
+        return [...str].map(char => `<span>${char}</span>`).join('');
+        }
+        const targets = document.querySelectorAll('.js-span-wrap-text');
+        targets.forEach( (target) => {
+        target.innerHTML = wrapCharSpan(target.textContent);
+    })
+
+     // // スクロール検知(画面に入ったらクラス付与 && 外す)
+    let scrollCheck = document.querySelectorAll('.js-io');
+    const cb = function(entries){
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('is-inview');
+            } 
+        });
+    }
+    
+    const options = {
+        threshold: .2
+    }
+    
+    const io = new IntersectionObserver(cb,options);
+    
+    scrollCheck.forEach(v => {
+        io.observe(v);
+    });
+});
+
 </script>
 
-<template>
+<template ref="root">
     <Header class="is-top" />
         <main id="top">
             <article>
@@ -96,7 +128,7 @@ useHead({
                             </div>
                             <div class="about_info">
                                 <div class="common-ttl_box">
-                                    <h2 class="common-ttl js-span-wrap-text js-io">About
+                                    <h2 class="common-ttl js-io js-span-wrap-text" ref="isTarget">About
                                     </h2>
                                     <span class="js-io">自己紹介</span>
                                 </div>

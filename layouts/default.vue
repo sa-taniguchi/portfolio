@@ -1,4 +1,5 @@
 <template>
     <slot />
     <Footer />
-  </template>
+</template>
+

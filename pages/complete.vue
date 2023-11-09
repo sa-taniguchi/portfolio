@@ -1,3 +1,38 @@
+<script setup>
+onMounted(()=>{
+    
+    const wrapCharSpan = function(str){
+        return [...str].map(char => `<span>${char}</span>`).join('');
+        }
+        const targets = document.querySelectorAll('.js-span-wrap-text');
+        targets.forEach( (target) => {
+        target.innerHTML = wrapCharSpan(target.textContent);
+    })
+
+     // // スクロール検知(画面に入ったらクラス付与 && 外す)
+    let scrollCheck = document.querySelectorAll('.js-io');
+    const cb = function(entries){
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('is-inview');
+            } 
+        });
+    }
+    
+    const options = {
+        threshold: .2
+    }
+    
+    const io = new IntersectionObserver(cb,options);
+    
+    scrollCheck.forEach(v => {
+        io.observe(v);
+    });
+});
+</script>
+
+
+
 <template>
     <Header />
     <main id="complete">
@@ -5,10 +40,8 @@
             <section>
                 <div class="lg-container">
                     <div class="subpage_fv">
-                        <h2>
-                            Contact
-                            <span>お問い合わせ</span>
-                        </h2>
+                        <h2 class="js-span-wrap-text js-io">Contact</h2>
+                        <span class="js-io">お問い合わせ</span>
                     </div>
                     <div class="complete_wrapper">
                         <h3 class="complete_ttl">お問い合わせが完了しました</h3>

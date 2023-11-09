@@ -213,6 +213,7 @@ $sp: 480px;
   @include bp-lg{
       background-color: transparent;
       position: relative;
+      z-index: 1;
       overflow: hidden;
       &::after{
           content: '';

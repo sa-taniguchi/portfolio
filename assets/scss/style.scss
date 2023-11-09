@@ -5,7 +5,6 @@
     margin-bottom: 3.5rem;
     >span{
         display: inline-block;
-        font-size: 1em;
         color: $l-brown;
         font-weight: 900;
         overflow: hidden;
@@ -242,7 +241,7 @@
         }
         .skill_wrapper{
             display: flex;
-            gap: 7em 6%;
+            gap: 6em 6%;
             flex-direction: column;
             align-items: flex-start;
             @include bp-lg{
@@ -394,7 +393,7 @@
         }
 
         .skill_info_ttl{
-            margin-bottom: 4.5em;
+            margin-bottom: 3.5em;
             color: $m-black;
             padding: 1em 1.5em;
             border: 2.5px solid $m-black;

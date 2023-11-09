@@ -1,26 +1,56 @@
-<!-- <script setup>
-    import { useField } from 'vee-validate';
-    import * as yup from 'yup';
+<script setup>
+onMounted(()=>{
+    
+    const wrapCharSpan = function(str){
+        return [...str].map(char => `<span>${char}</span>`).join('');
+        }
+        const targets = document.querySelectorAll('.js-span-wrap-text');
+        targets.forEach( (target) => {
+        target.innerHTML = wrapCharSpan(target.textContent);
+    })
 
-    const schema = yup.object({
-    name: yup
-        .string()
-        .required("この項目は必須です")
-        .min(8, "８文字以上で入力してください"),
-    email: yup
-        .string()
-        .required("この項目は必須です")
-        .email("メールアドレスの形式で入力してください"),
+     // // スクロール検知(画面に入ったらクラス付与 && 外す)
+    let scrollCheck = document.querySelectorAll('.js-io');
+    const cb = function(entries){
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('is-inview');
+            } 
+        });
+    }
+    
+    const options = {
+        threshold: .2
+    }
+    
+    const io = new IntersectionObserver(cb,options);
+    
+    scrollCheck.forEach(v => {
+        io.observe(v);
     });
+});
+    // import { useField } from 'vee-validate';
+    // import * as yup from 'yup';
 
-    const { errors } = useForm({
-    validationSchema: schema,
-    });
+    // const schema = yup.object({
+    // name: yup
+    //     .string()
+    //     .required("この項目は必須です")
+    //     .min(8, "８文字以上で入力してください"),
+    // email: yup
+    //     .string()
+    //     .required("この項目は必須です")
+    //     .email("メールアドレスの形式で入力してください"),
+    // });
 
-    const { value: name } = useField('name');
-    const { value: email } = useField('email');
+    // const { errors } = useForm({
+    // validationSchema: schema,
+    // });
 
-</script> -->
+    // const { value: name } = useField('name');
+    // const { value: email } = useField('email');
+
+</script>
 
 <template>
     <Header />
@@ -29,10 +59,8 @@
             <section>
                 <div class="md-container">
                     <div class="subpage_fv">
-                        <h2>
-                            Contact
-                            <span>お問い合わせ</span>
-                        </h2>
+                        <h2 class="js-span-wrap-text js-io">Contact</h2>
+                        <span class="js-io">お問い合わせ</span>
                     </div>
                     <p>お気軽にお問い合わせください。</p>
                     <form 

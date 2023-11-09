@@ -31,40 +31,9 @@
 }
 
 
-const wrapCharSpan = function(str){
-  return [...str].map(char => `<span>${char}</span>`).join('');
-}
-
-//対象の要素を取得する
-const targets = document.querySelectorAll('.js-span-wrap-text');
-//要素の内容を関数の実行結果で置き換える
-targets.forEach( (target) => {
-  target.innerHTML = wrapCharSpan(target.textContent);
-})
 
 
 
-
-// スクロール検知(画面に入ったらクラス付与 && 外す)
-let scrollCheck = document.querySelectorAll('.js-io');
-
-const cb = function(entries){
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('is-inview');
-    } 
-  });
-}
-
-const options = {
-  threshold: .2
-}
-
- const io = new IntersectionObserver(cb,options);
-
- scrollCheck.forEach(v => {
-  io.observe(v);
- });
 
 
 
