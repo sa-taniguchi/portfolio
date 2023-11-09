@@ -47,8 +47,14 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/image',
     'nuxt-swiper',
+    '@hypernym/nuxt-gsap',
     // 'nuxt-microcms-module'
   ],
+  gsap: {
+    extraPlugins: {
+      scrollTrigger: true,
+    },
+  },
 
   runtimeConfig: {
     public: {
@@ -95,5 +101,11 @@ export default defineNuxtConfig({
     compilerOptions: {
       isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
     },
+  },
+
+  nitro:{
+    prerender: {
+        failOnError: false,
+        },
   },
 })

@@ -5,6 +5,7 @@
     margin-bottom: 3.5rem;
     >span{
         display: inline-block;
+        font-size: 1em;
         color: $l-brown;
         font-weight: 900;
         overflow: hidden;
@@ -170,25 +171,27 @@
 
     .top-work{
         background-color: $beige;
-        padding: 6em 0;
+        padding: 6em 0 8em!important;
+        @include bp-lg{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top-work_container{
+            overflow: hidden;
+        }
+
         .top-work_list{
             display: flex;
-            flex-direction: column;
-            gap: 3em 3.6%;
-            @include bp-sm{
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
+            gap: 0 3em;
         }
         .top-work_item{
-            width: 100%;
-            @include bp-sm{
-                width: calc(50% - 1.8%);
-            }
-            @include bp-lg{
-                width: calc(33.33% - 7.2%/3);
-            }
-            
+            width: 390px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .work_item_img{
@@ -198,8 +201,9 @@
             img{
                 display: block;
                 width: 100%;
-                aspect-ratio: 16/9;
+                aspect-ratio: 6.5/4;
                 object-fit: contain;
+                object-position: center;
                 background: $white;
                 @include bp-lg{
                     transition: transform .3s;

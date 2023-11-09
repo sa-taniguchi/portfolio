@@ -1,5 +1,7 @@
 <script setup>
 
+
+
 const route = useRoute();
 const slug = route.params.slug;
 const ctx = useRuntimeConfig();
@@ -10,6 +12,9 @@ baseURL: ctx.public.baseUrl,
     "X-MICROCMS-API-KEY": ctx.public.apiKey,
   },
 });
+
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 onMounted(()=>{

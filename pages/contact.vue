@@ -9,7 +9,6 @@ onMounted(()=>{
         target.innerHTML = wrapCharSpan(target.textContent);
     })
 
-     // // スクロール検知(画面に入ったらクラス付与 && 外す)
     let scrollCheck = document.querySelectorAll('.js-io');
     const cb = function(entries){
         entries.forEach(entry => {

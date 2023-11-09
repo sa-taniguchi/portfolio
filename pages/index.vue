@@ -5,12 +5,9 @@
 
 import { ref } from "vue";
 import { register } from 'swiper/element/bundle';
-// import type { Work } from "~/types/blog"
 
-// const { data } = await useMicroCMSGetList<Work>({
-//     endpoint : "work",
-// })
-register();
+const { $gsap } = useNuxtApp()
+
 
 
 
@@ -23,7 +20,7 @@ const { data } = await useFetch("/work", {
     },
 });
 
-
+register();
 let breakpoints = ref(null);
 
 breakpoints.value = {
@@ -53,6 +50,27 @@ useHead({
 })
 
 onMounted(()=>{
+
+    const wrap  = document.querySelector(".top-work_list");
+    const items = document.querySelectorAll(".top-work_item");
+    const num   = items.length;
+
+    $gsap.set(wrap,  { width: num * 370 + "px" });
+    
+    $gsap.to(items, {
+        xPercent: -100 * ( num - 1 ),
+        ease: "none",
+        scrollTrigger: {
+            trigger: '.top-work', 
+            start: "top top", 
+            end: "bottom top", 
+            pin: true, 
+            scrub: true, 
+            anticipatePin: 1, 
+            invalidateOnRefresh: true,
+        }
+    });
+
     
     const wrapCharSpan = function(str){
         return [...str].map(char => `<span>${char}</span>`).join('');
@@ -147,27 +165,33 @@ onMounted(()=>{
 
 
                 <section id="top-work" class="top-work">
+                    <div>
                     <div class="lg-container">
                         <div class="common-ttl_box">
                             <h2 class="common-ttl js-span-wrap-text js-io">WORKS</h2>
                             <span class="js-io">制作実績</span>
                         </div>
-                        <ul class="top-work_list">
-                            <li class="top-work_item" v-for="work in data.contents" :key="work.id">
-                                <NuxtLink :to="`${work.id}`">
-                                    <div class="work_item_img">
-                                        <NuxtPicture
-                                            provider="imgix" 
-                                            :src="work.img.url"
-                                            alt=""
-                                            decoding="async"
-                                            format="webp"
-                                        />
-                                    </div>
-                                    <h3 class="work_item_ttl">{{ work.title }}</h3>
-                                </NuxtLink>
-                            </li>
-                        </ul>
+                    </div>
+                    <div class="xl-container">
+                        <div class="top-work_container">
+                            <ul class="top-work_list">
+                                <li class="top-work_item" v-for="work in data.contents" :key="work.id">
+                                    <NuxtLink :to="`${work.id}`">
+                                        <div class="work_item_img">
+                                            <NuxtPicture
+                                                provider="imgix" 
+                                                :src="work.img.url"
+                                                alt=""
+                                                decoding="async"
+                                                format="webp"
+                                            />
+                                        </div>
+                                        <h3 class="work_item_ttl">{{ work.title }}</h3>
+                                    </NuxtLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     </div>
                 </section>
 
