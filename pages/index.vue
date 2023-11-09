@@ -1,107 +1,4 @@
 
-<!-- <script setup lang="ts"> -->
-<script setup>
-
-
-import { ref } from "vue";
-import { register } from 'swiper/element/bundle';
-
-const { $gsap } = useNuxtApp()
-
-
-
-
-
-const ctx = useRuntimeConfig();
-const { data } = await useFetch("/work", {
-    baseURL: ctx.public.baseUrl,
-    headers: {
-    "X-MICROCMS-API-KEY": ctx.public.apiKey,
-    },
-});
-
-register();
-let breakpoints = ref(null);
-
-breakpoints.value = {
-    375: {
-        slidesPerView: 1.5
-    },
-    568: {
-        slidesPerView: 2
-    },
-    768: {
-        slidesPerView: 2.5
-    },
-    1280: {
-        slidesPerView: 3.5
-    },
-    1920: {
-        slidesPerView: 4.5
-    },
-}
-useHead({
-    script: [ 
-        { 
-            src: 'top.js', 
-            body: true,
-        },
-    ],
-})
-
-onMounted(()=>{
-
-    const wrap  = document.querySelector(".top-work_list");
-    const items = document.querySelectorAll(".top-work_item");
-    const num   = items.length;
-
-    $gsap.set(wrap,  { width: num * 370 + "px" });
-    
-    $gsap.to(items, {
-        xPercent: -100 * ( num - 1 ),
-        ease: "none",
-        scrollTrigger: {
-            trigger: '.top-work', 
-            start: "top top", 
-            end: "bottom top", 
-            pin: true, 
-            scrub: true, 
-            anticipatePin: 1, 
-            invalidateOnRefresh: true,
-        }
-    });
-
-    
-    const wrapCharSpan = function(str){
-        return [...str].map(char => `<span>${char}</span>`).join('');
-        }
-        const targets = document.querySelectorAll('.js-span-wrap-text');
-        targets.forEach( (target) => {
-        target.innerHTML = wrapCharSpan(target.textContent);
-    })
-
-     // // スクロール検知(画面に入ったらクラス付与 && 外す)
-    let scrollCheck = document.querySelectorAll('.js-io');
-    const cb = function(entries){
-        entries.forEach(entry => {
-            if(entry.isIntersecting){
-                entry.target.classList.add('is-inview');
-            } 
-        });
-    }
-    
-    const options = {
-        threshold: .2
-    }
-    
-    const io = new IntersectionObserver(cb,options);
-    
-    scrollCheck.forEach(v => {
-        io.observe(v);
-    });
-});
-
-</script>
 
 <template ref="root">
     <Header class="is-top" />
@@ -165,7 +62,6 @@ onMounted(()=>{
 
 
                 <section id="top-work" class="top-work">
-                    <div>
                     <div class="lg-container">
                         <div class="common-ttl_box">
                             <h2 class="common-ttl js-span-wrap-text js-io">WORKS</h2>
@@ -191,7 +87,6 @@ onMounted(()=>{
                                 </li>
                             </ul>
                         </div>
-                    </div>
                     </div>
                 </section>
 
@@ -389,3 +284,108 @@ onMounted(()=>{
             </article>
         </main>
 </template>
+
+
+
+<!-- <script setup lang="ts"> -->
+<script setup>
+
+
+import { ref } from "vue";
+import { register } from 'swiper/element/bundle';
+
+
+
+const ctx = useRuntimeConfig();
+const { data } = await useFetch("/work", {
+    baseURL: ctx.public.baseUrl,
+    headers: {
+        "X-MICROCMS-API-KEY": ctx.public.apiKey,
+    },
+});
+
+
+register();
+let breakpoints = ref(null);
+
+breakpoints.value = {
+    375: {
+        slidesPerView: 1.5
+    },
+    568: {
+        slidesPerView: 2
+    },
+    768: {
+        slidesPerView: 2.5
+    },
+    1280: {
+        slidesPerView: 3.5
+    },
+    1920: {
+        slidesPerView: 4.5
+    },
+}
+useHead({
+    script: [ 
+        { 
+            src: 'top.js', 
+            body: true,
+        },
+    ],
+})
+
+
+const { $gsap } = useNuxtApp()
+
+onMounted(()=>{
+    
+    const wrapCharSpan = function(str){
+        return [...str].map(char => `<span>${char}</span>`).join('');
+        }
+        const targets = document.querySelectorAll('.js-span-wrap-text');
+        targets.forEach( (target) => {
+        target.innerHTML = wrapCharSpan(target.textContent);
+    })
+
+     // // スクロール検知(画面に入ったらクラス付与 && 外す)
+    let scrollCheck = document.querySelectorAll('.js-io');
+    const cb = function(entries){
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('is-inview');
+            } 
+        });
+    }
+    
+    const options = {
+        threshold: .2
+    }
+    
+    const io = new IntersectionObserver(cb,options);
+    
+    scrollCheck.forEach(v => {
+        io.observe(v);
+    });
+
+
+    const list_wrap  = document.querySelector(".top-work_list");
+    const container = document.querySelector(".top-work_container");
+    const items = $gsap.utils.toArray (".top-work_item");
+
+    $gsap.to(list_wrap, {
+        x: () => -(list_wrap.clientWidth -  container.clientWidth),
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '.top-work',
+            start: 'top top',
+            end: () => (list_wrap.clientWidth - container.clientWidth),
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+        }
+    });
+});
+
+
+</script>

@@ -172,26 +172,38 @@
     .top-work{
         background-color: $beige;
         padding: 6em 0 8em!important;
-        @include bp-lg{
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        // @include bp-lg{
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        // }
 
         .top-work_container{
             overflow: hidden;
+            height: 500px;
+            width: 100%;
+            position: relative;
         }
 
         .top-work_list{
             display: flex;
-            gap: 0 3em;
+            gap: 0 2em;
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include bp-lg{
+                gap: 0 3em;
+            }
         }
         .top-work_item{
-            width: 390px;
+            width: 350px;
             display: flex;
             justify-content: center;
             align-items: center;
+            a{
+                display: block;
+                width: 100%;
+            }
         }
 
         .work_item_img{
