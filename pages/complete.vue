@@ -100,7 +100,7 @@ onMounted(()=>{
 
 
 <template>
-    <!-- <Header /> -->
+    <Header />
     <main id="complete">
         <article>
             <section>

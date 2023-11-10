@@ -1,7 +1,7 @@
 
 
-<template ref="root">
-    <!-- <Header class="is-top" /> -->
+<template>
+        <Header />
         <main id="top">
             <article>
                 <section id="top-fv" class="top-fv">
@@ -290,13 +290,6 @@ const { data } = await useFetch("/work", {
     },
 });
 
-// Pace.on("start", function () {
-//   console.log("start");
-// });
-
-// Pace.on("done", function () {
-//   console.log("done");
-// });
 
 
 register();
@@ -319,6 +312,12 @@ breakpoints.value = {
         slidesPerView: 4.5
     },
 }
+
+
+
+
+
+
 useHead({
     script: [ 
         { 

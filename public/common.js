@@ -1,4 +1,4 @@
-
+{
 
 // 固定ヘッダーの高さ（＋余白の追加）
 const headerHeight = document.querySelector('header').offsetHeight;
@@ -102,6 +102,7 @@ if (hash) {
       scrollToPos(position);
     });
   }
+}
 }
 
 

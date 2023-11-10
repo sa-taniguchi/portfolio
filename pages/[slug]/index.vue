@@ -6,14 +6,13 @@ const ctx = useRuntimeConfig();
 
 const { data : work } = await useFetch(`/work/${slug}`, {
 baseURL: ctx.public.baseUrl,
-  headers: {
-    "X-MICROCMS-API-KEY": ctx.public.apiKey,
-  },
+    headers: {
+        "X-MICROCMS-API-KEY": ctx.public.apiKey,
+    },
 });
 
 
 onMounted(()=>{
-    
     const wrapCharSpan = function(str){
         return [...str].map(char => `<span>${char}</span>`).join('');
         }
@@ -41,7 +40,8 @@ onMounted(()=>{
         io.observe(v);
     });
 
-    //ハンバーガーメニュー全般
+
+        //ハンバーガーメニュー全般
 
     const mediaQueryList = window.matchMedia('(min-width: 996px)');
 
@@ -107,12 +107,13 @@ onMounted(()=>{
     // /*ハンバーガーメニュー
     const header = document.getElementById('header');
     header.classList.add('is-load');
+
 });
 </script>
 
 
 <template>
-    <!-- <Header /> -->
+    <Header />
     <main id="work">
         <section>
             <div class="lg-container">
