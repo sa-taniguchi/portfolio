@@ -290,6 +290,14 @@ const { data } = await useFetch("/work", {
     },
 });
 
+// Pace.on("start", function () {
+//   console.log("start");
+// });
+
+// Pace.on("done", function () {
+//   console.log("done");
+// });
+
 
 register();
 let breakpoints = ref(null);

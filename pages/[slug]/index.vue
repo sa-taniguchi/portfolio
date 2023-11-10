@@ -66,6 +66,7 @@ onMounted(()=>{
             </div>
             <div class="md-container">
                 <h3 class="work_headline"><span>{{ work.title }}</span></h3>
+                <p class="work_date">{{ work.time }}</p>
                 <div class="mb2">
                     <h4 class="work_detail_ttl">担当</h4>
                     <div>

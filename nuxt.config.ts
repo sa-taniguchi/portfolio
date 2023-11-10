@@ -48,7 +48,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-swiper',
     '@hypernym/nuxt-gsap',
-    // 'nuxt-microcms-module'
   ],
   gsap: {
     extraPlugins: {
