@@ -22,7 +22,6 @@ onMounted(()=>{
         target.innerHTML = wrapCharSpan(target.textContent);
     });
 
-     // // スクロール検知(画面に入ったらクラス付与 && 外す)
     let scrollCheck = document.querySelectorAll('.js-io');
     const cb = function(entries){
         entries.forEach(entry => {
@@ -95,7 +94,7 @@ onMounted(()=>{
                     <h4 class="work_detail_ttl">制作について</h4>
                     <div v-html="work.body" class="work_body"></div>
                 </div>
-                <p v-if="work.url" class="work_detail_url"><span>website:</span><NuxtLink :to="work.url" target="_blank">{{ work.url }}<img src="~/public/img/common/link.svg" alt="" class="work_url_link"></NuxtLink></p>
+                <p v-if="work.url" class="work_detail_url"><span>website:</span><NuxtLink :to="work.url" target="_blank">{{ work.url }}<img src="/img/common/link.svg" alt="" class="work_url_link"></NuxtLink></p>
                 <div class="btn_wrapper"><NuxtLink to="/#top-work" class="btn work_btn">戻る</NuxtLink></div>
             </div>
         </section>

@@ -172,16 +172,13 @@
     .top-work{
         background-color: $beige;
         padding: 6em 0 8em!important;
-        height: 100vh;
+        height: 80vh;
         overflow: hidden;
-        // @include bp-lg{
-        //     display: flex;
-        //     justify-content: center;
-        //     align-items: center;
-        // }
+        @include bp-md{
+            height: 100vh;
+        }
 
         .top-work_container{
-            // overflow: hidden;
             width: 100%;
             position: relative;
             height: 500px;
@@ -348,30 +345,34 @@
                 padding: 3em 2em 5em;
                 counter-increment: skill-number;
                 text-align: center;
+                transition: transform .6s, opacity .6s;
+                opacity: 0;
                 @include bp-md{
                     width: calc(50% + .58em);
                     padding: 3em 6%;
                 }
-                @for $i from 1 through 10 {
-                    &:nth-child(#{$i}){
-                        transform: translateY(-#{($i+1)*1.5 }em);
-                        @include bp-md{
-                            transform: translateY(0);
-                        }
-                    }
-                }
+
                 &:nth-of-type(odd){
                     background: $ll-gray;
                     @include bp-md{
-                        transform: translateX(.6em);
+                        transition: transform .6s, opacity .6s;
+                        transform: translateX(-.6em);
                         margin-left: -.6em;
                     }
                 }
                 &:nth-of-type(even){
                     background-color: $l-gray;
                     @include bp-md{
-                        transform: translateX(-.6em);
+                        transition: transform .6s .5s, opacity .6s .5s;
+                        transform: translateX(.6em);
                         margin-right: -.6em;
+                    }
+                }
+
+                &:nth-of-type(2n+1):last-of-type{
+                    @include bp-md{
+                        transition:transform .6s, opacity .6s;
+                        transform: translate(0, 2.5em);
                     }
                 }
                 
@@ -397,6 +398,38 @@
                     width: 100%;
                     object-fit: contain;
                     max-width: 160px;
+                }
+
+                // クラス付与後
+                &.is-inview{
+                    @for $i from 1 through 10 {
+                        &:nth-child(#{$i}){
+                            transform: translateY(-#{($i+1)*1.5 }em);
+                            opacity: 1;
+                            @include bp-md{
+                                transform: translateY(0);
+                            }
+                        }
+                    }
+                    &:nth-of-type(odd){
+                        @include bp-md{
+                            transform: translateX(.6em);
+                            opacity: 1;
+                        }
+                    }
+                    &:nth-of-type(even){
+                        @include bp-md{
+                            transform: translateX(-.6em);
+                            opacity: 1;
+                        }
+                    }
+
+                    &:nth-of-type(2n+1):last-of-type{
+                        @include bp-md{
+                            transform: translate(0,0);
+                            opacity: 1;
+                        }
+                    }
                 }
             }
         }

@@ -108,16 +108,15 @@
                                 <div id="skill_info_cording" class="skill_info_box">
                                     <h3 class="skill_info_ttl"><span class="is-large">コーディング</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-html5.svg" alt="html5" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">HTML5</h4>
                                             <p class="info_list_txt">
                                                 セマンティックな記述を意識し、WAI-ARIAの記述にも取り組むなどアクセシビリティやユーザビリティを含めたマークアップを心掛けています。
                                             </p>
-
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-css3.svg" alt="css3" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">CSS3</h4>
@@ -125,7 +124,7 @@
                                                 <br>クラス設計の知見もあり、ファイルの構成規則や命名規則も学習しています。
                                             </p>
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-js.svg" alt="JavaScript" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">JavaScript</h4>
@@ -133,7 +132,7 @@
                                                 <br>jQueryの記法やライブラリの実装も対応できます。
                                             </p>
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-php.svg" alt="PHP" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">PHP(WordPress)</h4>
@@ -141,19 +140,19 @@
                                                 ローカルで作業する場合は、MAMPを使用して検証しています。
                                             </p>
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-vue.svg" alt="vue/Nuxt" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Vue.js</h4>
                                             <p class="info_list_txt">Vue3のバージョンで日々学習中です。現時点では素のJavaScripやjQueryで記述していたコードをVueで置き換える程度で使用可能です。<br>
-                                                またNuxt3も併せて学習中です。（このポートフォリオで使用）</p>
+                                            またNuxt3も併せて学習中です。（このポートフォリオで使用）</p>
                                         </li>
                                     </ul>
                                 </div>                                
                                 <div id="skill_info_design" class="skill_info_box">
                                     <h3 class="skill_info_ttl"><span class="is-large">デザイン</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-ai.svg" alt="Illustrator" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Illustrator</h4>
@@ -161,9 +160,8 @@
                                                 ソフトの基本操作の知識を有しています。<br>
                                                 これまで、バナーの作成・デザインカンプ作成・SVGなど画像書き出し・地図イラスト作成などに使用してきました。
                                             </p>
-
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-mockup.svg" alt="デザインカンプ作成ツール" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">デザインカンプ作成ツール</h4>
@@ -172,7 +170,7 @@
                                             </p>
                                         </li>
 
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-ps.svg" alt="Photoshop" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Photoshop</h4>
@@ -186,7 +184,7 @@
                                 <div id="skill_info_develop" class="skill_info_box">
                                     <h3 class="skill_info_ttl"><span class="is-large">開発環境</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-editor.svg" alt="テキストエディタ" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">テキストエディタ</h4>
@@ -195,7 +193,7 @@
                                                 その他、Adobe Dreamweaberも使用したことがあります。
                                             </p>
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-build.svg" alt="ビルドツール" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">ビルドツール</h4>
@@ -204,7 +202,7 @@
                                                 その他に、WebPackも使用可能。Viteも現在学習中です。
                                             </p>
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-git.svg" alt="Git" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Git</h4>
@@ -220,25 +218,15 @@
                                 <div id="skill_info_others" class="skill_info_box">
                                     <h3 class="skill_info_ttl"><span class="is-large">その他スキル</span><span>SKILL</span></h3>
                                     <ul class="skill_info_list">
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-otf.svg" alt="色彩検定2級" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">色彩検定2級</h4>
-                                            <!-- <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p> -->
                                         </li>
-                                        <li>
+                                        <li class="js-io">
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-car.svg" alt="普通自動車第一種" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">普通自動車第一種</h4>
-                                            <!-- <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p>
-                                            <p>テキストテキストテキスト</p> -->
                                         </li>
                                     </ul>
                                 </div>                                
