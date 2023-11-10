@@ -517,7 +517,7 @@ html {
   box-sizing: border-box;
   color: $m-black;
   font-size: 62.5%; 
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   &::after{
     content: '';

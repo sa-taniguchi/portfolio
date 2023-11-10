@@ -16,7 +16,7 @@ export default defineNuxtConfig({
       script: [ 
         { 
           src: 'common.js', 
-          body: 'true',
+          tagPosition: 'bodyClose',
         },
       ],
       link: [
