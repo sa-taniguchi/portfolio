@@ -88,10 +88,6 @@ onMounted(()=>{
             html.classList.remove('is-menuOpen');
             })
         }
-        // /*ハンバーガーメニュー
-        const header = document.getElementById('header');
-        header.classList.add('is-load');
-
 })
 
 </script>

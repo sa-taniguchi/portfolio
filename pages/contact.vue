@@ -1,6 +1,6 @@
 
 <template>
-    <Header/>
+    <Header />
     <main id="contact">
         <article>
             <section>
@@ -154,12 +154,8 @@ onMounted(()=>{
         html.classList.remove('is-menuOpen');
         })
     }
-    // /*ハンバーガーメニュー
-    const header = document.getElementById('header');
-    header.classList.add('is-load');
-
-
     
+
 });
     // import { useField } from 'vee-validate';
     // import * as yup from 'yup';

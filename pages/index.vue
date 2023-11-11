@@ -1,7 +1,7 @@
 
 
 <template>
-        <Header />
+    <Header />
         <main id="top">
             <article>
                 <section id="top-fv" class="top-fv">
@@ -281,7 +281,6 @@ import { ref } from "vue";
 import { register } from 'swiper/element/bundle';
 
 
-
 const ctx = useRuntimeConfig();
 const { data } = await useFetch("/work", {
     baseURL: ctx.public.baseUrl,
@@ -330,6 +329,7 @@ useHead({
 
 const { $gsap } = useNuxtApp()
 
+
 onMounted(()=>{
     
     const wrapCharSpan = function(str){
@@ -340,6 +340,7 @@ onMounted(()=>{
         target.innerHTML = wrapCharSpan(target.textContent);
     })
 
+    
      // // スクロール検知(画面に入ったらクラス付与 && 外す)
     let scrollCheck = document.querySelectorAll('.js-io');
     const cb = function(entries){
@@ -442,8 +443,8 @@ onMounted(()=>{
         })
     }
     // /*ハンバーガーメニュー
-    const header = document.getElementById('header');
-    header.classList.add('is-load');
+
+    
 });
 
 

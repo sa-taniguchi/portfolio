@@ -1,3 +1,63 @@
+
+<template>
+    <Header />
+    <main id="work">
+        <section>
+            <div class="lg-container">
+                <div class="subpage_fv">
+                    <h2 class="js-span-wrap-text js-io">WORKS</h2>
+                    <span class="js-io">制作実績</span>
+                </div>
+            </div>
+            <div class="lg-container">
+                <p class="work_detail_img">
+                    <NuxtPicture 
+                        provider="imgix" 
+                        :src="work.img.url"
+                        alt=""
+                        format="webp"
+                    />
+                </p>
+            </div>
+            <div class="md-container">
+                <h3 class="work_headline"><span>{{ work.title }}</span></h3>
+                <p class="work_date">{{ work.time }}</p>
+                <div class="mb2">
+                    <h4 class="work_detail_ttl">担当</h4>
+                    <div>
+                        <span
+                            class="work_detail_skill"
+                            v-for="(part, p_index) in work.parts"
+                            :key="p_index"
+                        >
+                        {{ part.parts }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mb2">
+                    <h4 class="work_detail_ttl">使用スキル</h4>
+                    <div>
+                        <span
+                            class="work_detail_skill"
+                            v-for="(skill,s_index) in work.skills"
+                            :key="s_index"
+                        >
+                            {{ skill.skills }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mb2">
+                    <h4 class="work_detail_ttl">制作について</h4>
+                    <div v-html="work.body" class="work_body"></div>
+                </div>
+                <p v-if="work.url" class="work_detail_url"><span>website:</span><NuxtLink :to="work.url" target="_blank">{{ work.url }}<img src="/img/common/link.svg" alt="" class="work_url_link"></NuxtLink></p>
+                <div class="btn_wrapper"><NuxtLink to="/#top-work" class="btn work_btn">戻る</NuxtLink></div>
+            </div>
+        </section>
+    </main>
+</template>
+
+
 <script setup>
 
 const route = useRoute();
@@ -105,67 +165,7 @@ onMounted(()=>{
         })
     }
     // /*ハンバーガーメニュー
-    const header = document.getElementById('header');
-    header.classList.add('is-load');
 
 });
 </script>
 
-
-<template>
-    <Header />
-    <main id="work">
-        <section>
-            <div class="lg-container">
-                <div class="subpage_fv">
-                    <h2 class="js-span-wrap-text js-io">WORKS</h2>
-                    <span class="js-io">制作実績</span>
-                </div>
-            </div>
-            <div class="lg-container">
-                <p class="work_detail_img">
-                    <NuxtPicture 
-                        provider="imgix" 
-                        :src="work.img.url"
-                        alt=""
-                        format="webp"
-                    />
-                </p>
-            </div>
-            <div class="md-container">
-                <h3 class="work_headline"><span>{{ work.title }}</span></h3>
-                <p class="work_date">{{ work.time }}</p>
-                <div class="mb2">
-                    <h4 class="work_detail_ttl">担当</h4>
-                    <div>
-                        <span
-                            class="work_detail_skill"
-                            v-for="(part, p_index) in work.parts"
-                            :key="p_index"
-                        >
-                        {{ part.parts }}
-                        </span>
-                    </div>
-                </div>
-                <div class="mb2">
-                    <h4 class="work_detail_ttl">使用スキル</h4>
-                    <div>
-                        <span
-                            class="work_detail_skill"
-                            v-for="(skill,s_index) in work.skills"
-                            :key="s_index"
-                        >
-                            {{ skill.skills }}
-                        </span>
-                    </div>
-                </div>
-                <div class="mb2">
-                    <h4 class="work_detail_ttl">制作について</h4>
-                    <div v-html="work.body" class="work_body"></div>
-                </div>
-                <p v-if="work.url" class="work_detail_url"><span>website:</span><NuxtLink :to="work.url" target="_blank">{{ work.url }}<img src="/img/common/link.svg" alt="" class="work_url_link"></NuxtLink></p>
-                <div class="btn_wrapper"><NuxtLink to="/#top-work" class="btn work_btn">戻る</NuxtLink></div>
-            </div>
-        </section>
-    </main>
-</template>

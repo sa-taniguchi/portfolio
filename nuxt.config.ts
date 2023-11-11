@@ -15,8 +15,12 @@ export default defineNuxtConfig({
       ],
       script: [ 
         { 
+          src: 'https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js', 
+          body: 'true',
+        },
+        { 
           src: 'common.js', 
-          tagPosition: 'bodyClose',
+          body: 'true',
         },
       ],
       link: [
@@ -54,6 +58,8 @@ export default defineNuxtConfig({
       scrollTrigger: true,
     },
   },
+
+  
 
   runtimeConfig: {
     public: {
