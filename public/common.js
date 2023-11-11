@@ -26,11 +26,8 @@
   let year = document.getElementById('js-is-year');
   year.textContent = current;
 }
-{
-  var scroll = new SmoothScroll('a[href*="#"]');
-}
 
-
+var scroll = new SmoothScroll('a[href*="#"]');
 
 
 

@@ -444,8 +444,21 @@ onMounted(()=>{
     }
     // /*ハンバーガーメニュー
 
+
     
 });
+useHead({
 
+    script: [
+        {
+            src: 'https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js',
+            body: true
+        },
+        {
+            src: 'common.js',
+            body: true
+        },
+    ],
+})
 
 </script>

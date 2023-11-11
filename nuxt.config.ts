@@ -13,16 +13,12 @@ export default defineNuxtConfig({
         { property: 'og:image', content: '<ogpに使われる画像の絶対パス>', },
         { property: 'robots', content:  'noindex' }
       ],
-      script: [ 
-        { 
-          src: 'https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js', 
-          body: 'true',
-        },
-        { 
-          src: 'common.js', 
-          body: 'true',
-        },
-      ],
+      // script: [ 
+      //   { 
+      //     src: 'common.js', 
+      //     body: 'true',
+      //   },
+      // ],
       link: [
         {
           rel: "preconnect",
