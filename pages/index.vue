@@ -510,22 +510,6 @@ onMounted(()=>{
             }
         });
     };
-
-    const hash = window.location.hash;
-    if (hash) {
-    const target = document.getElementById(hash.slice(1));
-        if (target) {
-            window.addEventListener("load", () => {
-                const position = target.getBoundingClientRect().top + window.scrollY;
-                window.scrollTo(0, 0);
-                window.scrollTo({
-                    top: position,
-                    behavior: "smooth",
-                });
-            });
-        }
-    }
-
 });
 
 
