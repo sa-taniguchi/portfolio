@@ -114,16 +114,14 @@ onMounted(()=>{
     const listener = (event) => {
         // リサイズ時に行う処理
         if (event.matches) {
-        headerNav.classList.remove('is-show');
-        headerNav.setAttribute('aria-hidden', false);
-        hmbg.classList.remove('is-show');
-        hmbg.setAttribute('aria-hidden', true);
-        // hmbg.setAttribute('aria-expanded', false);
-        html.classList.remove('is-menuOpen');
+            headerNav.classList.remove('is-show');
+            headerNav.setAttribute('aria-hidden', false);
+            hmbg.classList.remove('is-show');
+            hmbg.setAttribute('aria-hidden', true);
+            html.classList.remove('is-menuOpen');
         } else {
-        headerNav.setAttribute('aria-hidden', true);
-        hmbg.setAttribute('aria-hidden', false);
-        // hmbg.setAttribute('aria-expanded', true);
+            headerNav.setAttribute('aria-hidden', true);
+            hmbg.setAttribute('aria-hidden', false);
         }
     };
     mediaQueryList.addEventListener("change", listener);
@@ -133,20 +131,17 @@ onMounted(()=>{
 
 
     // ハンバーガーメニューの開閉
-    let scrollpos;//スクロールの位置を入れる場所 
+    let scrollpos;
     hmbg.addEventListener('click',function(){
         this.classList.toggle('is-show');
         headerNav.classList.toggle('is-show');
-        // if(hmbg.getAttribute('aria-expanded') === 'false' && (this.classList.contains('is-show')) ){
         if(headerNav.getAttribute('aria-hidden') === 'true'){
-        // hmbg.setAttribute('aria-expanded', false);
         headerNav.setAttribute('aria-hidden', false);
         scrollpos = window.scrollY;
         document.body.style.top = scrollpos * -1 + 'px';
         html.classList.add('is-menuOpen');
         } 
         else {
-        // hmbg.setAttribute('aria-expanded', true);
         headerNav.setAttribute('aria-hidden', true);
         html.classList.remove('is-menuOpen');
         window.scrollTo(0, scrollpos);
@@ -159,56 +154,11 @@ onMounted(()=>{
         headerNav.classList.remove('is-show');
         headerNav.setAttribute('aria-hidden', true);
         hmbg.classList.remove('is-show');
-        // hmbg.setAttribute('aria-hidden', false);
-        // hmbg.setAttribute('aria-expanded', true);
         html.classList.remove('is-menuOpen');
         })
-    }
-
-    for (const link of document.querySelectorAll('a[href*="#"]')) {
-    link.addEventListener('click', (e) => {
-        const hash = e.currentTarget.hash;
-        
-        // "#"と"#top"の時（ページトップへスクロール）
-        if (!hash || hash === '#top') {
-        e.preventDefault();
-        window.scrollTo({
-            top: 1, // iOSのChromeでfixedされた固定ヘッダーなどが動くバグがあるため0ではなく1に
-            behavior: 'smooth',
-        });
-        
-        // それ以外の時（アンカーへスクロール）
-        } else {
-            const target = document.getElementById(hash.slice(1));
-                if (target) {
-                    e.preventDefault();
-                    const position = target.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({
-                    top: position,
-                    behavior: "smooth",
-                    });
-                }
-            }
-        });
-    };
-
-    const hash = window.location.hash;
-    if (hash) {
-    const target = document.getElementById(hash.slice(1));
-        if (target) {
-            window.addEventListener("load", () => {
-                const position = target.getBoundingClientRect().top + window.scrollY;
-                window.scrollTo(0, 0);
-                window.scrollTo({
-                    top: position,
-                    behavior: "smooth",
-                });
-            });
-        }
-    }
-
     
-
+    
+    }
 });
     // import { useField } from 'vee-validate';
     // import * as yup from 'yup';

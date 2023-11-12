@@ -98,10 +98,10 @@
                             <nav class="skill_nav">
                                 <h3 class="skill_nav_ttl">SKILL</h3>
                                 <ol id="indexList" class="skill_nav_list">
-                                    <li><NuxtLink to="/#skill_info_cording">コーディング</NuxtLink></li> 
-                                    <li><NuxtLink to="/#skill_info_design">デザイン</NuxtLink></li>
-                                    <li><NuxtLink to="/#skill_info_develop">開発環境</NuxtLink></li>
-                                    <li><NuxtLink to="/#skill_info_others">その他スキル</NuxtLink></li>
+                                    <li><a href="#skill_info_cording">コーディング</a></li> 
+                                    <li><a href="#skill_info_design">デザイン</a></li>
+                                    <li><a href="#skill_info_develop">開発環境</a></li>
+                                    <li><a href="#skill_info_others">その他スキル</a></li>
                                 </ol>
                             </nav>
                             <div class="skill_info">
@@ -312,7 +312,14 @@ breakpoints.value = {
     },
 }
 
-
+useHead({
+    script: [
+        {
+            src: 'common.js',
+            body: true
+        },
+    ],
+})
 
 const { $gsap } = useNuxtApp()
 
@@ -475,6 +482,8 @@ onMounted(()=>{
 
 
 
+
+
     for (const link of document.querySelectorAll('a[href*="#"]')) {
     link.addEventListener('click', (e) => {
         const hash = e.currentTarget.hash;
@@ -521,14 +530,5 @@ onMounted(()=>{
 
 
 
-useHead({
-
-    script: [
-        {
-            src: 'common.js',
-            body: true
-        },
-    ],
-})
 
 </script>
