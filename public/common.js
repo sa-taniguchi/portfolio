@@ -1,7 +1,5 @@
 
 
-
-
    // 375px以下ビューポート固定
   !(function () {
     const viewport = document.querySelector('meta[name="viewport"]');
@@ -27,7 +25,13 @@
   year.textContent = current;
 }
 
-var scroll = new SmoothScroll('a[href*="#"]');
+
+
+
+
+
+
+
 
 
 

@@ -61,6 +61,16 @@
 </template>
 
 <script setup>
+
+useHead({
+    script: [
+            {
+                src: 'common.js',
+                body: true
+            },
+        ],
+})
+
 onMounted(()=>{
     
     const wrapCharSpan = function(str){
@@ -154,6 +164,49 @@ onMounted(()=>{
         html.classList.remove('is-menuOpen');
         })
     }
+
+    for (const link of document.querySelectorAll('a[href*="#"]')) {
+    link.addEventListener('click', (e) => {
+        const hash = e.currentTarget.hash;
+        
+        // "#"と"#top"の時（ページトップへスクロール）
+        if (!hash || hash === '#top') {
+        e.preventDefault();
+        window.scrollTo({
+            top: 1, // iOSのChromeでfixedされた固定ヘッダーなどが動くバグがあるため0ではなく1に
+            behavior: 'smooth',
+        });
+        
+        // それ以外の時（アンカーへスクロール）
+        } else {
+            const target = document.getElementById(hash.slice(1));
+                if (target) {
+                    e.preventDefault();
+                    const position = target.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({
+                    top: position,
+                    behavior: "smooth",
+                    });
+                }
+            }
+        });
+    };
+
+    const hash = window.location.hash;
+    if (hash) {
+    const target = document.getElementById(hash.slice(1));
+        if (target) {
+            window.addEventListener("load", () => {
+                const position = target.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo(0, 0);
+                window.scrollTo({
+                    top: position,
+                    behavior: "smooth",
+                });
+            });
+        }
+    }
+
     
 
 });

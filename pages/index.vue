@@ -98,10 +98,10 @@
                             <nav class="skill_nav">
                                 <h3 class="skill_nav_ttl">SKILL</h3>
                                 <ol id="indexList" class="skill_nav_list">
-                                    <li><NuxtLink to="#skill_info_cording">コーディング</NuxtLink></li> 
-                                    <li><NuxtLink to="#skill_info_design">デザイン</NuxtLink></li>
-                                    <li><NuxtLink to="#skill_info_develop">開発環境</NuxtLink></li>
-                                    <li><NuxtLink to="#skill_info_others">その他スキル</NuxtLink></li>
+                                    <li><NuxtLink to="/#skill_info_cording">コーディング</NuxtLink></li> 
+                                    <li><NuxtLink to="/#skill_info_design">デザイン</NuxtLink></li>
+                                    <li><NuxtLink to="/#skill_info_develop">開発環境</NuxtLink></li>
+                                    <li><NuxtLink to="/#skill_info_others">その他スキル</NuxtLink></li>
                                 </ol>
                             </nav>
                             <div class="skill_info">
@@ -314,34 +314,11 @@ breakpoints.value = {
 
 
 
-
-
-
-useHead({
-    script: [ 
-        { 
-            src: 'top.js', 
-            body: true,
-        },
-    ],
-})
-
-
 const { $gsap } = useNuxtApp()
 
 
-onMounted(()=>{
-    
-    const wrapCharSpan = function(str){
-        return [...str].map(char => `<span>${char}</span>`).join('');
-        }
-        const targets = document.querySelectorAll('.js-span-wrap-text');
-        targets.forEach( (target) => {
-        target.innerHTML = wrapCharSpan(target.textContent);
-    })
 
-    
-     // // スクロール検知(画面に入ったらクラス付与 && 外す)
+onMounted(()=>{
     let scrollCheck = document.querySelectorAll('.js-io');
     const cb = function(entries){
         entries.forEach(entry => {
@@ -350,35 +327,17 @@ onMounted(()=>{
             } 
         });
     }
-    
+
     const options = {
         threshold: .2
     }
-    
+
+
     const io = new IntersectionObserver(cb,options);
-    
+
     scrollCheck.forEach(v => {
         io.observe(v);
     });
-
-
-    const list_wrap  = document.querySelector(".top-work_list");
-    const container = document.querySelector(".top-work_container");
-
-    $gsap.to(list_wrap, {
-        x: () => -(list_wrap.clientWidth -  container.clientWidth),
-        ease: 'none',
-        scrollTrigger: {
-            trigger: '.top-work',
-            start: 'top top',
-            end: () => `+=${list_wrap.clientWidth -  container.clientWidth}`,
-            scrub: true,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true
-        }
-    });
-
     //ハンバーガーメニュー全般
 
     const mediaQueryList = window.matchMedia('(min-width: 996px)');
@@ -392,16 +351,16 @@ onMounted(()=>{
     const listener = (event) => {
         // リサイズ時に行う処理
         if (event.matches) {
-        headerNav.classList.remove('is-show');
-        headerNav.setAttribute('aria-hidden', false);
-        hmbg.classList.remove('is-show');
-        hmbg.setAttribute('aria-hidden', true);
-        // hmbg.setAttribute('aria-expanded', false);
-        html.classList.remove('is-menuOpen');
+            headerNav.classList.remove('is-show');
+            headerNav.setAttribute('aria-hidden', false);
+            hmbg.classList.remove('is-show');
+            hmbg.setAttribute('aria-hidden', true);
+            // hmbg.setAttribute('aria-expanded', false);
+            html.classList.remove('is-menuOpen');
         } else {
-        headerNav.setAttribute('aria-hidden', true);
-        hmbg.setAttribute('aria-hidden', false);
-        // hmbg.setAttribute('aria-expanded', true);
+            headerNav.setAttribute('aria-hidden', true);
+            hmbg.setAttribute('aria-hidden', false);
+            // hmbg.setAttribute('aria-expanded', true);
         }
     };
     mediaQueryList.addEventListener("change", listener);
@@ -437,23 +396,134 @@ onMounted(()=>{
         headerNav.classList.remove('is-show');
         headerNav.setAttribute('aria-hidden', true);
         hmbg.classList.remove('is-show');
-        // hmbg.setAttribute('aria-hidden', false);
-        // hmbg.setAttribute('aria-expanded', true);
         html.classList.remove('is-menuOpen');
         })
     }
-    // /*ハンバーガーメニュー
+
 
 
     
+    const wrapCharSpan = function(str){
+        return [...str].map(char => `<span>${char}</span>`).join('');
+        }
+        const targets = document.querySelectorAll('.js-span-wrap-text');
+        targets.forEach( (target) => {
+        target.innerHTML = wrapCharSpan(target.textContent);
+    })
+
+
+
+    const list_wrap  = document.querySelector(".top-work_list");
+    const container = document.querySelector(".top-work_container");
+
+    $gsap.to(list_wrap, {
+        x: () => -(list_wrap.clientWidth -  container.clientWidth),
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '.top-work',
+            start: 'top top',
+            end: () => `+=${list_wrap.clientWidth -  container.clientWidth}`,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+        }
+    });
+
+
+
+    const boxes = document.querySelectorAll(".skill_info_box");
+
+    const sKillBoxOptions = {
+        root: null,
+        rootMargin: "-50% 0px",
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver(doWhenIntersect, sKillBoxOptions);
+    boxes.forEach(box => {
+        observer.observe(box);
+    });
+
+
+    function doWhenIntersect(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                activateIndex(entry.target);
+            }
+        });
+    }
+
+    function activateIndex(element) {
+        const currentActiveIndex = document.querySelector("#indexList .is-active");
+        if (currentActiveIndex !== null) {
+            currentActiveIndex.classList.remove("is-active");
+        }   
+            const newActiveIndex = document.querySelector(`#indexList a[href*='#${element.id}']`);
+            newActiveIndex.classList.add("is-active");
+    }
+
+
+
+
+    
+    const topFvList = document.querySelectorAll('.top-fv_list li');
+
+    topFvList.forEach(element =>{
+        element.classList.add('is-load');
+    });
+
+
+
+    for (const link of document.querySelectorAll('a[href*="#"]')) {
+    link.addEventListener('click', (e) => {
+        const hash = e.currentTarget.hash;
+        
+        // "#"と"#top"の時（ページトップへスクロール）
+        if (!hash || hash === '#top') {
+        e.preventDefault();
+        window.scrollTo({
+            top: 1, // iOSのChromeでfixedされた固定ヘッダーなどが動くバグがあるため0ではなく1に
+            behavior: 'smooth',
+        });
+        
+        // それ以外の時（アンカーへスクロール）
+        } else {
+            const target = document.getElementById(hash.slice(1));
+                if (target) {
+                    e.preventDefault();
+                    const position = target.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({
+                    top: position,
+                    behavior: "smooth",
+                    });
+                }
+            }
+        });
+    };
+
+    const hash = window.location.hash;
+    if (hash) {
+    const target = document.getElementById(hash.slice(1));
+        if (target) {
+            window.addEventListener("load", () => {
+                const position = target.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo(0, 0);
+                window.scrollTo({
+                    top: position,
+                    behavior: "smooth",
+                });
+            });
+        }
+    }
+
 });
+
+
+
 useHead({
 
     script: [
-        {
-            src: 'https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js',
-            body: true
-        },
         {
             src: 'common.js',
             body: true
