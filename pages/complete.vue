@@ -130,8 +130,6 @@ onMounted(()=>{
         headerNav.classList.remove('is-show');
         headerNav.setAttribute('aria-hidden', true);
         hmbg.classList.remove('is-show');
-        // hmbg.setAttribute('aria-hidden', false);
-        // hmbg.setAttribute('aria-expanded', true);
         html.classList.remove('is-menuOpen');
         })
     }
