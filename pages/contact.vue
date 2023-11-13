@@ -48,7 +48,7 @@
                                 <p>お問い合わせ内容をお書き下さい。</p>
                             </dd>
                         </dl>
-                        <div data-netlify-recaptcha="true"></div>
+                        <div data-netlify-recaptcha="true" class="mb3"></div>
 
                         <div class="btn_wrapper"><button type="submit" class="btn">送信する</button></div>
 
