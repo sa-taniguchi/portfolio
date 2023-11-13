@@ -14,6 +14,7 @@
             visibility: visible;
         }
     }
+    
     >div{
         display: flex;
         justify-content: space-between;
@@ -38,9 +39,18 @@
     h1{
         font-weight: 900;
         @include opacity-anime;
+        a{
+            display: flex;
+            align-items: center;
+            gap: .6em;
+        }
+        span{
+            font-size: 1.4em;
+            letter-spacing: -1px;
+        };
         img{
             display: block;
-            width: 160px;
+            width: 45px;
         }
     }
 

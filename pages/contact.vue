@@ -62,16 +62,22 @@
 
 <script setup>
 
-useHead({
-    script: [
+
+
+onMounted(()=>{
+    useHead({
+        script: [
+            {
+                src: 'https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js',
+                tagPosition: 'bodyClose'
+            },
             {
                 src: 'common.js',
                 tagPosition: 'bodyClose'
             },
         ],
-})
-
-onMounted(()=>{
+        title: 'お問い合わせ｜'
+    })
     
     const wrapCharSpan = function(str){
         return [...str].map(char => `<span>${char}</span>`).join('');
@@ -162,6 +168,11 @@ onMounted(()=>{
             html.classList.remove('is-menuOpen');
             })
         }
+
+
+
+
+
 
 
 });

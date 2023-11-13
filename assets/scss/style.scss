@@ -1,4 +1,8 @@
 
+.pin-spacer{
+    padding: 0 !important;
+    // height: auto!important;
+}
 
 // トップページ
 .common-ttl_box{
@@ -175,7 +179,7 @@
         height: 95vh;
         overflow: hidden;
         @include bp-lg{
-            height: 90vh;
+            height: 82vh;
         }
         .top-work_container{
             width: 100%;
@@ -221,7 +225,6 @@
                     &:is(.top-work_item:hover *){
                         transform: scale(1.1);
                     }
-
                 }
             }
         }
@@ -256,7 +259,7 @@
         }
         .skill_wrapper{
             display: flex;
-            gap: 6em 6%;
+            gap: 5em 6%;
             flex-direction: column;
             align-items: flex-start;
             @include bp-lg{
@@ -446,11 +449,12 @@
         .skill_info_ttl{
             margin-bottom: 3.5em;
             color: $m-black;
-            padding: 1em 1.5em;
+            padding: 1.2em 1.5em;
             border: 2.5px solid $m-black;
             font-size: 1.3em;
             display: flex;
             flex-direction: column;
+            gap: .3em;
             @include bp-md{
                 margin-bottom: 1.5em; 
                 flex-direction: row;
@@ -465,7 +469,7 @@
                 font-size: .65em;
                 letter-spacing: 1px;
                 display: inline-block;
-                line-height: 1.8;
+                line-height: 1;
                 &::before{
                     content: '';
                     display: inline-block;
@@ -487,10 +491,10 @@
                 @include bp-md{
                     content: '';
                     position: absolute;
-                    top: -1em;
+                    top: -1.2em;
                     right: -1.5em;
                     display: inline-block;
-                    width: 2.5px;
+                    width: 2.6px;
                     height: calc(100% + 1.2em);
                     background-color: $m-black;
                 }

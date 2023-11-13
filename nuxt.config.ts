@@ -6,19 +6,19 @@ export default defineNuxtConfig({
     head:{
       htmlAttrs: {
         lang: 'ja', prefix: 'og: https://ogp.me/ns#'
-      },
+      }, 
+      titleTemplate: '%s 谷口聡ポートフォリオサイト',
       meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "format-detection", content: "telephone=no" },
+        { name: 'description', content: '谷口聡のポートフォリオ'},
+
         { property: 'og:type', content: 'website' },
-        { property: 'og:site_name', content: '<サイト名>' },
-        { property: 'og:image', content: '<ogpに使われる画像の絶対パス>', },
+        { property: 'og:site_name', content: '谷口聡のポートフォリオ' },
+        { property: 'og:image', content: '/public/img/common/logo.svg' },
         { property: 'robots', content:  'noindex' }
       ],
-      // script: [ 
-      //   { 
-      //     src: 'common.js', 
-      //     body: 'true',
-      //   },
-      // ],
       link: [
         {
           rel: "preconnect",
@@ -28,6 +28,21 @@ export default defineNuxtConfig({
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap",
           crossorigin: "",
+        },
+        {
+          rel: "icon" ,
+          type: "image/svg+xml",
+          href: "/img/common/logo.svg",
+        },
+        {
+          rel: "apple-touch-icon",
+          type: "image/png",
+          href: "/apple-touch-icon-180x180.png",
+        },
+        {
+          rel: "icon" ,
+          type: "image/png",
+          href: "/icon-192x192.png",
         },
       ],
     },

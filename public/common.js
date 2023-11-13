@@ -14,16 +14,13 @@
     }
     addEventListener('resize', switchViewport, false);
     switchViewport();
-  })();
+  });
 
-
-
-
-
-
-
-
-
+      
+  // window.addEventListener('load',()=>{
+  //   let scroll = new SmoothScroll('a[href*="#"]');
+  // })
+    
 
 
 

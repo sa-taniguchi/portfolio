@@ -312,6 +312,10 @@ breakpoints.value = {
     },
 }
 
+
+const { $gsap } = useNuxtApp()
+
+
 useHead({
     script: [
         {
@@ -319,11 +323,8 @@ useHead({
             tagPosition: 'bodyClose'
         },
     ],
+    title: '',
 })
-
-const { $gsap } = useNuxtApp()
-
-
 
 onMounted(()=>{
     let scrollCheck = document.querySelectorAll('.js-io');
@@ -483,34 +484,35 @@ onMounted(()=>{
 
 
 
-
-
-    for (const link of document.querySelectorAll('a[href*="#"]')) {
-    link.addEventListener('click', (e) => {
-        const hash = e.currentTarget.hash;
-        
-        // "#"と"#top"の時（ページトップへスクロール）
-        if (!hash || hash === '#top') {
+// ページ内リンクのスムーススクロール
+for (const link of document.querySelectorAll('a[href*="#"]')) {
+  link.addEventListener('click', (e) => {
+    const hash = e.currentTarget.hash;
+    
+    // "#"と"#top"の時（ページトップへスクロール）
+    if (!hash || hash === '#top') {
+      e.preventDefault();
+      window.scrollTo({
+        top: 1, // iOSのChromeでfixedされた固定ヘッダーなどが動くバグがあるため0ではなく1に
+        behavior: 'smooth',
+      });
+      
+    // それ以外の時（アンカーへスクロール）
+    } else {
+      const target = document.getElementById(hash.slice(1));
+      if (target) {
         e.preventDefault();
+        const position = target.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
-            top: 1, // iOSのChromeでfixedされた固定ヘッダーなどが動くバグがあるため0ではなく1に
-            behavior: 'smooth',
+          top: position,
+          behavior: "smooth",
         });
-        
-        // それ以外の時（アンカーへスクロール）
-        } else {
-            const target = document.getElementById(hash.slice(1));
-                if (target) {
-                    e.preventDefault();
-                    const position = target.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({
-                    top: position,
-                    behavior: "smooth",
-                    });
-                }
-            }
-        });
-    };
+
+      }
+    }
+  });
+};
+
 
 
 

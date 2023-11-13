@@ -2,12 +2,16 @@
 footer{
     text-align: center;
     .footer_logo{
-        padding: 2em 0;
+        padding: 1.5em 0;
         border-bottom: 1px solid $m-black;
-        margin-bottom: 2em;
+        margin-bottom: 1.5em;
+        font-size: 1.5em;
+        font-weight: 900;
+        letter-spacing: -1px;
         img{
             display: inline-block;
-            width: 150px;
+            width: 100px;
+            margin-bottom: 10px;
         }
     }
     .footer_cp{

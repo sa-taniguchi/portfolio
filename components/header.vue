@@ -1,7 +1,12 @@
 <template>
     <header id="header" :class="{'is-top': $route.path === '/'}" ref="headerRef">
         <div class="xl-container">
-            <h1><nuxtLink to="/"><NuxtImg src="/img/common/logo.svg" alt="ポートフォリオ"></NuxtImg></nuxtLink></h1>
+            <h1>
+                <nuxtLink to="/">
+                    <NuxtImg src="/img/common/logo.svg" alt="" />
+                    <span>ポートフォリオ</span>
+                </nuxtLink>
+            </h1>
             <button type="button" id="js-header-hmbg" class="hmbg_btn" aria-controls="js-header-nav" aria-label="メニューを開く">
                 <span class="hmbg_bar"></span>
             </button>
@@ -25,7 +30,9 @@
     import {ref} from "vue"; 
     const headerRef = ref();
     onMounted(()=>{
+        // computed(()=>{
         headerRef.value.classList.add('is-load');
+        // })
     })
 </script>
 
