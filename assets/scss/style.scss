@@ -172,8 +172,11 @@
     .top-work{
         background-color: $beige;
         padding: 6em 0 8em!important;
-        height: 90vh;
+        height: 95vh;
         overflow: hidden;
+        @include bp-lg{
+            height: 90vh;
+        }
         .top-work_container{
             width: 100%;
             position: relative;
