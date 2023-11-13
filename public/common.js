@@ -17,13 +17,6 @@
   })();
 
 
-// コピーライト年更新
-{
-  let date = new Date();
-  let current = date.getFullYear();
-  let year = document.getElementById('js-is-year');
-  year.textContent = current;
-}
 
 
 

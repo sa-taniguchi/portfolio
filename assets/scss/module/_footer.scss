@@ -14,5 +14,9 @@ footer{
         padding-bottom: 2em;
         font-size: .85em;
         letter-spacing: 1px;
+        >span{
+            display: inline-block;
+            margin-right: .3em;
+        }
     }
 }
