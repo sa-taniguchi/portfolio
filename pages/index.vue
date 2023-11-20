@@ -144,7 +144,7 @@
                                             <span></span>
                                             <p class="skill_info_img"><NuxtImg src="/img/top/skill-vue.svg" alt="vue/Nuxt" decoding="async"></NuxtImg></p>
                                             <h4 class="info_list_ttl">Vue.js</h4>
-                                            <p class="info_list_txt">Vue3のバージョンで日々学習中です。現時点では素のJavaScripやjQueryで記述していたコードをVueで置き換える程度で使用可能です。<br>
+                                            <p class="info_list_txt">Vue3のバージョンで日々学習中です。現時点では素のJavaScriptやjQueryで記述していたコードをVueで置き換える程度で使用可能です。<br>
                                             またNuxt3も併せて学習中です。（このポートフォリオで使用）</p>
                                         </li>
                                     </ul>
