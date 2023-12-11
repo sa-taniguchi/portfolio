@@ -1,5 +1,6 @@
 
 
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app:{
@@ -63,7 +64,17 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-swiper',
     '@hypernym/nuxt-gsap',
+    '@kgierke/nuxt-basic-auth',
   ],
+  basicAuth: {
+    enabled: true,
+    users: [
+      {
+        username: "password",
+        password: "Admin",
+      },
+    ],
+  },
   gsap: {
     extraPlugins: {
       scrollTrigger: true,
@@ -118,6 +129,12 @@ export default defineNuxtConfig({
       isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
     },
   },
+
+  nitro:{
+    prerender: {
+      failOnError: false,
+    },
+},
 
   
 
