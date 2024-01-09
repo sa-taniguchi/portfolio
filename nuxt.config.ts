@@ -1,5 +1,4 @@
-
-
+import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -64,17 +63,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-swiper',
     '@hypernym/nuxt-gsap',
-    '@kgierke/nuxt-basic-auth',
   ],
-  basicAuth: {
-    enabled: true,
-    users: [
-      {
-        username: "password",
-        password: "Admin",
-      },
-    ],
-  },
+
   gsap: {
     extraPlugins: {
       scrollTrigger: true,
@@ -130,11 +120,6 @@ export default defineNuxtConfig({
     },
   },
 
-  nitro:{
-    prerender: {
-      failOnError: false,
-    },
-},
 
   
 
