@@ -1,67 +1,20 @@
 
-<template>
-    <Header />
-    <main id="contact">
-        <article>
-            <section>
-                <div class="md-container">
-                    <div class="subpage_fv">
-                        <h2 class="js-span-wrap-text js-io">Contact</h2>
-                        <span class="js-io">お問い合わせ</span>
-                    </div>
-                    <p>お気軽にお問い合わせください。</p>
-                    <form 
-                    name="contact" 
-                    action="/complete" 
-                    method="POST" 
-                    data-netlify-recaptcha="true"
-                    data-netlify="true" 
-                    class="form_wrapper">
-                        <dl class="form_box">
-                            <dt><span class="required">必須</span><label for="form-name">お名前</label></dt>
-                            <dd>
-                                <input type="text" name="name" id="form-name" class="is-half" required>
-                                <p>例）山田太郎</p>
-                                <!-- <p>{{ erros.name }}</p> -->
-                            </dd>
-                        </dl>
-                        <dl class="form_box">
-                            <dt><span class="required">必須</span><label for="form-email">メールアドレス</label></dt>
-                            <dd>
-                                <input type="email" name="email" id="form-email" class="is-half" required >
-                                <p>例）portfolio@mail.com</p>
-                                <!-- <p>{{ errors.email }}</p> -->
-                            </dd>
-                        </dl>
-                        <dl class="form_box">
-                            <dt><span class="non-required">任意</span><label for="form-tel">電話番号</label></dt>
-                            <dd>
-                                <input type="tel" name="tel" id="form-tel" class="is-half">
-                                <p>例）07001234567(*ハイフンなしでご記入ください)</p>
-                            </dd>
-                        </dl>
-                        <dl class="form_box">
-                            <dt><span class="required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
-                            <dd>
-                                <!-- <p v-if="errors.textarea">{{ errors.textarea }}</p> -->
-                                <textarea name="textarea"  id="form-textarea" required></textarea>
-                                <p>お問い合わせ内容をお書き下さい。</p>
-                            </dd>
-                        </dl>
-                        <div data-netlify-recaptcha="true" class="mb3"></div>
+<script setup lang="ts">
+import {useCreateUserValidation} from '@/composables/useUserValidation'
 
-                        <div class="btn_wrapper"><button type="submit" class="btn">送信する</button></div>
-
-                        
-                    </form>
-                </div>
-            </section>
-        </article>
-    </main>
-</template>
-
-<script setup>
-
+const { errorMessages, validate } = useCreateUserValidation()  // 追記
+const name = ref('')
+const email = ref('')
+const tel = ref('')
+const textarea = ref('')
+const submit = () => {
+    validate({
+        name: name.value,
+        email: email.value,
+        tel: tel.value,
+        textarea: textarea.value
+    })
+}
 
 
 onMounted(()=>{
@@ -79,7 +32,7 @@ onMounted(()=>{
         title: 'お問い合わせ｜'
     })
     
-    const wrapCharSpan = function(str){
+    const wrapCharSpan = function(str: any){
         return [...str].map(char => `<span>${char}</span>`).join('');
         }
         const targets = document.querySelectorAll('.js-span-wrap-text');
@@ -88,8 +41,8 @@ onMounted(()=>{
     })
 
     let scrollCheck = document.querySelectorAll('.js-io');
-    const cb = function(entries){
-        entries.forEach(entry => {
+    const cb = function(entries:any){
+        entries.forEach((entry: any) => {
             if(entry.isIntersecting){
                 entry.target.classList.add('is-inview');
             } 
@@ -111,13 +64,13 @@ onMounted(()=>{
 
         const mediaQueryList = window.matchMedia('(min-width: 996px)');
 
-        const html = document.documentElement;
-        const hmbg = document.getElementById('js-header-hmbg');
-        const headerNav = document.getElementById('js-header-nav');
-        const headerNavLinks = document.querySelectorAll('.header_nav_list li a');
+        const html:any = document.documentElement;
+        const hmbg:any = document.getElementById('js-header-hmbg');
+        const headerNav:any = document.getElementById('js-header-nav');
+        const headerNavLinks:any = document.querySelectorAll('.header_nav_list li a');
 
 
-        const listener = (event) => {
+        const listener = (event:any) => {
             // リサイズ時に行う処理
             if (event.matches) {
                 headerNav.classList.remove('is-show');
@@ -139,9 +92,9 @@ onMounted(()=>{
 
 
         // ハンバーガーメニューの開閉
-        let scrollpos;//スクロールの位置を入れる場所 
+        let scrollpos:any;//スクロールの位置を入れる場所 
         hmbg.addEventListener('click',function(){
-            this.classList.toggle('is-show');
+            hmbg.classList.toggle('is-show');
             headerNav.classList.toggle('is-show');
             // if(hmbg.getAttribute('aria-expanded') === 'false' && (this.classList.contains('is-show')) ){
             if(headerNav.getAttribute('aria-hidden') === 'true'){
@@ -176,25 +129,108 @@ onMounted(()=>{
 
 
 });
-    // import { useField } from 'vee-validate';
-    // import * as yup from 'yup';
-
-    // const schema = yup.object({
-    // name: yup
-    //     .string()
-    //     .required("この項目は必須です")
-    //     .min(8, "８文字以上で入力してください"),
-    // email: yup
-    //     .string()
-    //     .required("この項目は必須です")
-    //     .email("メールアドレスの形式で入力してください"),
-    // });
-
-    // const { errors } = useForm({
-    // validationSchema: schema,
-    // });
-
-    // const { value: name } = useField('name');
-    // const { value: email } = useField('email');
 
 </script>
+
+
+<template>
+    <Header />
+    <main id="contact">
+        <article>
+            <section>
+                <div class="md-container">
+                    <div class="subpage_fv">
+                        <h2 class="js-span-wrap-text js-io">Contact</h2>
+                        <span class="js-io">お問い合わせ</span>
+                    </div>
+                    <p>お気軽にお問い合わせください。</p>
+                    <form 
+                    name="contact" 
+                    action="/complete" 
+                    method="POST"
+                    @submit.prevent="submit" 
+                    data-netlify-recaptcha="true"
+                    data-netlify="true" 
+                    class="form_wrapper">
+                        <dl class="form_box">
+                            <dt><span class="required">必須</span><label for="form-name">お名前</label></dt>
+                            <dd>
+                                <input type="text" v-model="name" name="name" id="form-name" class="is-half">
+                                <p>例）山田太郎</p>
+                                <!-- <p>{{ erros.name }}</p> -->
+                                <template
+                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.name?.length"
+                                    >
+                                    <p
+                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.name"
+                                        :key="i"
+                                    >
+                                        {{ error }}
+                                    </p>
+                                </template>
+                            </dd>
+                        </dl>
+                        <dl class="form_box">
+                            <dt><span class="required">必須</span><label for="form-email">メールアドレス</label></dt>
+                            <dd>
+                                <input type="email" v-model="email" name="email" id="form-email" class="is-half">
+                                <p>例）portfolio@mail.com</p>
+                                <template
+                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.email?.length"
+                                    >
+                                    <p
+                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.email"
+                                        :key="i"
+                                    >
+                                        {{ error }}
+                                    </p>
+                                </template>
+                            </dd>
+                        </dl>
+                        <dl class="form_box">
+                            <dt><span class="non-required">任意</span><label for="form-tel">電話番号</label></dt>
+                            <dd>
+                                <input type="tel" v-model="tel" name="tel" id="form-tel" class="is-half">
+                                <p>例）07001234567(*ハイフンなしでご記入ください)</p>
+                                <template
+                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.tel?.length"
+                                    >
+                                    <p
+                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.tel"
+                                        :key="i"
+                                    >
+                                        {{ error }}
+                                    </p>
+                                </template>
+                            </dd>
+                        </dl>
+                        <dl class="form_box">
+                            <dt><span class="required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
+                            <dd>
+                                <!-- <p v-if="errors.textarea">{{ errors.textarea }}</p> -->
+                                <textarea name="textarea" id="form-textarea" v-model="textarea"></textarea>
+                                <p>お問い合わせ内容をお書き下さい。</p>
+                                <template
+                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.textarea?.length"
+                                    >
+                                    <p
+                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.textarea"
+                                        :key="i"
+                                    >
+                                        {{ error }}
+                                    </p>
+                                </template>
+                            </dd>
+                        </dl>
+                        <div data-netlify-recaptcha="true" class="mb3"></div>
+
+                        <div class="btn_wrapper"><button type="submit" class="btn">送信する</button></div>
+
+                        
+                    </form>
+                </div>
+            </section>
+        </article>
+    </main>
+</template>
+
