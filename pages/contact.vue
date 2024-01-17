@@ -2,18 +2,20 @@
 <script setup lang="ts">
 import {useCreateUserValidation} from '@/composables/useUserValidation'
 
-const { errorMessages, validate } = useCreateUserValidation()  // 追記
+const { errorMessages, validate } = useCreateUserValidation();
+
 const name = ref('')
 const email = ref('')
 const tel = ref('')
 const textarea = ref('')
+
 const submit = () => {
     validate({
         name: name.value,
         email: email.value,
         tel: tel.value,
         textarea: textarea.value
-    })
+    });
 }
 
 
@@ -148,14 +150,13 @@ onMounted(()=>{
                     name="contact" 
                     action="/complete" 
                     method="POST"
-                    @submit.prevent="submit" 
                     data-netlify-recaptcha="true"
                     data-netlify="true" 
                     class="form_wrapper">
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-name">お名前</label></dt>
                             <dd>
-                                <input type="text" v-model="name" name="name" id="form-name" class="is-half">
+                                <input @blur=submit type="text" v-model="name" name="name" id="form-name" class="is-half">
                                 <p>例）山田太郎</p>
                                 <!-- <p>{{ erros.name }}</p> -->
                                 <template
@@ -164,6 +165,7 @@ onMounted(()=>{
                                     <p
                                         v-for="(error, i) in errorMessages.flatten().fieldErrors.name"
                                         :key="i"
+                                        class="is-red"
                                     >
                                         {{ error }}
                                     </p>
@@ -173,7 +175,7 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-email">メールアドレス</label></dt>
                             <dd>
-                                <input type="email" v-model="email" name="email" id="form-email" class="is-half">
+                                <input @blur=submit type="email" v-model="email" name="email" id="form-email" class="is-half">
                                 <p>例）portfolio@mail.com</p>
                                 <template
                                     v-if="errorMessages && errorMessages.flatten().fieldErrors.email?.length"
@@ -181,6 +183,7 @@ onMounted(()=>{
                                     <p
                                         v-for="(error, i) in errorMessages.flatten().fieldErrors.email"
                                         :key="i"
+                                        class="is-red"
                                     >
                                         {{ error }}
                                     </p>
@@ -190,7 +193,7 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="non-required">任意</span><label for="form-tel">電話番号</label></dt>
                             <dd>
-                                <input type="tel" v-model="tel" name="tel" id="form-tel" class="is-half">
+                                <input @blur=submit type="tel" v-model="tel" name="tel" id="form-tel" class="is-half">
                                 <p>例）07001234567(*ハイフンなしでご記入ください)</p>
                                 <template
                                     v-if="errorMessages && errorMessages.flatten().fieldErrors.tel?.length"
@@ -198,6 +201,7 @@ onMounted(()=>{
                                     <p
                                         v-for="(error, i) in errorMessages.flatten().fieldErrors.tel"
                                         :key="i"
+                                        class="is-red"
                                     >
                                         {{ error }}
                                     </p>
@@ -208,7 +212,7 @@ onMounted(()=>{
                             <dt><span class="required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
                             <dd>
                                 <!-- <p v-if="errors.textarea">{{ errors.textarea }}</p> -->
-                                <textarea name="textarea" id="form-textarea" v-model="textarea"></textarea>
+                                <textarea @blur=submit name="textarea" id="form-textarea" v-model="textarea"></textarea>
                                 <p>お問い合わせ内容をお書き下さい。</p>
                                 <template
                                     v-if="errorMessages && errorMessages.flatten().fieldErrors.textarea?.length"
@@ -216,6 +220,7 @@ onMounted(()=>{
                                     <p
                                         v-for="(error, i) in errorMessages.flatten().fieldErrors.textarea"
                                         :key="i"
+                                        class="is-red"
                                     >
                                         {{ error }}
                                     </p>
@@ -225,8 +230,6 @@ onMounted(()=>{
                         <div data-netlify-recaptcha="true" class="mb3"></div>
 
                         <div class="btn_wrapper"><button type="submit" class="btn">送信する</button></div>
-
-                        
                     </form>
                 </div>
             </section>
