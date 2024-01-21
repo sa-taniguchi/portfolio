@@ -2,6 +2,7 @@
 
 <template>
     <Header />
+        <p>ブランチ</p>
         <main id="top">
             <article>
                 <section id="top-fv" class="top-fv">
