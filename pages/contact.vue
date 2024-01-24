@@ -1,20 +1,35 @@
 
 <script setup lang="ts">
-import {useCreateUserValidation} from '@/composables/useUserValidation'
+import {useCreateUserValidationName, useCreateUserValidationEmail, useCreateUserValidationTel, useCreateUserValidationTextarea} from '@/composables/useUserValidation'
 
-const { errorMessages, validate } = useCreateUserValidation();
+const { errorMessagesName, validateName } = useCreateUserValidationName();
+const { errorMessagesEmail, validateEmail } = useCreateUserValidationEmail();
+const { errorMessagesTel, validateTel } = useCreateUserValidationTel();
+const { errorMessagesTextarea, validateTextarea } = useCreateUserValidationTextarea();
 
 const name = ref('')
 const email = ref('')
 const tel = ref('')
 const textarea = ref('')
 
-const submit = () => {
-    validate({
+const inputCheckName = () => {
+    validateName({
         name: name.value,
+    });
+}
+const inputCheckEmail = () => {
+    validateEmail({
         email: email.value,
+    });
+}
+const inputCheckTel = () => {
+    validateTel({
         tel: tel.value,
-        textarea: textarea.value
+    });
+}
+const inputCheckTextarea = () => {
+    validateTextarea({
+        textarea: textarea.value,
     });
 }
 
@@ -156,14 +171,13 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-name">お名前</label></dt>
                             <dd>
-                                <input @blur=submit type="text" v-model="name" name="name" id="form-name" class="is-half">
+                                <input type="text" @blur="inputCheckName" v-model="name" name="name" id="form-name" class="is-half">
                                 <p>例）山田太郎</p>
-                                <!-- <p>{{ erros.name }}</p> -->
                                 <template
-                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.name?.length"
+                                    v-if="errorMessagesName && errorMessagesName.flatten().fieldErrors.name?.length"
                                     >
                                     <p
-                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.name"
+                                        v-for="(error, i) in errorMessagesName.flatten().fieldErrors.name"
                                         :key="i"
                                         class="is-red"
                                     >
@@ -175,13 +189,13 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-email">メールアドレス</label></dt>
                             <dd>
-                                <input @blur=submit type="email" v-model="email" name="email" id="form-email" class="is-half">
+                                <input type="email" @blur="inputCheckEmail" v-model="email" name="email" id="form-email" class="is-half">
                                 <p>例）portfolio@mail.com</p>
                                 <template
-                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.email?.length"
+                                    v-if="errorMessagesEmail && errorMessagesEmail.flatten().fieldErrors.email?.length"
                                     >
                                     <p
-                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.email"
+                                        v-for="(error, i) in errorMessagesEmail.flatten().fieldErrors.email"
                                         :key="i"
                                         class="is-red"
                                     >
@@ -193,13 +207,13 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="non-required">任意</span><label for="form-tel">電話番号</label></dt>
                             <dd>
-                                <input @blur=submit type="tel" v-model="tel" name="tel" id="form-tel" class="is-half">
+                                <input type="tel" @blur="inputCheckTel" v-model="tel" name="tel" id="form-tel" class="is-half">
                                 <p>例）07001234567(*ハイフンなしでご記入ください)</p>
                                 <template
-                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.tel?.length"
+                                    v-if="errorMessagesTel && errorMessagesTel.flatten().fieldErrors.tel?.length"
                                     >
                                     <p
-                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.tel"
+                                        v-for="(error, i) in errorMessagesTel.flatten().fieldErrors.tel"
                                         :key="i"
                                         class="is-red"
                                     >
@@ -211,14 +225,13 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
                             <dd>
-                                <!-- <p v-if="errors.textarea">{{ errors.textarea }}</p> -->
-                                <textarea @blur=submit name="textarea" id="form-textarea" v-model="textarea"></textarea>
+                                <textarea name="textarea" id="form-textarea" @blur="inputCheckTextarea" v-model="textarea"></textarea>
                                 <p>お問い合わせ内容をお書き下さい。</p>
                                 <template
-                                    v-if="errorMessages && errorMessages.flatten().fieldErrors.textarea?.length"
+                                    v-if="errorMessagesTextarea && errorMessagesTextarea.flatten().fieldErrors.textarea?.length"
                                     >
                                     <p
-                                        v-for="(error, i) in errorMessages.flatten().fieldErrors.textarea"
+                                        v-for="(error, i) in errorMessagesTextarea.flatten().fieldErrors.textarea"
                                         :key="i"
                                         class="is-red"
                                     >
