@@ -15,8 +15,8 @@
                         <h3 class="complete_ttl">お問い合わせが完了しました</h3>
                         <p>お問い合わせいただきありがとうございました。</p>
                         <p class="mb3">
-                        折り返し、ご連絡いたしますので、
-                        恐れ入りますが、しばらくお待ちください。
+                        折り返しご連絡いたしますので、
+                        恐れ入りますがしばらくお待ちください。
                         </p>
                         <div class="btn_wrapper"><nuxtLink to="/" role="button" class="btn">トップへ戻る</nuxtLink></div>
                     </div>

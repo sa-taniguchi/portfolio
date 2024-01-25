@@ -709,6 +709,9 @@
                 padding-top: .35em;
                 font-size: .77em;
                 color: $d-gray;
+                &.is-errored{
+                    color: $red;
+                }
             }
 
             textarea{

@@ -1,36 +1,63 @@
 
 <script setup lang="ts">
-import {useCreateUserValidationName, useCreateUserValidationEmail, useCreateUserValidationTel, useCreateUserValidationTextarea} from '@/composables/useUserValidation'
-
-const { errorMessagesName, validateName } = useCreateUserValidationName();
-const { errorMessagesEmail, validateEmail } = useCreateUserValidationEmail();
-const { errorMessagesTel, validateTel } = useCreateUserValidationTel();
-const { errorMessagesTextarea, validateTextarea } = useCreateUserValidationTextarea();
+import { ref } from 'vue'
+import { formSchema, nameSchema, emailSchema, telSchema, textareaSchema } from '../schema/user'
 
 const name = ref('')
 const email = ref('')
 const tel = ref('')
 const textarea = ref('')
+const isValidSubmitBtn = ref(true)
 
-const inputCheckName = () => {
-    validateName({
+const isNameValid = ref(true)
+const isEmailValid = ref(true)
+const isTelValid = ref(true)
+const isTextareaValid = ref(true)
+
+// エラー文言
+const requiredErrorMsg:string = "必須入力項目です"
+const emailErrorMsg:string = "メールアドレスを入力してください"
+const telErrorMsg:string = "電話番号の形式で入力してください"
+
+
+
+const validateName = () => {
+    const res = nameSchema.safeParse(name.value)
+    isNameValid.value = res.success
+    allValidateCheck();
+}
+
+const validateEmail = () => {
+    const res = emailSchema.safeParse(email.value)
+    isEmailValid.value = res.success
+    allValidateCheck();
+}
+
+const validateTel = () => {
+    const res = telSchema.safeParse(tel.value)
+    isTelValid.value = res.success
+    allValidateCheck();
+}
+
+const validateTextarea = () => {
+    const res = textareaSchema.safeParse(textarea.value)
+    isTextareaValid.value = res.success
+    allValidateCheck();
+}
+
+const allValidateCheck = () => {
+    const result = formSchema.safeParse({
         name: name.value,
-    });
-}
-const inputCheckEmail = () => {
-    validateEmail({
         email: email.value,
-    });
-}
-const inputCheckTel = () => {
-    validateTel({
         tel: tel.value,
-    });
-}
-const inputCheckTextarea = () => {
-    validateTextarea({
-        textarea: textarea.value,
-    });
+        textarea: textarea.value
+    })
+
+    if (result.success){
+        isValidSubmitBtn.value = false
+    } else {
+        isValidSubmitBtn.value = true
+    }
 }
 
 
@@ -80,7 +107,6 @@ onMounted(()=>{
         //ハンバーガーメニュー全般
 
         const mediaQueryList = window.matchMedia('(min-width: 996px)');
-
         const html:any = document.documentElement;
         const hmbg:any = document.getElementById('js-header-hmbg');
         const headerNav:any = document.getElementById('js-header-nav');
@@ -139,12 +165,6 @@ onMounted(()=>{
             })
         }
 
-
-
-
-
-
-
 });
 
 </script>
@@ -171,17 +191,15 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-name">お名前</label></dt>
                             <dd>
-                                <input type="text" @blur="inputCheckName" v-model="name" name="name" id="form-name" class="is-half">
+                                <input type="text" @blur="validateName" v-model="name" name="name" id="form-name" class="is-half">
                                 <p>例）山田太郎</p>
                                 <template
-                                    v-if="errorMessagesName && errorMessagesName.flatten().fieldErrors.name?.length"
+                                    v-if="!isNameValid"
                                     >
-                                    <p
-                                        v-for="(error, i) in errorMessagesName.flatten().fieldErrors.name"
-                                        :key="i"
-                                        class="is-red"
+                                    <p 
+                                        class="is-errored"
                                     >
-                                        {{ error }}
+                                        {{ requiredErrorMsg }}
                                     </p>
                                 </template>
                             </dd>
@@ -189,17 +207,15 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-email">メールアドレス</label></dt>
                             <dd>
-                                <input type="email" @blur="inputCheckEmail" v-model="email" name="email" id="form-email" class="is-half">
+                                <input type="email" @blur="validateEmail" v-model="email" name="email" id="form-email" class="is-half">
                                 <p>例）portfolio@mail.com</p>
                                 <template
-                                    v-if="errorMessagesEmail && errorMessagesEmail.flatten().fieldErrors.email?.length"
+                                    v-if="!isEmailValid"
                                     >
                                     <p
-                                        v-for="(error, i) in errorMessagesEmail.flatten().fieldErrors.email"
-                                        :key="i"
-                                        class="is-red"
+                                        class="is-errored"
                                     >
-                                        {{ error }}
+                                        {{ emailErrorMsg }}
                                     </p>
                                 </template>
                             </dd>
@@ -207,17 +223,15 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="non-required">任意</span><label for="form-tel">電話番号</label></dt>
                             <dd>
-                                <input type="tel" @blur="inputCheckTel" v-model="tel" name="tel" id="form-tel" class="is-half">
+                                <input type="tel" @blur="validateTel" v-model="tel" name="tel" id="form-tel" class="is-half">
                                 <p>例）07001234567(*ハイフンなしでご記入ください)</p>
                                 <template
-                                    v-if="errorMessagesTel && errorMessagesTel.flatten().fieldErrors.tel?.length"
+                                    v-if="!isTelValid"
                                     >
                                     <p
-                                        v-for="(error, i) in errorMessagesTel.flatten().fieldErrors.tel"
-                                        :key="i"
-                                        class="is-red"
+                                        class="is-errored"
                                     >
-                                        {{ error }}
+                                        {{ telErrorMsg }}
                                     </p>
                                 </template>
                             </dd>
@@ -225,24 +239,21 @@ onMounted(()=>{
                         <dl class="form_box">
                             <dt><span class="required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
                             <dd>
-                                <textarea name="textarea" id="form-textarea" @blur="inputCheckTextarea" v-model="textarea"></textarea>
+                                <textarea name="textarea" id="form-textarea" @blur="validateTextarea" v-model="textarea"></textarea>
                                 <p>お問い合わせ内容をお書き下さい。</p>
                                 <template
-                                    v-if="errorMessagesTextarea && errorMessagesTextarea.flatten().fieldErrors.textarea?.length"
+                                    v-if="!isTextareaValid"
                                     >
                                     <p
-                                        v-for="(error, i) in errorMessagesTextarea.flatten().fieldErrors.textarea"
-                                        :key="i"
-                                        class="is-red"
+                                        class="is-errored"
                                     >
-                                        {{ error }}
+                                        {{ requiredErrorMsg }}
                                     </p>
                                 </template>
                             </dd>
                         </dl>
                         <div data-netlify-recaptcha="true" class="mb3"></div>
-
-                        <div class="btn_wrapper"><button type="submit" class="btn">送信する</button></div>
+                        <div class="btn_wrapper"><button type="submit" class="btn" :disabled=isValidSubmitBtn>送信する</button></div>
                     </form>
                 </div>
             </section>
