@@ -14,7 +14,7 @@ const customErrorMap = (issue: any, ctx: ErrorMapCtx) => {
         }
         case z.ZodIssueCode.custom:
         if (issue.path?.[0] === "tel") {
-            return {message: "電話番号は数字の形式で入力してください"};
+            return {message: "電話番号の形式で入力してください"};
         }
         default:
         return { message: ctx.defaultError }

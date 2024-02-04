@@ -1,14 +1,15 @@
 import z from 'zod'
-import '@/schema/customErrorMap'
 
-export const createUserSchema = z.object({
-    name: z.string().trim().min(1),
-    email: z.string().trim().min(1).email(),
-    tel: z.string().refine((value) => {return value === '' || /^\d{10}$/.test(value);}),
-    textarea: z.string().trim().min(1)
-    // required: z.string().trim().min(1),
+// バリデーション内容
+
+export const nameSchema = z.string().trim().min(1)
+export const emailSchema = z.string().trim().min(1).email()
+export const telSchema = z.string().refine((value) => {return value === '' || /^\d{9,12}$/.test(value.replace(/[-\s]/g, ''));})
+export const textareaSchema = z.string().trim().min(1)
+
+export const formSchema = z.object({
+    name: nameSchema,
+    email: emailSchema,
+    tel: telSchema,
+    textarea: textareaSchema
 })
-
-export type CreateUser = z.TypeOf<typeof createUserSchema>
-
-
