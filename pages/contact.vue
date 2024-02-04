@@ -252,8 +252,8 @@ onMounted(()=>{
                                 </template>
                             </dd>
                         </dl>
-                        <div data-netlify-recaptcha="true" class="mb3"></div>
-                        <div class="btn_wrapper"><button type="submit" class="btn" :disabled=isValidSubmitBtn>送信する</button></div>
+                        <div data-netlify-recaptcha="true" class="u-mb3"></div>
+                        <div class="c-btnWrapper"><button type="submit" class="c-btn c-btn--anime" :disabled=isValidSubmitBtn>送信する</button></div>
                     </form>
                 </div>
             </section>

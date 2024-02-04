@@ -72,6 +72,10 @@
     margin-right: .7em;
 }
 
+.is-errored{
+    color: $red!important;
+}
+
 .c-btn--anime{
     @include btnSlideAnime($m-black);
 }
