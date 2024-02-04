@@ -1,0 +1,23 @@
+
+@use '../../foundation/variables' as*;
+
+
+.p-complete, .p-error{
+    .p-complete__ttl, .p-error__ttl{
+        font-size: clamp(2rem, 1.696rem + 0.81vw, 2.5rem);
+        margin-bottom: 1em;
+        @include bp-lg{
+            font-size: 2.5rem;
+        }
+    }
+
+    .p-complete__wrapper, .p-error__wrapper{
+        background: $ll-gray;
+        padding: 4em 5%;
+        text-align: center;
+    }
+
+    .c-btn--anime{
+        @include btnSlideAnime($m-black);
+    }
+}

@@ -1,0 +1,18 @@
+@use '../foundation/variables' as*;
+
+.l-header{
+    &__content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $m-black;
+        padding: 1.7em 0 1.5em;
+        @include bp-lg{
+            padding: 3em 0 2.5em;
+        }
+        .is-top >&{
+            border-bottom: none;
+        }
+    }
+}
+

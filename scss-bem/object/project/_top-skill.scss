@@ -1,0 +1,259 @@
+.p-topSkill{
+    padding: 6em 0 8em;
+    @include bp-lg{
+        padding: 8em 0 10em;
+    }
+}
+
+.p-topSkill__wrapper{
+    display: flex;
+    gap: 5em 6%;
+    flex-direction: column;
+    align-items: flex-start;
+    @include bp-lg{
+        flex-direction: row;
+    }
+}
+
+.p-topSkill__nav{
+        background-color: $l-brown;
+        color: $white;
+        width: 100%;
+        padding: 2em;
+        @include bp-lg{
+            padding: 3em 4%;
+            width: 24%;
+            position: sticky;
+            top: 60px;
+            bottom: 10em;
+        }
+
+    .p-topSkill__navTtl{
+        display: none;
+        font-size: 1.7em;
+        margin-bottom: .7em;
+        @include bp-lg{
+            display: block;
+        }
+    }
+
+    .p-topSkill__navList{
+        display: flex;
+        gap: 1em 0;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        @include bp-lg{
+            gap: 0;
+            flex-direction: column;
+            border-left: 2px solid rgba($white, .4);
+        }
+        >li{
+            width: calc(50% - .5em);
+            @include bp-lg{
+                width: 100%;
+            }
+        }
+        a{
+            text-align: center;
+            display: block;
+            font-weight: 800;
+            @include bp-lg{
+                padding: 1em 0 1em 1.5em;
+                opacity: .5;
+                text-align: left;
+                &.is-active{
+                    opacity: 1;
+                    font-weight: 800;
+                    border-left: 2px solid $white;
+                    transform: translateX(-2px);
+                }
+            }
+        }
+    }
+}
+
+
+.p-topSkill__info{
+    @include bp-lg{
+        width: calc(76% - 6%);
+    }
+}
+
+
+.p-topSkill__infoList{
+        display: flex;
+        flex-wrap: wrap;
+        @include bp-md{
+            justify-content: center;
+            gap: 1em 0;
+            margin-bottom: 7em;
+        }
+        >li{
+            width: 100%;
+            border-radius: 16px;
+            padding: 3em 2em 5em;
+            counter-increment: skill-number;
+            text-align: center;
+            transition: transform .6s, opacity .6s;
+            opacity: 0;
+            @include bp-md{
+                width: calc(50% + .58em);
+                padding: 3em 6%;
+            }
+
+            &:nth-of-type(odd){
+                background: $ll-gray;
+                @include bp-md{
+                    transition: transform .6s, opacity .6s;
+                    transform: translateX(-.6em);
+                    margin-left: -.6em;
+                }
+            }
+            &:nth-of-type(even){
+                background-color: $l-gray;
+                @include bp-md{
+                    transition: transform .6s .5s, opacity .6s .5s;
+                    transform: translateX(.6em);
+                    margin-right: -.6em;
+                }
+            }
+
+            &:nth-of-type(2n+1):last-of-type{
+                @include bp-md{
+                    transition:transform .6s, opacity .6s;
+                    transform: translate(0, 2.5em);
+                }
+            }
+            
+            >span{
+                display: inline-block;
+                font-size: 2.4rem;
+                font-weight: 900;
+                letter-spacing: 2px;
+                background-color: $m-black;
+                color: $white;
+                line-height: 1.2;
+                padding: 0 .3em;
+                margin-bottom: 1.7em;
+                @include fontRaleway;
+                &::after{
+                    content: counter(skill-number, decimal-leading-zero);
+                }
+            }
+
+            img{
+                display: inline-block;
+                height: 130px;
+                width: 100%;
+                object-fit: contain;
+                max-width: 160px;
+            }
+
+            // クラス付与後
+            &.is-inview{
+                @for $i from 1 through 10 {
+                    &:nth-child(#{$i}){
+                        transform: translateY(-#{($i+1)*1.5 }em);
+                        opacity: 1;
+                        @include bp-md{
+                            transform: translateY(0);
+                        }
+                    }
+                }
+                &:nth-of-type(odd){
+                    @include bp-md{
+                        transform: translateX(.6em);
+                        opacity: 1;
+                    }
+                }
+                &:nth-of-type(even){
+                    @include bp-md{
+                        transform: translateX(-.6em);
+                        opacity: 1;
+                    }
+                }
+
+                &:nth-of-type(2n+1):last-of-type{
+                    @include bp-md{
+                        transform: translate(0,0);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    .p-topSkill__ttl{
+        margin-bottom: 3.5em;
+        color: $m-black;
+        padding: 1.2em 1.5em;
+        border: 2.5px solid $m-black;
+        font-size: 1.3em;
+        display: flex;
+        flex-direction: column;
+        gap: .3em;
+        @include bp-md{
+            margin-bottom: 1.5em; 
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            &:first-of-type{
+                margin: 1.5em 0; 
+            }
+        }
+
+        >span:not(.is-large){
+            font-size: .65em;
+            letter-spacing: 1px;
+            display: inline-block;
+            line-height: 1;
+            &::before{
+                content: '';
+                display: inline-block;
+                width: 2em;
+                height: 2px;
+                background-color: $m-black;
+                margin-right: .7em;
+                vertical-align: middle;
+            }
+        }
+        .is-large{
+            display: inline-block;
+            position: relative;
+            line-height: 1.2;
+            letter-spacing: 4px;
+            &::after{
+                @include bp-md{
+                    content: '';
+                    position: absolute;
+                    top: -1.2em;
+                    right: -1.5em;
+                    display: inline-block;
+                    width: 2.6px;
+                    height: calc(100% + 1.2em);
+                    background-color: $m-black;
+                }
+            }
+        }
+    }
+
+
+    .p-topSkill__img{
+        margin-bottom: 1.2em;
+    }
+
+    .p-topSkill__subTtl{
+        font-size: 1.2em;
+        margin-bottom: .8em;
+        letter-spacing: 2px;
+    }
+
+
+    .p-topSkill__txt{
+        text-align: left;
+        letter-spacing: 1px;
+        line-height: 1.6;
+        font-size: .95em;
+    }

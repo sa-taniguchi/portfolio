@@ -1,0 +1,77 @@
+@use '../../foundation/variables' as*;
+
+
+
+.p-form{
+    padding: 4em .5em 7em;
+}
+
+.p-form__wrapper{
+    margin: 0 auto 2em;
+    &:last-of-type{
+        margin: 0 auto 3em;
+    }
+
+    dt{
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    
+    dd{
+        input{
+            display: block;
+            background: $ll-gray;
+            border-radius: 3px;
+            width: 50%;
+            padding: .4em .6em;
+            border: rgba($d-gray, .3) 1px solid;
+            &.is-half{
+                width: 100%;
+                @include bp-sm{
+                    width: 50%;
+                }
+            }
+        }
+        >p{
+            padding-top: .35em;
+            font-size: .77em;
+            color: $d-gray;
+        }
+    
+        textarea{
+            display: block;
+            background: $ll-gray;
+            border-radius: 3px;
+            width: 100%;
+            height: 10em;
+            border: rgba($d-gray, .3) 1px solid;
+            padding: .4em .6em;
+        };
+    }
+}
+
+
+
+.is-required{
+    display: inline-block;
+    padding: .1em .5em;
+    border-radius: 5px;
+    color: $white;
+    font-size: .72em;
+    background-color: $red;
+    margin-right: .7em;
+}
+
+.is-unrequired{
+    display: inline-block;
+    padding: .1em .5em;
+    border-radius: 5px;
+    font-size: .72em;
+    background-color: $l-gray;
+    margin-right: .7em;
+}
+
+.c-btn--anime{
+    @include btnSlideAnime($m-black);
+}

@@ -1,0 +1,47 @@
+.p-topAbout{
+    padding: 6em 0;
+    @include bp-lg{
+        padding: 8em 0 10em;
+    }
+    &__wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 2em 8%;
+        @include bp-md{
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    &__img{
+        max-width: 450px;
+        margin: 0 auto;
+        @include bp-md{
+            max-width: none;
+            width: calc(60% - 8%);
+        }
+    }
+
+    &__info{
+        width: 100%;
+        @include bp-md{
+            width: 50%;
+        }
+
+
+    }
+    &__txt{
+        @include scroll-fadeUp(.5);
+        >p{
+            font-size: .92em;
+            line-height: 1.7;
+            letter-spacing: .8px;
+            font-feature-settings: "palt";
+            &.is-small{
+                font-size: .83em;
+                padding: .3em 0;
+            }
+        }
+
+    }
+}

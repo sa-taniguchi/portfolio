@@ -1,13 +1,13 @@
 <template>
-    <footer>
-        <div class="md-container">
-            <div class="footer_logo">
+    <footer class="l-footer">
+        <div class="l-mdContainer">
+            <div class="p-footerLogo">
                 <nuxtLink to="/">
                     <NuxtImg src="/img/common/logo.svg" alt="" />
                     <p>ポートフォリオ</p>
                 </nuxtLink>
             </div>
-            <p class="footer_cp">&copy;<span>{{ current }}</span>s.taniguchi-portfolio</p>
+            <p class="p-footerCp">&copy;<span>{{ current }}</span>s.taniguchi-portfolio</p>
         </div>
     </footer>
 </template>

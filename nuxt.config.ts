@@ -104,11 +104,6 @@ export default defineNuxtConfig({
   },
   vite: {
     css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@import "@/assets/scss/module/_variables.scss"; @import "@/assets/scss/module/_base.scss"; @import "@/assets/scss/module/_header.scss"; @import "@/assets/scss/module/_base.scss"; @import "@/assets/scss/module/_margin.scss"; @import "@/assets/scss/module/_footer.scss"; @import "@/assets/scss/module/_nav.scss"; '
-        },
-      },
       devSourcemap: true,
     },
   },

@@ -1,0 +1,29 @@
+@use '../foundation/variables' as*;
+
+
+.l-mdContainer{
+    margin: 0 3%;
+    padding: 0 2%;
+    max-width: $md;
+    @include bp-md{
+        margin: 0 auto;
+    }
+}
+
+.l-lgContainer{
+    margin: 0 3%;
+    padding: 0 2%;
+    max-width: $lg;
+    @include bp-lg{
+        margin: 0 auto;
+    }
+}
+
+.l-xlContainer{
+    margin: 0 3%;
+    padding: 0 2%;
+    max-width: $xl;
+    @include bp-xl{
+        margin: 0 auto;
+    }
+}

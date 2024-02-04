@@ -1,0 +1,17 @@
+.p-headerLogo{
+    font-weight: 900;
+    @include opacity-anime;
+    a{
+        display: flex;
+        align-items: center;
+        gap: .6em;
+    }
+    span{
+        font-size: 1.4em;
+        letter-spacing: -1px;
+    };
+    img{
+        display: block;
+        width: 45px;
+    }
+}

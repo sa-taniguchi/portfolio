@@ -1,0 +1,22 @@
+.p-footerLogo{
+    padding: 1.5em 0;
+    border-bottom: 1px solid $m-black;
+    margin-bottom: 1.5em;
+    font-size: 1.5em;
+    font-weight: 900;
+    letter-spacing: -1px;
+    img{
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 10px;
+    }
+}
+.p-footerCp{
+    padding-bottom: 2em;
+    font-size: .85em;
+    letter-spacing: 1px;
+    >span{
+        display: inline-block;
+        margin-right: .3em;
+    }
+}

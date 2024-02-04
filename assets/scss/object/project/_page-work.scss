@@ -1,0 +1,87 @@
+@use '../../foundation/variables' as*;
+
+
+.p-work{
+    &__ttl{
+        font-size: 1.1em;
+        margin-bottom: .7em;
+        letter-spacing: 2px;
+        line-height: 1.2;
+        border-left: 5px solid $d-black;
+        padding-left: .7em;
+    }
+
+    &__img{
+        margin-bottom: 4rem;
+        background-color: $beige;
+        padding: 1.5em 2em;
+        img{   
+            background-color: $beige;
+            display: block;
+            margin: 0 auto;
+            @include bp-sm{
+                aspect-ratio: 16/9;
+                object-fit: contain;
+                object-position: top center;
+            }
+        }
+    }
+
+    &__headline{
+        display: inline-block;
+        margin-bottom: .8em;
+        font-size: 1.45em;
+        letter-spacing: 2px;
+        padding-bottom: .7em;
+        line-height: 1.4;
+        border-bottom: 1px solid $d-black;
+    }
+
+    &__date{
+        font-size: .85em;
+        font-weight: 800;
+        margin-bottom: 6rem;
+    }
+
+    &__url{
+        >span{
+            display: inline-block;
+            margin-right: .5em;
+        }
+        >a{
+            text-decoration: underline;
+        }
+    }
+
+    &__skill{
+        &+.work_detail_skill{
+            &::before{
+                content: '/';
+                display: inline-block;
+                margin: 0 .7em;
+            }
+        }
+    }
+
+    &__body{
+        line-height: 1.8;
+    }
+
+    &__link{
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        object-fit: contain;
+        vertical-align: middle;
+        margin: 0 .3em;
+    }
+
+    .c-btnWrapper--work{
+        margin-bottom: 5em;
+    }
+
+
+    .c-btn--work{
+        @include btnSlideAnime($m-black);
+    }
+}

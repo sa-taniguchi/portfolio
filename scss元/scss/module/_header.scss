@@ -16,18 +16,18 @@
     }
     
     >div{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid $m-black;
-        padding: 1.7em 0 1.5em;
-        margin: 0 5%;
-        @include bp-lg{
-            padding: 3em 0 2.5em;
-        }
-        @include bp-xl{
-            margin: 0 auto;
-        }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid $m-black;
+            padding: 1.7em 0 1.5em;
+            margin: 0 5%;
+            @include bp-lg{
+                padding: 3em 0 2.5em;
+            }
+            @include bp-xl{
+                margin: 0 auto;
+            }
     }
 
     &.is-top{

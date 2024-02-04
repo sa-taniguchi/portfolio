@@ -137,13 +137,13 @@ onMounted(()=>{
 
 <template>
     <Header />
-    <main id="contact">
+    <main class="p-contact">
         <article>
             <section>
-                <div class="md-container">
-                    <div class="subpage_fv">
-                        <h2 class="js-span-wrap-text js-io">Contact</h2>
-                        <span class="js-io">お問い合わせ</span>
+                <div class="l-mdContainer">
+                    <div class="c-subpageFv">
+                        <h2 class="p-subpageFV-title js-io">Contact</h2>
+                        <span class="p-subpageFV-title__sm js-io">お問い合わせ</span>
                     </div>
                     <p>お気軽にお問い合わせください。</p>
                     <form 
@@ -152,13 +152,12 @@ onMounted(()=>{
                     method="POST"
                     data-netlify-recaptcha="true"
                     data-netlify="true" 
-                    class="form_wrapper">
-                        <dl class="form_box">
-                            <dt><span class="required">必須</span><label for="form-name">お名前</label></dt>
+                    class="p-form">
+                        <dl class="p-form__wrapper">
+                            <dt><span class="is-required">必須</span><label for="form-name">お名前</label></dt>
                             <dd>
                                 <input @blur=submit type="text" v-model="name" name="name" id="form-name" class="is-half">
                                 <p>例）山田太郎</p>
-                                <!-- <p>{{ erros.name }}</p> -->
                                 <template
                                     v-if="errorMessages && errorMessages.flatten().fieldErrors.name?.length"
                                     >
@@ -172,8 +171,8 @@ onMounted(()=>{
                                 </template>
                             </dd>
                         </dl>
-                        <dl class="form_box">
-                            <dt><span class="required">必須</span><label for="form-email">メールアドレス</label></dt>
+                        <dl class="p-form__wrapper">
+                            <dt><span class="is-required">必須</span><label for="form-email">メールアドレス</label></dt>
                             <dd>
                                 <input @blur=submit type="email" v-model="email" name="email" id="form-email" class="is-half">
                                 <p>例）portfolio@mail.com</p>
@@ -190,8 +189,8 @@ onMounted(()=>{
                                 </template>
                             </dd>
                         </dl>
-                        <dl class="form_box">
-                            <dt><span class="non-required">任意</span><label for="form-tel">電話番号</label></dt>
+                        <dl class="p-form__wrapper">
+                            <dt><span class="is-unrequired">任意</span><label for="form-tel">電話番号</label></dt>
                             <dd>
                                 <input @blur=submit type="tel" v-model="tel" name="tel" id="form-tel" class="is-half">
                                 <p>例）07001234567(*ハイフンなしでご記入ください)</p>
@@ -208,10 +207,9 @@ onMounted(()=>{
                                 </template>
                             </dd>
                         </dl>
-                        <dl class="form_box">
-                            <dt><span class="required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
+                        <dl class="p-form__wrapper">
+                            <dt><span class="is-required">必須</span><label for="form-textarea">お問い合わせ内容</label></dt>
                             <dd>
-                                <!-- <p v-if="errors.textarea">{{ errors.textarea }}</p> -->
                                 <textarea @blur=submit name="textarea" id="form-textarea" v-model="textarea"></textarea>
                                 <p>お問い合わせ内容をお書き下さい。</p>
                                 <template
@@ -229,7 +227,7 @@ onMounted(()=>{
                         </dl>
                         <div data-netlify-recaptcha="true" class="mb3"></div>
 
-                        <div class="btn_wrapper"><button type="submit" class="btn">送信する</button></div>
+                        <div class="c-btnWrapper"><button type="submit" class="c-btn c-btn--anime">送信する</button></div>
                     </form>
                 </div>
             </section>

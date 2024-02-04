@@ -3,22 +3,22 @@
 
 <template>
     <Header />
-    <main id="complete">
+    <main class="p-complete">
         <article>
             <section>
-                <div class="lg-container">
-                    <div class="subpage_fv">
-                        <h2 class="js-span-wrap-text js-io">Contact</h2>
-                        <span class="js-io">お問い合わせ</span>
+                <div class="l-lgContainer">
+                    <div class="c-subpageFv">
+                        <h2 class="p-subpageFV-title js-io">Contact</h2>
+                        <span class="p-subpageFV-title__sm js-io">お問い合わせ</span>
                     </div>
-                    <div class="complete_wrapper">
-                        <h3 class="complete_ttl">お問い合わせが完了しました</h3>
+                    <div class="p-complete__wrapper">
+                        <h3 class="p-complete__ttl">お問い合わせが完了しました</h3>
                         <p>お問い合わせいただきありがとうございました。</p>
-                        <p class="mb3">
+                        <p class="u-mb3">
                         折り返し、ご連絡いたしますので、
                         恐れ入りますが、しばらくお待ちください。
                         </p>
-                        <div class="btn_wrapper"><nuxtLink to="/" role="button" class="btn">トップへ戻る</nuxtLink></div>
+                        <div class="c-btnWrapper"><nuxtLink to="/" role="button" class="c-btn c-btn--anime">トップへ戻る</nuxtLink></div>
                     </div>
                 </div>
             </section>

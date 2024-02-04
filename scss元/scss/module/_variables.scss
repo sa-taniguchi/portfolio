@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+
+// 色まとめる
+
+$m-black: #23221E;
+$d-black: #000;
+$ll-gray:#f5f5f5;
+$l-gray:#d8d8d8;
+$d-gray: #6d6d6d;
+$white: #fff;
+$beige: #F7F5F2;
+$red: #c44343;
+$l-brown: #9f7356;
+
+
+
+//ブレイクポイント
+
+$xxl :1440px;
+$xl :1280px;
+$lg: 992px;
+$slg: 840px;
+$md: 768px;
+$xs: 576px;
+$sp: 480px;
+
+
+
+
+
+
+
+@mixin opacity-anime {
+  transition: opacity .3s linear;
+  &:hover,&:focus{
+    opacity: .6;
+  }
+}
+
+@mixin opacity-items-anime {
+  opacity: 0;
+  transform: translateY(20px);
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      transition: transform .27s #{$i * 0.15}s, opacity .27s #{$i * 0.15}s;
+    }
+  }
+  &.is-inview{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@mixin scroll-showUp{
+  opacity: 0;
+  transform: translateY(20px);
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      transition: transform .27s #{$i * 0.15}s, opacity .27s #{$i * 0.15}s;
+    }
+  }
+  &.is-inview{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin scroll-showDown{
+  >span{
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-25px);
+    @for $i from 1 through 30 {
+      &:nth-child(#{$i}) {
+        transition: transform .5s #{$i * 0.1}s, opacity .5s #{$i * 0.1}s;
+      }
+    }
+  }
+  &.is-inview{
+    >span{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@mixin scroll-fadeUp($delay){
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform .5s #{$delay}s, opacity .5s #{$delay}s;
+  &.is-inview{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+@mixin arrow-right($color) {
+    position: relative;
+    display: block;
+    width: 12px;
+    height: 1px;
+    border-radius: 5px;
+    background-color: $color;
+    &::before,&::after{
+      content: "";
+      position: absolute;
+      display: block;
+      width: 6px;
+      height: 1px;
+      border-radius: 5px;
+      background-color: inherit;
+      right: -1px;
+    }
+    &::before {
+      top: 2px;
+      transform: rotate(-45deg);
+    }
+    &::after {
+      bottom: 2px;
+      transform: rotate(45deg);
+    }
+  }
+
+
+// moreボタン
+@mixin moreBtn($color,$trans-color){
+  .more_btn{
+    display: block;
+    width: 70%;
+    height: 60px;
+    text-align: center;
+    color: $color;
+    border: 1px solid $color;
+    border-radius: 40px;
+    line-height: 60px;
+    position: relative;
+    background-color: $trans-color;
+    @include arrow-right($color);
+    .arrow_round{
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    @include bp-sm{
+      width: 172px;
+    }
+    @include bp-lg{
+      transition: background-color .3s;
+      &:hover{
+        background-color: $color;
+        color: $trans-color;
+        border: 1px solid $trans-color;
+        .arrow_round{
+          background-color: $trans-color;
+        }
+      }
+    }
+  }
+  }
+
+
+
+
+@mixin bp-sm {
+  @media (min-width: ($xs)) {
+    @content;
+  }
+}
+@mixin bp-md {
+  @media (min-width: ($md)) {
+    @content;
+  }
+}
+
+
+@mixin bp-lg {
+  @media (min-width: ($lg)) {
+    @content;
+  }
+}
+
+@mixin bp-xl {
+  @media (min-width: ($xl)) {
+    @content;
+  }
+}
+
+@mixin bp-xxl {
+  @media (min-width: ($xxl)) {
+    @content;
+  }
+}
+
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('../../font/NotoSansJP-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; 
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('../../font/NotoSansJP-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap; 
+}
+
+
+@mixin fontRaleway(){
+  font-family: 'Raleway', sans-serif;
+}
+
+
+@mixin btnSlideAnime($color){
+  background-color: $color;
+  color: $white;
+  border: 2px solid $color;
+  @include bp-lg{
+      background-color: transparent;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      &::after{
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          transform: translateX(0);
+          background: $color;
+          transition: transform .3s;
+          z-index: -1;
+      }
+      &:hover{
+          color: $color;
+          &::after{
+              transform: translateX(100%);
+          }
+      }
+  }
+
+}

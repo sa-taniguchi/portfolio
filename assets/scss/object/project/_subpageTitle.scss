@@ -1,0 +1,39 @@
+@use '../../foundation/variables' as*;
+
+
+.p-subpageFV-title{
+    font-size: clamp(3.8rem, 2.584rem + 3.241vw, 5.8rem);
+    font-weight: 900;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    @include fontRaleway;
+    @include scroll-showDown;
+    @include bp-lg{
+        font-size: 5.6rem;
+    }
+}
+
+.p-subpageFV-title__sm{
+    display: inline-block;
+    font-weight: 800;
+    overflow: hidden;
+    position: relative;
+    color: $l-brown;
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: $l-brown;
+        transition: transform .3s 1s ease-in-out;
+    }
+    
+    &.is-inview{
+        &::after{
+            transform: translateX(100%);
+        }
+    }
+}
