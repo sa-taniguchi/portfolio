@@ -1,0 +1,33 @@
+{
+  "name": "test",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "clean": "rimraf dist",
+    "dev": "NODE_ENV=development astro dev --mode development",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "stg": "NODE_ENV=staging astro build --mode staging",
+    "prod": "NODE_ENV=production astro build --mode production",
+    "format-html": "node src/lib/htmlFormatterCLI.js --path=./dist"
+  },
+  "dependencies": {
+    "astro": "^5.16.6",
+    "astro-font": "^0.0.81",
+    "chalk": "^5.3.0",
+    "glob": "^11.0.1",
+    "js-beautify": "^1.15.1",
+    "rimraf": "^6.1.2",
+    "sass-embedded": "^1.83.4",
+    "yargs": "^17.7.2"
+  },
+  "volta": {
+    "node": "20.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.13",
+    "unocss": "^66.1.0-beta.5"
+  }
+}

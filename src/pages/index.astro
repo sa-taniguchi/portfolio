@@ -1,0 +1,113 @@
+---
+import { getRenderProps } from '@lib/render.ts';
+import config from '@configJson';
+import Layout from '@layouts/Layout.astro';
+import example from '@data/example.json';
+import exampleTwo from '@data/exampleTwo/exampleTwo.json';
+// import exampleThree from '@data/exampleThree.yml';
+import exampleFour from '@data/exampleFour.json';
+import ExampleComponent from '@components/ExampleComponent.astro';
+const render = getRenderProps(Astro);
+
+const props = {
+	BODY_CLASS: "index",
+	ADD_STYLES: [],
+
+	ADD_SCRIPTS_HEADER: [
+		// "/assets/hoge.js",
+		// "/assets/fuga.js"
+	],
+	ADD_SCRIPTS_FOOTER: [
+		// "/assets/hoge.js",
+		// "/assets/fuga.js"
+	],
+
+	LANGUAGE: "ja",
+	NAMESPACE: "website",
+	META_CHARSET: "UTF-8",
+	META_ROBOTS: "index,follow",
+	META_VIEWPORT: "width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no,viewport-fit:cover",
+	META_TITLE: "これはタイトルです",
+	META_SHARE_TITLE: "",
+	META_KEYWORDS: "これはキーワードです",
+	META_DESCRIPTION: "これはディスクリプションです",
+	META_SHARE_DESCRIPTION: "",
+	META_AUTHOR: "",
+	META_COPYRIGHT: "",
+	META_APPLE_ICON: "favicon.svg",
+	META_ICON: "favicon.ico",
+	META_XHTML_ICON: "favicon.svg",
+	META_FACEBOOK: true,
+	META_FACEBOOK_IMAGE: "ogp_image.png",
+	META_FACEBOOK_LOCALE: "ja_JP",
+	META_FACEBOOK_ID: "",
+	META_TWITTER: true,
+	META_TWITTER_CARD: "summary_large_image",
+	META_TWITTER_ACCOUNT: "",
+	META_TWITTER_APP_ANDROID: "",
+	META_TWITTER_APP_IPAD: "",
+	META_TWITTER_APP_IPHONE: "",
+	META_GOOGLE: false,
+	META_WINDOWS: false,
+	META_WINDOWS_IMAGE: "tile_image.png",
+	META_WINDOWS_COLOR: "#000000",
+	META_OLD_BROWSER: false,
+	META_PWA_MODE: false,
+};
+
+    
+---
+
+<Layout { ...props }>
+	<main id="section-contents">
+		<section id="pixi-section">
+				
+		<p>テストテキスト</p>
+		<p><a href={ render.RELATIVE_PATH }>top page</a></p>
+		<p><img src='/assets/common/images/tile_image.png' alt=""></p>
+		<p>{ example.text }</p>
+		<p>{ exampleTwo.text }</p>
+		<!-- <p>{ exampleThree.text }</p>
+		<p>{ exampleThree.test.text }</p> -->
+		<div>
+			{ exampleFour.data.map((data) => (
+			<h3>{data.title}</h3>
+			<p>{data.title}</p>
+			)) }
+		</div>
+		<ExampleComponent
+			title="Title from exampleComponent"
+			text="Text from exampleComponent"
+		/>
+	</main>
+</Layout>
+
+<script>
+	import Common from "@commonJs";
+	import {	SITE_URL, ASSETS_URL } from '@configJs';
+
+
+
+	class Index {
+		constructor() {
+			this.index();
+		}
+
+		index() {
+			const querys = Common.getParam();
+			console.log({querys});
+			console.log({SITE_URL},{ASSETS_URL})
+			return console.log('Index');
+		}
+	}
+	new Index();
+</script>
+
+<style lang="scss">
+	// TODO renderで取得したpath情報をstyle内でも参照できるようにする。
+	@use "sass:math";
+	@use '../assets/common/stylesheets/_config.scss';
+	/* ------------------------------------------- SASS Information
+	Name:      _index.scss
+	----------------------------------------------------------- */
+</style>

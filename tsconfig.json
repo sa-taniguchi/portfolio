@@ -1,0 +1,22 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@configJs":      ["./config.js"],
+      "@configJson":    ["./src/config.json"],
+      "@data/*":        ["./src/_modules/data/*"],
+      "@assets/*":      ["./src/assets/*"],
+      "@styles/*":      ["./src/assets/scss/*"],
+      "@stylesheets/*": ["./src/assets/stylesheets/*"],
+      "@javascripts/*": ["./src/assets/javascripts/*"],
+      "@commonJs":      ["./src/assets/common/scripts/javascript/common.js"],
+      "@svg/*":         ["./src/assets/svg/*"],
+      "@layouts/*":     ["./src/layouts/*"],
+      "@components/*":  ["./src/components/*"],
+      "@lib/*":         ["./src/lib/*"],
+      "@pages/*":       ["./src/pages/*"],
+    }
+  }
+}

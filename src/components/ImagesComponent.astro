@@ -1,0 +1,61 @@
+---
+// ImagesComponent.astro
+
+// 【使用例】
+// ・デフォルト設定でJPGとWebP, AVIFを使用
+// <ImagesComponent
+//   className="my-class"
+//   path="/assets/images/"
+//   file="example-image"
+//   alt="Example Image"
+// />
+
+// ・デフォルト設定でJPGのみ使用
+// <ImagesComponent
+//   className="my-class"
+//   path="/assets/images/"
+//   file="example-image"
+//   alt="Example Image"
+//   useWebP={false}
+//   useAVIF={false}
+// />
+
+const {
+	minWidth = 768, // スマートフォンとPCの境界幅
+	maxWidth = 1024, // タブレットとPCの境界幅
+	responsive = true, // レスポンシブを有効にするかどうか
+	useTablet = false, // タブレットを含めるかどうか
+	useWebP = true, // WebP画像を使用
+	useAVIF = true, // AVIF画像を使用
+	className = "",
+	path = "",
+	file = "",
+	alt = ""
+} = Astro.props;
+---
+
+{responsive ? (<>
+	{useAVIF && <><source class={className} srcset={`${path}${file}_sp.avif`} media={`(max-width: ${minWidth}px)`} type="image/avif" />{`\n	`}</>}
+	{useWebP && <><source class={className} srcset={`${path}${file}_sp.webp`} media={`(max-width: ${minWidth}px)`} type="image/webp" />{`\n	`}</>}
+	<source class={className} srcset={`${path}${file}_sp.jpg`} media={`(max-width: ${minWidth}px)`} />
+	{useTablet && <>
+		{useAVIF && <><source class={className} srcset={`${path}${file}_tab.avif`} media={`(min-width: ${minWidth + 1}px) and (max-width: ${maxWidth}px)`} type="image/avif" />{`\n	`}</>}
+		{useWebP && <><source class={className} srcset={`${path}${file}_tab.webp`} media={`(min-width: ${minWidth + 1}px) and (max-width: ${maxWidth}px)`} type="image/webp" />{`\n	`}</>}
+		<source class={className} srcset={`${path}${file}_tab.jpg`} media={`(min-width: ${minWidth + 1}px) and (max-width: ${maxWidth}px)`} />{`\n	`}</>}
+	{useAVIF && <><source class={className} srcset={`${path}${file}_pc.avif`} media={`(min-width: ${useTablet ? maxWidth + 1 : minWidth + 1}px)`} type="image/avif" />{`\n	`}</>}
+	{useWebP && <><source class={className} srcset={`${path}${file}_pc.webp`} media={`(min-width: ${useTablet ? maxWidth + 1 : minWidth + 1}px)`} type="image/webp" />{`\n	`}</>}
+	<img class={className} src={`${path}${file}_pc.jpg`} alt={alt} /></>
+) : (<>
+	{useAVIF && <><source class={className} srcset={`${path}${file}.avif`} type="image/avif" />{`\n	`}</>}
+	{useWebP && <><source class={className} srcset={`${path}${file}.webp`} type="image/webp" />{`\n	`}</>}
+	<img class={className} src={`${path}${file}.jpg`} alt={alt} /></>
+)}
+
+<style lang="scss">
+	@use "sass:math";
+	@use '../assets/common/stylesheets/_config.scss';
+	.c-image{
+		@include config.RESPONSIVE('PC', config.$MIN_WIDTH) {}
+		@include config.RESPONSIVE('SP', config.$MIN_WIDTH) {}
+	}
+</style>
