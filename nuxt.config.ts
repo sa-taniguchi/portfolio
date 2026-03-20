@@ -68,7 +68,10 @@ export default defineNuxtConfig({
 				output: {
 					manualChunks: {
 						vue: ['vue', 'vue-router'],
-						ui: ['@/components/ui'],
+						// ui: [
+						//   '@/components/ui/UiButton.vue',
+						//   '@/components/ui/UiCard.vue',
+						// ],
 					},
 				},
 			},
