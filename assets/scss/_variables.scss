@@ -1,0 +1,21 @@
+@charset "UTF-8";
+@use "sass:math";
+
+$red01: #e94661;
+$pink01: #EBD0D4;
+$white01: #ffffff;
+$brown01: #743943;
+$brown02: #BA8B33;
+$black01: #000000;
+
+$yellow01: #fffcd5;
+$yellow02: #CEAF14;
+
+$gray01: #F3F3F3;
+
+$designBaseSp: 4.02;
+$designBasePc: 14.4;
+
+:root {
+  --leading-trim: calc((1em - 1lh) / 2);
+}
