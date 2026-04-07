@@ -48,7 +48,6 @@ export default defineNuxtConfig({
 	},
 	// もしくは、明示的に全てのルートをプリレンダリング対象にします
 	routeRules: {
-		'/': { isr: 60 },
 		'/**': { isr: 60 },
 	},
 
@@ -70,9 +69,8 @@ export default defineNuxtConfig({
 	},
 	nitro: {
 		prerender: {
-			crawlLinks: false,
-			failOnError: false, // エラーでビルドを止めない（デバッグ用）
-			routes: ['/'],
+			crawlLinks: true, // リンクを辿る設定だけ残すのが Nuxt 3 の推奨
+			routes: [], 
 		},
 		// output: {
 		// 	publicDir: 'dist',
