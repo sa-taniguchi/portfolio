@@ -1,5 +1,5 @@
 {
-	"name": "sk2026-front",
+	"name": "t.s-portfolio",
 	"type": "module",
 	"private": true,
 	"engines": {
@@ -10,6 +10,8 @@
 		"node": "22.21.1"
 	},
 	"scripts": {
+    "clean": "nuxi cleanup",
+    "fresh": "rm -rf .nuxt .output node_modules && npm install && npm run dev",
 		"build": "nuxt build",
 		"dev": "nuxt dev --dotenv .env.local",
 		"stg": "npm run lint && nuxt generate --dotenv .env.staging",
@@ -19,16 +21,29 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix"
 	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead",
+		"Safari >= 15.4"
+	],
 	"dependencies": {
 		"@nuxt/eslint": "^1.15.2",
+		"fuse.js": "^7.2.0",
 		"nuxt": "^4.1.3",
 		"vue": "^3.5.25",
 		"vue-router": "^4.6.4"
 	},
 	"devDependencies": {
 		"@nuxtjs/google-fonts": "^3.2.0",
+		"@pinia/nuxt": "^0.11.3",
+		"@studio-freight/lenis": "^1.0.42",
 		"@types/node": "^25.3.5",
+		"gsap": "^3.14.2",
+		"pinia": "^3.0.4",
 		"sass": "^1.97.3",
-		"sass-embedded": "^1.97.3"
+		"sass-embedded": "^1.97.3",
+		"swiper": "^12.1.3",
+		"zod": "^4.3.6"
 	}
 }

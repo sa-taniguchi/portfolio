@@ -11,10 +11,8 @@ function getTerserOptions() {
 }
 
 export default defineNuxtConfig({
-
-	modules: ['@nuxtjs/google-fonts'],
-	ssr: false,
-
+	modules: ['@nuxtjs/google-fonts', '@pinia/nuxt'],
+	ssr: true,
 	app: {
 		baseURL: process.env.NUXT_PUBLIC_BASE_URL || '/',
 		head: {
@@ -38,22 +36,44 @@ export default defineNuxtConfig({
 	},
 
 	css: ['@/assets/scss/main.scss'],
-
 	runtimeConfig: {
+		microCmsApiKey: process.env.MICROCMS_API_KEY ?? '',
+		basicAuthUser: '',
+		basicAuthPassword: '',
 		public: {
 			domain: process.env.NUXT_PUBLIC_DOMAIN ?? '',
 			apiBase: process.env.NUXT_PUBLIC_API_BASE ?? '',
 			env: process.env.NUXT_PUBLIC_ENV ?? 'dev',
 		},
 	},
+	// もしくは、明示的に全てのルートをプリレンダリング対象にします
+	routeRules: {
+		'/': { isr: false },
+		'/**': { isr: false },
+	},
+
+	// runtimeConfig: {
+	// 	public: {
+	// 		domain: process.env.NUXT_PUBLIC_DOMAIN ?? '',
+	// 		apiBase: process.env.NUXT_PUBLIC_API_BASE ?? '',
+	// 		env: process.env.NUXT_PUBLIC_ENV ?? 'dev',
+	// 	},
+	// },
 
 	experimental: {
+		viewTransition: false,
+		payloadExtraction: false,
 		defaults: {
+			// nuxtLink: { trailingSlash: 'remove' },
 			nuxtLink: { trailingSlash: 'append' },
 		},
 	},
-
 	nitro: {
+		prerender: {
+			crawlLinks: false,
+			failOnError: false, // エラーでビルドを止めない（デバッグ用）
+			routes: ['/'],
+		},
 		output: {
 			publicDir: 'dist',
 		},
@@ -76,6 +96,15 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		optimizeDeps: {
+			include: [
+				'gsap',
+				'gsap/ScrollTrigger',
+				'lenis',
+				'@vue/devtools-core',
+				'@vue/devtools-kit',
+			],
+		},
 		css: {
 			preprocessorOptions: {
 				scss: {
@@ -85,6 +114,7 @@ export default defineNuxtConfig({
             @use "@/assets/scss/_mq.scss" as *;
             @use "@/assets/scss/_utility.scss" as *;
             @use "@/assets/scss/_layout.scss" as *;
+            @use "@/assets/scss/_animation.scss" as *;
           `,
 				},
 			},
@@ -93,13 +123,13 @@ export default defineNuxtConfig({
 	googleFonts: {
 		families: {
 			'Noto Sans JP': { wght: '400..700' },
-			'Kaisei HarunoUmi': true,
+			'Audiowide': true,
 		},
 		display: 'swap',
 		prefetch: false,
 		preconnect: false,
 		preload: true,
-		download: false, // CDNから読み込む
+		download: true, // CDNから読み込む
 		base64: false,
 		useStylesheet: true,
 		overwriting: true,
