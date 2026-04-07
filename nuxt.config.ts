@@ -48,8 +48,8 @@ export default defineNuxtConfig({
 	},
 	// もしくは、明示的に全てのルートをプリレンダリング対象にします
 	routeRules: {
-		'/': { isr: false },
-		'/**': { isr: false },
+		'/': { isr: 60 },
+		'/**': { isr: 60 },
 	},
 
 	// runtimeConfig: {
@@ -62,7 +62,7 @@ export default defineNuxtConfig({
 
 	experimental: {
 		viewTransition: false,
-		payloadExtraction: false,
+		payloadExtraction: true,
 		defaults: {
 			// nuxtLink: { trailingSlash: 'remove' },
 			nuxtLink: { trailingSlash: 'append' },
@@ -74,9 +74,9 @@ export default defineNuxtConfig({
 			failOnError: false, // エラーでビルドを止めない（デバッグ用）
 			routes: ['/'],
 		},
-		output: {
-			publicDir: 'dist',
-		},
+		// output: {
+		// 	publicDir: 'dist',
+		// },
 	},
 
 	vite: {
