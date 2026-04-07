@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@use "sass:math";
+@use "./variables" as *;
+@use "./mq" as *;
+
+.u-sp {
+  @include mq("pc"){
+    display: none!important;
+  }
+}
+
+.u-pc {
+  @include mq("sp"){
+    display: none!important;
+  }
+}
+
+.u-hidden {
+  display: none!important;
+}
+
+
+.font-audio {
+	font-family: "Audiowide", serif;
+	font-weight: 500;
+}
+
+.u-section-heading {
+  line-height: 100%;
+  font-size: math.div(80vw, $designBaseSp);
+  @include mq("pc"){
+    font-size: math.div(200vw, $designBasePc);
+  }
+}
+
+.u-mt1 {
+  margin-top: 1.5em;
+  display: block;
+}
+
+

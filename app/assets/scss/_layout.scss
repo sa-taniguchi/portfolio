@@ -1,0 +1,48 @@
+@charset "UTF-8";
+@use "sass:math";
+@use "./variables" as *;
+@use "./mq" as *;
+
+
+.l-container{
+  margin: 0 math.div(20vw, $designBaseSp);
+  @include mq('pc'){
+    width: math.div(874vw, $designBasePc);
+    margin: 0 auto;
+  }
+}
+
+.l-lg-container{
+  margin: 0 math.div(20vw, $designBaseSp);
+  @include mq('pc'){
+    margin: 0 math.div(40vw, $designBasePc);
+  }
+}
+
+.l-section-pt{
+  padding-top: min(100px, math.div(100vw, $designBaseSp));
+  @include mq('pc'){
+    padding-top: min(180px, math.div(180vw, $designBasePc));
+  }
+}
+
+.l-section-pb{
+  padding-bottom: min(100px, math.div(100vw, $designBaseSp));
+  @include mq('pc'){
+    padding-bottom: min(180px, math.div(180vw, $designBasePc));
+  }
+}
+
+.l-section-mt{
+  margin-top: min(100px, math.div(100vw, $designBaseSp));
+  @include mq('pc'){
+    margin-top: min(180px, math.div(180vw, $designBasePc));
+  }
+}
+
+.l-section-mb{
+  padding-bottom: min(100px, math.div(100vw, $designBaseSp));
+  @include mq('pc'){
+    padding-bottom: min(180px, math.div(180vw, $designBasePc));
+  }
+}

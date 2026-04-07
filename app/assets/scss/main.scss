@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
-// @use "./variables" as *;
+@use "./variables" as *;
+@use "./mq" as *;
+@use "./utility" as *;
+@use "./layout/" as *;
+@use "./animation/" as *;
 
 // リセットcss
 /* Box sizing rules */
@@ -129,9 +133,9 @@ button{
 	background: transparent;
 	border: none;
 	cursor: pointer;
-	outline: none;
+	// outline: none;
 	padding: 0;
-	appearance: none;
+	// appearance: none;
 	font: inherit;
 	color: inherit;
 }
@@ -139,6 +143,7 @@ button{
 html {
 	scroll-behavior: smooth;
 	-webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -147,13 +152,16 @@ body {
 	-ms-text-size-adjust: 100%;
 	text-rendering: geometricPrecision;
 	font-family: "Noto Sans JP", sans-serif;
-	background: $yellow01;
+	background: rgb(var(--gray01));
 	font-size: math.div(14vw, $designBaseSp);
 	line-height: 180%;
 	font-weight: 400;
-	color: $black01;
+	color: rgb(var(--black01));
 	min-height: 100vh;
 	min-height: 100dvh;
+	@include mq("pc"){
+	font-size: math.div(14vw, $designBasePc);
+	}
 	@include mq("print") {
 		transform: scale(0.8);
 		transform-origin: 0 0;

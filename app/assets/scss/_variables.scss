@@ -1,0 +1,20 @@
+@charset "UTF-8";
+@use "sass:math";
+
+$designBaseSp: 3.75;
+$designBasePc: 14.4;
+
+:root {
+  --leading-trim: calc((1em - 1lh) / 2);
+  --white01: 255, 255, 255;
+  --black01: 0, 0, 0;
+  --blue01: 0, 255, 255;
+  --blue02: 0, 217, 255;
+  --blue03: 0, 64, 255;
+  --blue04: 240, 244, 255;
+  --gray01: 243, 243, 243;
+  --gray02: 197, 197, 197;
+  --gray03: 222, 222, 222;
+  --designBaseSp: 3.75;
+  --designBasePc: 14.4;
+}

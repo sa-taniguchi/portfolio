@@ -13,7 +13,11 @@ $breakpoints: (
 		@media #{map.get($breakpoints, $breakpoint)} {
 			@content;
 		}
-	} @else {
+	} @else if $breakpoint == "hover" {
+    @media (any-hover: hover) {
+      @content;
+    }
+  } @else {
 		@error "指定されたブレイクポイントは存在しません: #{$breakpoint}";
 	}
 }

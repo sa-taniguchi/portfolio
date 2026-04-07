@@ -1,0 +1,14 @@
+@charset "UTF-8";
+@use "sass:math";
+@use "./variables" as *;
+
+
+@mixin text-border($color: rgb(var(--white01))) {
+  text-align: left;
+  > span {
+    opacity: 0;
+    display: inline-block;
+    border-right: 1px solid $color;
+    padding-right: 5px;
+  }
+}
