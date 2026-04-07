@@ -37,13 +37,13 @@ export default defineNuxtConfig({
 
 	css: ['@/assets/scss/main.scss'],
 	runtimeConfig: {
-		microCmsApiKey: process.env.MICROCMS_API_KEY ?? '',
+		microCmsApiKey: '',
 		basicAuthUser: '',
 		basicAuthPassword: '',
 		public: {
-			domain: process.env.NUXT_PUBLIC_DOMAIN ?? '',
-			apiBase: process.env.NUXT_PUBLIC_API_BASE ?? '',
-			env: process.env.NUXT_PUBLIC_ENV ?? 'dev',
+			domain: '',
+			apiBase: '',
+			env: '',
 		},
 	},
 	// もしくは、明示的に全てのルートをプリレンダリング対象にします
