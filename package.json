@@ -10,8 +10,8 @@
 		"node": "22.21.1"
 	},
 	"scripts": {
-    "clean": "nuxi cleanup",
-    "fresh": "rm -rf .nuxt .output node_modules && npm install && npm run dev",
+		"clean": "nuxi cleanup",
+		"fresh": "rm -rf .nuxt .output node_modules && npm install && npm run dev",
 		"build": "nuxt build",
 		"dev": "nuxt dev --dotenv .env.local",
 		"stg": "npm run lint && nuxt build --dotenv .env.staging",
@@ -39,6 +39,7 @@
 		"@pinia/nuxt": "^0.11.3",
 		"@studio-freight/lenis": "^1.0.42",
 		"@types/node": "^25.3.5",
+		"@vercel/edge": "^1.2.2",
 		"gsap": "^3.14.2",
 		"pinia": "^3.0.4",
 		"sass": "^1.97.3",
