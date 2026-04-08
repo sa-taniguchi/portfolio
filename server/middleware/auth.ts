@@ -1,16 +1,53 @@
-// server/middleware/basic-auth.ts
-import {
-	getHeader,
-	setResponseHeader,
-	createError,
-	getRequestURL,
-	type H3Event,
-} from 'h3';
+// // server/middleware/basic-auth.ts
+// import {
+// 	getHeader,
+// 	setResponseHeader,
+// 	createError,
+// 	getRequestURL,
+// 	type H3Event,
+// } from 'h3';
 
-export default defineEventHandler((event: H3Event) => {
+// export default defineEventHandler((event: H3Event) => {
+// 	const url = getRequestURL(event);
+
+// 	// 🔥 除外対象
+// 	if (
+// 		url.pathname.startsWith('/api') // API
+// 		|| url.pathname.startsWith('/_nuxt') // JS/CSS
+// 		|| url.pathname.startsWith('/favicon') // favicon
+// 	) {
+// 		return;
+// 	}
+
+// 	const authHeader = getHeader(event, 'authorization');
+// 	if (!authHeader) return unauthorized(event);
+
+// 	const [scheme, credentials] = authHeader.split(' ');
+// 	if (scheme !== 'Basic' || !credentials) {
+// 		return unauthorized(event);
+// 	}
+
+// 	const decoded = Buffer.from(credentials, 'base64').toString('utf-8');
+// 	const [user, pass] = decoded.split(':');
+
+// 	const config = useRuntimeConfig(event);
+
+// 	if (user !== config.basicAuthUser || pass !== config.basicAuthPassword) {
+// 		return unauthorized(event);
+// 	}
+// });
+
+// function unauthorized(event: H3Event) {
+//   setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"')
+//   return new Response('Unauthorized', {
+//     status: 401,
+//   })
+// }
+
+export default defineEventHandler((event) => {
 	const url = getRequestURL(event);
+	const config = useRuntimeConfig(event);
 
-	// 🔥 除外対象
 	if (
 		url.pathname.startsWith('/api') // API
 		|| url.pathname.startsWith('/_nuxt') // JS/CSS
@@ -18,31 +55,41 @@ export default defineEventHandler((event: H3Event) => {
 	) {
 		return;
 	}
+	// allowedRoutes に指定されていればスキップする
+	// if (config.allowedRoutes?.some((route: string) => {
+	//   const regex = new RegExp(route)
 
-	const authHeader = getHeader(event, 'authorization');
-	if (!authHeader) return unauthorized(event);
+	//   return regex.test(event.node.req.url || '')
+	// })) {
+	//   return
+	// }
 
-	const [scheme, credentials] = authHeader.split(' ');
-	if (scheme !== 'Basic' || !credentials) {
-		return unauthorized(event);
+	// 認証を判定する真偽値
+	let authenticated = false;
+
+	// Authorizationヘッダーから認証情報を取得する
+	const credentials = event.node.req.headers.authorization?.split(' ')[1];
+
+	if (credentials) {
+		// base64 形式から utf-8 の String へ変換する
+		const [username, password] = Buffer.from(credentials, 'base64').toString('utf-8').split(':');
+
+		// username と password が一致しているかどうか
+		authenticated = username === config.basicAuthUser && password === config.basicAuthPassword;
+
+		// 一致していれば認証通過
+		if (authenticated) return;
 	}
 
-	const decoded = Buffer.from(credentials, 'base64').toString('utf-8');
-	const [user, pass] = decoded.split(':');
-
-	const config = useRuntimeConfig(event);
-
-	if (user !== config.basicAuthUser || pass !== config.basicAuthPassword) {
-		return unauthorized(event);
-	}
+	// 一致していなければ Unauthorized レスポンスを返す
+	event.node.res.statusCode = 401;
+	event.node.res.setHeader(
+		'WWW-Authenticate',
+		'Basic realm="Secure Area", charset="UTF-8"',
+	);
+	event.node.res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+	event.node.res.end('Access denied');
 });
-
-function unauthorized(event: H3Event) {
-  setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"')
-  return new Response('Unauthorized', {
-    status: 401,
-  })
-}
 
 // export default defineEventHandler((event) => {
 // 	const config = useRuntimeConfig(event);
