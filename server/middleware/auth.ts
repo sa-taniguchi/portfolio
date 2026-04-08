@@ -16,6 +16,7 @@ export default defineEventHandler((event) => {
 	const user = config.basicAuthUser;
 	const pass = config.basicAuthPassword;
 
+	console.log(`Auth request: ${path} | User: ${user ? 'SET' : 'MISSING'}`);
 	// 環境変数が設定されていない場合はスキップ
 	if (!user || !pass) return;
 
