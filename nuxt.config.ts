@@ -69,12 +69,9 @@ export default defineNuxtConfig({
 	},
 	nitro: {
 		prerender: {
-			crawlLinks: true, // リンクを辿る設定だけ残すのが Nuxt 3 の推奨
+			crawlLinks: false, // 🔥 ここをfalseに
 			routes: [],
 		},
-		// output: {
-		// 	publicDir: 'dist',
-		// },
 	},
 
 	vite: {

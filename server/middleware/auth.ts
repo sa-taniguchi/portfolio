@@ -1,45 +1,45 @@
 // server/middleware/basic-auth.ts
 import {
-  getHeader,
-  setResponseHeader,
-  createError,
-  getRequestURL,
-  type H3Event,
-} from 'h3'
+	getHeader,
+	setResponseHeader,
+	createError,
+	getRequestURL,
+	type H3Event,
+} from 'h3';
 
 export default defineEventHandler((event: H3Event) => {
-  const url = getRequestURL(event)
+	const url = getRequestURL(event);
 
-  // 🔥 除外対象
-  if (
-    url.pathname.startsWith('/api') ||     // API
-    url.pathname.startsWith('/_nuxt') ||   // JS/CSS
-    url.pathname.startsWith('/favicon')    // favicon
-  ) {
-    return
-  }
+	// 🔥 除外対象
+	if (
+		url.pathname.startsWith('/api') // API
+		|| url.pathname.startsWith('/_nuxt') // JS/CSS
+		|| url.pathname.startsWith('/favicon') // favicon
+	) {
+		return;
+	}
 
-  const authHeader = getHeader(event, 'authorization')
-  if (!authHeader) return unauthorized(event)
+	const authHeader = getHeader(event, 'authorization');
+	if (!authHeader) return unauthorized(event);
 
-  const [scheme, credentials] = authHeader.split(' ')
-  if (scheme !== 'Basic' || !credentials) {
-    return unauthorized(event)
-  }
+	const [scheme, credentials] = authHeader.split(' ');
+	if (scheme !== 'Basic' || !credentials) {
+		return unauthorized(event);
+	}
 
-  const decoded = Buffer.from(credentials, 'base64').toString('utf-8')
-  const [user, pass] = decoded.split(':')
+	const decoded = Buffer.from(credentials, 'base64').toString('utf-8');
+	const [user, pass] = decoded.split(':');
 
-  const config = useRuntimeConfig(event)
+	const config = useRuntimeConfig(event);
 
-  if (user !== config.basicAuthUser || pass !== config.basicAuthPassword) {
-    return unauthorized(event)
-  }
-})
+	if (user !== config.basicAuthUser || pass !== config.basicAuthPassword) {
+		return unauthorized(event);
+	}
+});
 
 function unauthorized(event: H3Event): never {
-  setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"')
-  throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+	setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"');
+	throw createError({ statusCode: 401, statusMessage: 'Unauthorized' });
 }
 
 // export default defineEventHandler((event) => {
