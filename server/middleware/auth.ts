@@ -1,28 +1,29 @@
-// server/middleware/auth.ts
-export default defineEventHandler(async (event) => {
+export default defineEventHandler((event) => {
 	const config = useRuntimeConfig(event);
-	const path = event.path; // event.path を直接参照
+	const path = event.path;
 
-	// 1. 静的ファイル（画像やJS）と API は絶対にスルーさせる
-	// これが API の 401 を直す鍵です
+	// 1. 【最優先】プリレンダリング（ビルド時）は絶対にスルー
+	// 以下の3つの判定をすべて入れることで、ビルドエラーを確実に防ぎます
 	if (
-		path.startsWith('/_nuxt')
-		|| path.startsWith('/api/')
-		|| path.match(/\.(png|jpg|jpeg|gif|svg|webp|js|css)$/)
+		process.env.NODE_ENV === 'prerender'
+		|| import.meta.prerender
+		|| getRequestHeader(event, 'x-nitro-prerender')
 	) {
+		return;
+	}
+
+	// 2. APIや静的ファイルを除外
+	if (path.startsWith('/api/') || path.startsWith('/_nuxt')) {
 		return;
 	}
 
 	const user = config.basicAuthUser;
 	const pass = config.basicAuthPassword;
 
-	// ここでログを出して、VercelのLogsで「値が来ているか」絶対確認してください
-	console.log('Basic Auth Check:', { user: !!user, pass: !!pass, path });
-
+	// 環境変数が空のとき（ビルド時など）はスルーしてエラーを防ぐ
 	if (!user || !pass) return;
 
 	const authHeader = getRequestHeader(event, 'authorization');
-	// 確実な Buffer 指定（node:buffer を使わない標準の書き方）
 	const expected = `Basic ${Buffer.from(`${user}:${pass}`).toString('base64')}`;
 
 	if (authHeader !== expected) {
