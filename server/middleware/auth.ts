@@ -37,9 +37,11 @@ export default defineEventHandler((event: H3Event) => {
 	}
 });
 
-function unauthorized(event: H3Event): never {
-	setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"');
-	throw createError({ statusCode: 401, statusMessage: 'Unauthorized' });
+function unauthorized(event: H3Event) {
+  setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"')
+  return new Response('Unauthorized', {
+    status: 401,
+  })
 }
 
 // export default defineEventHandler((event) => {
