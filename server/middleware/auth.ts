@@ -4,7 +4,7 @@ export default defineEventHandler((event) => {
 	const config = useRuntimeConfig(event);
 	const path = event.path;
 
-	// 1. 除外ルール：ビルド時(Prerender)、内部API、静的ファイル、Nuxtのデータファイルを許可
+	// 1. 除外ルール（変更なし）
 	if (
 		import.meta.prerender
 			|| path.startsWith('/api/')
@@ -18,7 +18,7 @@ export default defineEventHandler((event) => {
 	const user = config.basicAuthUser;
 	const pass = config.basicAuthPassword;
 
-	// 環境変数が設定されていない場合は認証をスキップ（開発環境など）
+	// 環境変数が設定されていない場合はスキップ
 	if (!user || !pass) {
 		return;
 	}
@@ -27,13 +27,17 @@ export default defineEventHandler((event) => {
 	const expected = `Basic ${Buffer.from(`${user}:${pass}`).toString('base64')}`;
 
 	if (authHeader !== expected) {
-		// ブラウザに認証ダイアログを表示させるためのヘッダー
-		setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Protected Area"');
+		// 【重要修正 1】 header を確実に固定する
+		setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Protected Area", charset="UTF-8"');
 
-		throw createError({
+		// 【重要修正 2】 throw createError ではなく、sendError または
+		// H3のエラーオブジェクトを直接返すことでヘッダー喪失を防ぐ
+		const error = createError({
 			statusCode: 401,
 			statusMessage: 'Unauthorized',
 			message: '認証が必要です',
 		});
+
+		return sendError(event, error);
 	}
 });
