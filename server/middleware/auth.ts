@@ -1,28 +1,29 @@
 export default defineEventHandler((event) => {
-  const config = useRuntimeConfig(event);
-  
-  // 1. プリレンダリング時はスキップ
-  if (getRequestHeader(event, 'x-nitro-prerender')) return;
+	const config = useRuntimeConfig(event);
 
-  // 2. 【重要】APIリクエスト（/api/ で始まるもの）は認証をスキップする
-  // これを入れないと、自分自身のAPIを叩くときに401で落ちます
-  const path = getRequestPath(event);
-  if (path.startsWith('/api/')) return;
+	// 1. プリレンダリング時はスキップ
+	if (getRequestHeader(event, 'x-nitro-prerender')) return;
 
-  const user = config.basicAuthUser;
-  const pass = config.basicAuthPassword;
+	// 2. event.path を使って判定（非推奨の getRequestPath を回避）
+	// /api/ へのリクエストはBasic認証の対象外にする
+	if (event.path.startsWith('/api/')) return;
 
-  // 環境変数がセットされていない場合はスルー（開発環境など）
-  if (!user || !pass) return;
+	const user = config.basicAuthUser;
+	const pass = config.basicAuthPassword;
 
-  const authHeader = getRequestHeader(event, 'authorization');
-  const expected = `Basic ${Buffer.from(`${user}:${pass}`).toString('base64')}`;
+	// 環境変数がセットされていない場合はスルー
+	if (!user || !pass) return;
 
-  if (authHeader !== expected) {
-    setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Protected Area"');
-    throw createError({ 
-      statusCode: 401, 
-      statusMessage: 'Unauthorized' 
-    });
-  }
+	const authHeader = getRequestHeader(event, 'authorization');
+
+	// 3. Bufferの代わりに標準の btoa を使用（Node.js 16+ / Edge環境で動作）
+	const expected = `Basic ${btoa(`${user}:${pass}`)}`;
+
+	if (authHeader !== expected) {
+		setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Protected Area"');
+		throw createError({
+			statusCode: 401,
+			statusMessage: 'Unauthorized',
+		});
+	}
 });
