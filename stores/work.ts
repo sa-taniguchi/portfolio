@@ -90,11 +90,7 @@ export const useWorkStore = defineStore('work', {
 			this.error = null; // 以前のエラーをリセット
 
 			try {
-				const response = await $fetch<unknown>('/api/works', {
-					params: {
-						t: Date.now(), // 毎回違う値になるためキャッシュを強制回避
-					},
-				});
+				const response = await $fetch<unknown>('/api/works');
 				const validatedData = WorkListResponseSchema.parse(response);
 
 				// バリデーション実行
