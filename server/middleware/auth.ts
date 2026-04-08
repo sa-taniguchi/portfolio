@@ -1,33 +1,39 @@
+import { Buffer } from 'node:buffer';
+
 export default defineEventHandler((event) => {
 	const config = useRuntimeConfig(event);
 	const path = event.path;
 
-	// 1. 【最優先】プリレンダリング（ビルド時）は絶対にスルー
-	// 以下の3つの判定をすべて入れることで、ビルドエラーを確実に防ぎます
+	// 1. 除外ルール：ビルド時(Prerender)、内部API、静的ファイル、Nuxtのデータファイルを許可
 	if (
-		process.env.NODE_ENV === 'prerender'
-		|| import.meta.prerender
-		|| getRequestHeader(event, 'x-nitro-prerender')
+		import.meta.prerender
+			|| path.startsWith('/api/')
+			|| path.startsWith('/_nuxt')
+			|| path.includes('_payload.json')
+			|| path.match(/\.(png|jpg|jpeg|gif|svg|webp|js|css)$/)
 	) {
-		return;
-	}
-
-	// 2. APIや静的ファイルを除外
-	if (path.startsWith('/api/') || path.startsWith('/_nuxt')) {
 		return;
 	}
 
 	const user = config.basicAuthUser;
 	const pass = config.basicAuthPassword;
 
-	// 環境変数が空のとき（ビルド時など）はスルーしてエラーを防ぐ
-	if (!user || !pass) return;
+	// 環境変数が設定されていない場合は認証をスキップ（開発環境など）
+	if (!user || !pass) {
+		return;
+	}
 
 	const authHeader = getRequestHeader(event, 'authorization');
 	const expected = `Basic ${Buffer.from(`${user}:${pass}`).toString('base64')}`;
 
 	if (authHeader !== expected) {
+		// ブラウザに認証ダイアログを表示させるためのヘッダー
 		setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Protected Area"');
-		throw createError({ statusCode: 401, statusMessage: 'Unauthorized' });
+
+		throw createError({
+			statusCode: 401,
+			statusMessage: 'Unauthorized',
+			message: '認証が必要です',
+		});
 	}
 });
