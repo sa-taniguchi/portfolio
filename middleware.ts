@@ -18,7 +18,7 @@ export default function middleware(req: Request) {
 
 		if (authHeader === basicAuth) {
       const response = next();
-      response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
+      response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=0');
 			return next();
 		}
 	}
