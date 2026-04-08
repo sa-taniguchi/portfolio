@@ -18,6 +18,8 @@ export default defineEventHandler((event) => {
 	const user = config.basicAuthUser;
 	const pass = config.basicAuthPassword;
 
+	console.log(`Checking Auth for: ${path} | UserConfig: ${!!user}`);
+
 	// 環境変数が設定されていない場合はスキップ
 	if (!user || !pass) {
 		return;
