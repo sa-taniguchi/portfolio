@@ -1,71 +1,45 @@
 // server/middleware/basic-auth.ts
 import {
-	getHeader,
-	setResponseHeader,
-	createError,
-	type H3Event,
-} from 'h3';
+  getHeader,
+  setResponseHeader,
+  createError,
+  getRequestURL,
+  type H3Event,
+} from 'h3'
 
 export default defineEventHandler((event: H3Event) => {
-	if (import.meta.prerender) {
-		return;
-	}
+  const url = getRequestURL(event)
 
-	const authHeader = getHeader(event, 'authorization');
-	if (!authHeader) return unauthorized(event);
+  // 🔥 除外対象
+  if (
+    url.pathname.startsWith('/api') ||     // API
+    url.pathname.startsWith('/_nuxt') ||   // JS/CSS
+    url.pathname.startsWith('/favicon')    // favicon
+  ) {
+    return
+  }
 
-	const [scheme, credentials] = authHeader.split(' ');
-	if (scheme !== 'Basic' || !credentials) {
-		return unauthorized(event);
-	}
+  const authHeader = getHeader(event, 'authorization')
+  if (!authHeader) return unauthorized(event)
 
-	// ③ base64 デコード（安全）
-	let decoded: string;
-	try {
-		decoded = Buffer.from(credentials, 'base64').toString('utf-8');
-	}
-	catch {
-		return unauthorized(event);
-	}
+  const [scheme, credentials] = authHeader.split(' ')
+  if (scheme !== 'Basic' || !credentials) {
+    return unauthorized(event)
+  }
 
-	// ④ "user:pass" 分解チェック
-	const separatorIndex = decoded.indexOf(':');
-	if (separatorIndex === -1) {
-		return unauthorized(event);
-	}
+  const decoded = Buffer.from(credentials, 'base64').toString('utf-8')
+  const [user, pass] = decoded.split(':')
 
-	const user = decoded.slice(0, separatorIndex);
-	const pass = decoded.slice(separatorIndex + 1);
+  const config = useRuntimeConfig(event)
 
-	// ⑤ runtimeConfig 取得（Nuxt方式）
-	const config = useRuntimeConfig(event);
+  if (user !== config.basicAuthUser || pass !== config.basicAuthPassword) {
+    return unauthorized(event)
+  }
+})
 
-	const BASIC_USER = config.basicAuthUser;
-	const BASIC_PASS = config.basicAuthPassword;
-
-	if (!BASIC_USER || !BASIC_PASS) {
-		throw createError({
-			statusCode: 500,
-			statusMessage: 'Basic auth env not set',
-		});
-	}
-
-	// ⑥ 認証チェック
-	if (user !== BASIC_USER || pass !== BASIC_PASS) {
-		return unauthorized(event);
-	}
-});
-
-/**
- * 共通 Unauthorized レスポンス
- */
 function unauthorized(event: H3Event): never {
-	setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"');
-
-	throw createError({
-		statusCode: 401,
-		statusMessage: 'Unauthorized',
-	});
+  setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Secure Area"')
+  throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
 }
 
 // export default defineEventHandler((event) => {
