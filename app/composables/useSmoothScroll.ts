@@ -26,7 +26,7 @@ export const useSmoothScroll = () => {
 
 			let targetPos = el.offsetTop;
 			if (hash === '#top-skill') {
-				targetPos += 9000; // 目的地を調整
+				targetPos += 1000; // 目的地を調整
 			}
 
 			scrollToAnchor(targetPos);
