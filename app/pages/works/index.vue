@@ -64,19 +64,19 @@ const filteredWorks = computed(() => {
 	const activeCats = useTemp ? [...tempSelectedCategories.value] : [...selectedCategories.value];
 	const activeTypes = useTemp ? [...tempSelectedWorkTypes.value] : [...selectedWorkTypes.value];
 
-	// 1. カテゴリ・種別で「絶対的な母体」を作る
+	// カテゴリ・種別で「絶対的な母体」を作る
 	const baseList = workList.value.filter((item) => {
 		const isCategoryMatch = activeCats.length === 0 || activeCats.includes(item.category.categoryId);
 		const isWorkTypeMatch = activeTypes.length === 0 || item.workType.some(wt => activeTypes.includes(wt.workTypeId));
 		return isCategoryMatch && isWorkTypeMatch;
 	});
 
-	// 2. 検索語がないなら、ここで終了（絶対条件の中身だけ返す）
+	// 検索語がないなら、ここで終了（絶対条件の中身だけ返す）
 	if (!activeQuery) {
 		return baseList;
 	}
 
-	// 3. 検索語があるなら、baseList「だけ」を対象に Fuse を実行
+	// 検索語があるなら、baseList「だけ」を対象に Fuse を実行
 	const fuse = new Fuse(baseList, {
 		keys: ['title', 'skill', 'category.label', 'workType.label'],
 		threshold: 0.3,
@@ -87,15 +87,15 @@ const filteredWorks = computed(() => {
 });
 
 const parseEndDate = (dateStr: string | undefined | null): number => {
-	// 1. 強制的に「文字列」として扱う（String()関数は null/undefined を "null"/"undefined" という文字列に変える）
+	// 強制的に「文字列」として扱う（String()関数は null/undefined を "null"/"undefined" という文字列に変える）
 	const target = String(dateStr || '');
 
-	// 2. 「現在」または「空」の場合は即リターン
+	// 「現在」または「空」の場合は即リターン
 	if (target === '現在' || target === '' || target === 'null' || target === 'undefined') {
 		return 999999;
 	}
 
-	// 3. ここで .match を呼ぶ。まだエラーが出るなら、Optional Chaining (?.) を使う
+	//  ここで .match を呼ぶ。まだエラーが出るなら、Optional Chaining (?.) を使う
 	const match = target?.match(/(\d+)年(\d+)月/);
 
 	if (match && match[1] && match[2]) {
@@ -119,7 +119,7 @@ const randomWorks = computed(() => {
 	return [...workList.value].sort(() => Math.random() - 0.5).slice(0, 2);
 });
 
-// --- 6. アクション関数 ---
+// アクション関数 ---
 const toggleFilter = () => {
 	if (!isFilterOpen.value && isMobile.value) {
 		// 開く瞬間に現在の確定状態を一時状態にコピー
