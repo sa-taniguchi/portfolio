@@ -8,7 +8,6 @@ const { backfaceFixed } = useBackfaceFixed();
 const { animateText } = useTextAnimation();
 
 const textSpans = ref<HTMLSpanElement[]>([]);
-const kvRef = useTemplateRef<HTMLDivElement>('kv');
 const openingRef = useTemplateRef<HTMLDivElement>('opening');
 const textTop = useTemplateRef<HTMLSpanElement[]>('textTop');
 const textBottom = useTemplateRef<HTMLSpanElement[]>('textBottom');
@@ -31,9 +30,8 @@ function openingAnime(): void {
 	if (sessionStorage.getItem('opened')) {
 		// 2回目以降
 		if (openingRef.value) {
-			kvRef.value?.classList.add('is-notFirst');
+			document.body.classList.add('is-done');
 			openingRef.value.style.display = 'none';
-			kvName.value?.classList.add('is-notFirst');
 		}
 		backfaceFixed(false);
 		return;
@@ -71,7 +69,10 @@ function openingAnime(): void {
 				startAt: { opacity: 0.7 },
 			}, '<')
 			.set(kvNameButton.value, { pointerEvents: 'auto' })
-			.set(openingRef.value, { display: 'none' });
+			.set(openingRef.value, { display: 'none' })
+			.call(() => {
+				document.body.classList.add('is-done');
+			});
 	};
 
 	// 前半のアニメーションを実行
@@ -215,7 +216,9 @@ onMounted(async () => {
 					<span ref="textNameCursor" class="kv-name-cursor"><img src="/images/icon/i-hand.svg" alt=""></span>
 				</div>
 			</div>
-			<UiScrollDown />
+			<div class="kv-scrollDown">
+				<UiScrollDown />
+			</div>
 		</div>
 	</div>
 </template>
@@ -322,7 +325,7 @@ onMounted(async () => {
     cursor: "default",
   }
 
-  .is-notFirst &{
+  .is-done &{
     transition: opacity .3s;
     opacity: 1;
     >span{
@@ -363,12 +366,12 @@ onMounted(async () => {
     padding-right: 4px;
     font-weight: 400;
     transition: opacity .3s;
-    .is-notFirst &{
+    .is-done &{
       border-right: none;
       padding-right: 0;
     }
   }
-  .is-notFirst &{
+  .is-done &{
   transition: opacity .3s;
   opacity: 1;
   }
@@ -382,7 +385,7 @@ onMounted(async () => {
       opacity: .7!important;
     }
   }
-  .is-notFirst &{
+  .is-done &{
     opacity: 1;
     pointer-events: auto;
   }
@@ -444,7 +447,7 @@ onMounted(async () => {
     inset: 0;
     height: 100vh;
   }
-  .is-notFirst &{
+  .is-done &{
     &::before{
       background-color: transparent;
     }
@@ -470,6 +473,16 @@ onMounted(async () => {
     100% {
       translate: 0 -100%;
       opacity: 1;
+    }
+  }
+
+  .kv-scrollDown{
+    opacity: 0;
+    translate: 0 2em;
+    transition: opacity .3 , translate .3s;
+    .is-done &, .is-done &{
+      opacity: 1;
+      translate: 0 0;
     }
   }
 </style>

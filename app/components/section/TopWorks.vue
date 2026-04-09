@@ -84,7 +84,7 @@ function workTitleAnimation(el: HTMLElement | null): void {
 			scrollTrigger: {
 				trigger: '.work-text',
 				start: 'bottom bottom',
-				end: '+=1400',
+				end: isMobile ? '+=2000' : '+=1400',
 				scrub: true,
 				pin: true,
 				// markers: true,

@@ -4,6 +4,7 @@ const isOpen = ref(false);
 const { isMobile } = useViewport();
 const { $lenis } = useNuxtApp();
 const route = useRoute();
+const isHeaderVisible = ref(false);
 
 const toggleMenu = () => {
 	isOpen.value = !isOpen.value;
@@ -34,42 +35,28 @@ const onLinkClick = async (e: MouseEvent, hash: string) => {
 const getLinkPath = (hash: string) => `/${hash}`;
 
 // ルート変更（ページ遷移）を検知して確実に閉じる
-watch(() => route.path, () => {
+watch(() => route.path, (newPath) => {
+	// メニューを閉じてスクロールを再開
 	isOpen.value = false;
-	$lenis.start();
-	// backfaceFixed(false);
-});
-
-// const isHeaderVisible = ref(false)
-
-// const handleScroll = () => {
-//   const scrollTop = window.scrollY
-//   const windowHeight = window.innerHeight
-//   const docHeight = document.documentElement.scrollHeight
-
-//   if (docHeight <= windowHeight) {
-//     isHeaderVisible.value = true
-//     return
-//   }
-//   isHeaderVisible.value = scrollTop > windowHeight / 2
-// }
-
-// 100msに1回だけ実行するように制限（秒間10回程度）
-// const throttledScroll = throttle(handleScroll, 100)
-
-// onMounted(() => {
-//   handleScroll() // 初回は即時実行
-//   window.addEventListener('scroll', throttledScroll)
-// })
+	$lenis?.start();
+	if (newPath !== '/') {
+		isHeaderVisible.value = true;
+	}
+	else {
+		isHeaderVisible.value = false;
+	}
+}, { immediate: true });
 
 onUnmounted(() => {
-	// window.removeEventListener('scroll', throttledScroll)
 	$lenis.start();
 });
 </script>
 
 <template>
-	<header class="header">
+	<header
+		class="header"
+		:class="{ 'is-visible': isHeaderVisible }"
+	>
 		<nav
 			class="header-nav"
 			aria-label="メインナビゲーション"
@@ -151,19 +138,32 @@ onUnmounted(() => {
   padding: 10px;
   position: fixed;
   z-index: 600;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+  .is-done &{
+    opacity: 1;
+    visibility: visible;
+  }
+  &.is-visible{
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .header-nav{
   position: fixed;
-  top: 20px;
+  top: 10px;
   right: 20px;
   background: rgb(var(--white01));
   border-radius: 50%;
   z-index: 600;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border: 1px solid rgb(var(--black01));
   @include mq("pc"){
+    width: 60px;
+    height: 60px;
     top: auto;
     bottom: 30px;
     border-radius: 30px;
@@ -192,29 +192,6 @@ onUnmounted(() => {
     visibility: visible;
     z-index: 500;
   }
-  // @include mq("hover"){
-  //   &:hover{
-  //     box-shadow: 0 0 50px rgb(var(--blue03));
-  //   }
-  // }
-  // a{
-  //   display: block;
-  //   color: rgb(var(--black01));
-  //   padding: 5px 10px;
-  //   font-size: 21px;
-  //   letter-spacing: .06em;
-  //   transition: color .3s;
-  //   font-weight: 500;
-  //   font-size: math.div(14vw, $designBaseSp);
-  //   @include mq("pc"){
-  //     font-size: math.div(14vw, $designBasePc);
-  //   }
-  //   @include mq("hover"){
-  //     &:hover{
-  //       color: rgb(var(--blue03));
-  //     }
-  //   }
-  // }
 }
 
 .header-nav-list{
@@ -247,7 +224,6 @@ onUnmounted(() => {
   @include mq("tab"){
     text-align: center;
   }
-
   a{
     color: rgb(var(--black01));
     font-weight: 500;
@@ -265,21 +241,30 @@ onUnmounted(() => {
 }
 
 .header-nav-button{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   display: block;
   line-height: 100%;
-  padding: 17px;
+  padding: 15px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 100;
+  @include mq("pc"){
+    width: 60px;
+    height: 60px;
+    padding: 17px;
+  }
   svg{
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+    @include mq("pc"){
+      width: 40px;
+      height: 40px;
+    }
     *{
       fill: rgb(var(--black01));
     }
