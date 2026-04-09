@@ -48,8 +48,10 @@ export default defineNuxtConfig({
 	},
 	// もしくは、明示的に全てのルートをプリレンダリング対象にします
 	routeRules: {
-		'/**': { isr: 60 },
-	},
+    '/**': process.env.NODE_ENV === 'development' 
+      ? {} // 開発中はISRなし（通常のSSR）
+      : { isr: 60 },
+  },
 
 	// runtimeConfig: {
 	// 	public: {
@@ -69,7 +71,7 @@ export default defineNuxtConfig({
 	},
 	nitro: {
 		prerender: {
-			crawlLinks: false, // 🔥 ここをfalseに
+			crawlLinks: true,
 			routes: [],
 		},
 	},
@@ -124,7 +126,7 @@ export default defineNuxtConfig({
 		prefetch: false,
 		preconnect: false,
 		preload: true,
-		download: true, // CDNから読み込む
+		download:false,
 		base64: false,
 		useStylesheet: true,
 		overwriting: true,
