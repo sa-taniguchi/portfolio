@@ -1,34 +1,40 @@
 import { next } from '@vercel/edge';
 
 export const config = {
-	// 認証をかけたいパスを指定（静的ファイルやAPIを除外）
-	matcher: ['/((?!api|_next|_nuxt|favicon.ico|.*\\..*).*)'],
+  // 静的ファイル、API、Next/Nuxtの内部パスを除外
+  matcher: ['/((?!api|_next|_nuxt|favicon.ico|.*\\..*).*)'],
 };
 
 export default function middleware(req: Request) {
-	const authHeader = req.headers.get('authorization');
+  const user = process.env.BASIC_AUTH_USER || process.env.NUXT_BASIC_AUTH_USER;
+  const pass = process.env.BASIC_AUTH_PASSWORD || process.env.NUXT_BASIC_AUTH_PASSWORD;
 
-	// Vercelの環境変数から取得（NUXT_ プレフィックスなしで登録されている場合を想定）
-	// Vercel管理画面で BASIC_AUTH_USER / BASIC_AUTH_PASSWORD として登録してください
-	const user = process.env.BASIC_AUTH_USER || process.env.NUXT_BASIC_AUTH_USER;
-	const pass = process.env.BASIC_AUTH_PASSWORD || process.env.NUXT_BASIC_AUTH_PASSWORD;
+  // 環境変数が設定されていない場合は認証をスキップ（デプロイエラー防止）
+  if (!user || !pass) {
+    return next();
+  }
 
-	if (user && pass) {
-		const basicAuth = `Basic ${btoa(`${user}:${pass}`)}`;
+  const authHeader = req.headers.get('authorization');
+  const expectedAuth = `Basic ${btoa(`${user}:${pass}`)}`;
 
-		if (authHeader === basicAuth) {
-			const response = next();
-			response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=0 must-revalidate');
-			return next();
-		}
-	}
+  if (authHeader === expectedAuth) {
+    // 成功時：必ず response オブジェクトを生成してそれを返す
+    const response = next();
+    // 認証済みページはキャッシュさせない（セキュリティ上推奨）
+    response.headers.set('Cache-Control', 'no-store, max-age=0');
+    return response;
+  }
 
-	// 認証失敗時：Edgeから直接 401 を返す（Nuxtまで到達させない）
-	return new Response('Authentication Required', {
-		status: 401,
-		headers: {
-			'www-authenticate': 'Basic realm="Secure Area"',
-			'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-		},
-	});
+  // 失敗時：401レスポンスを直接生成
+  // 重要: headersをオブジェクトリテラルで定義し、確実にダイアログをトリガーする
+  return new Response('Authentication Required', {
+    status: 401,
+    headers: {
+      // Chrome/Safari対策: ヘッダー名は標準的な 'WWW-Authenticate' にしつつ、
+      // realmをダブルクォーテーションで囲む
+      'WWW-Authenticate': 'Basic realm="Secure Area"',
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate',
+    },
+  });
 }
