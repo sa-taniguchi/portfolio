@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { onUnmounted, watch, nextTick } from 'vue';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -76,7 +76,7 @@ const destroyLenis = () => {
 
 onUnmounted(() => {
 	destroyLenis();
-});
+}); -->
 
 // --- 遷移ロジック ---
 // router.beforeEach((to, from) => {
@@ -115,7 +115,7 @@ onUnmounted(() => {
 //     }, isBackToWorks ? 0 : 50);
 //   });
 // });
-</script>
+<!-- </script> -->
 <!-- <script setup lang="ts">
 import AppFooter from '~/components/AppFooter.vue';
 import AppHeader from '~/components/AppHeader.vue';
@@ -226,8 +226,7 @@ router.afterEach((to, from) => {
   });
 });
 </script> -->
-
-<template>
+<!-- <template>
 	<div>
 		<app-header />
 		<main>
@@ -237,11 +236,11 @@ router.afterEach((to, from) => {
 	</div>
 </template>
 
-<style>
+<style> -->
 /* lenis向けスタイル */
-html.lenis, html.lenis body {
+/* html.lenis, html.lenis body {
   height: auto;
-}
+} */
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
@@ -365,5 +364,133 @@ html.lenis, html.lenis body {
   to {
     opacity: 0;
   }
-} */
+} 
+<!-- </style> -->
+
+
+
+<!-- <script setup lang="ts">
+import { onUnmounted, watch, nextTick } from 'vue';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+const route = useRoute();
+const { $lenis } = useNuxtApp();
+
+watch(() => route.fullPath, async () => {
+	await nextTick();
+	$lenis.resize();
+	ScrollTrigger.refresh();
+});
+
+watch(() => route.path, () => {
+	$lenis.scrollTo(0, { immediate: true });
+});
+
+const destroyLenis = () => {
+	if (!$lenis) return;
+	$lenis.destroy();
+};
+
+onUnmounted(() => {
+	destroyLenis();
+});
+
+</script>
+
+<template>
+	<div>
+		<app-header />
+		<main>
+			<slot />
+		</main>
+		<app-footer />
+	</div>
+</template>
+
+<style>
+/* lenis向けスタイル */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+</style> -->
+
+<script setup lang="ts">
+import { onUnmounted, watch, nextTick } from 'vue';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+const route = useRoute();
+const { $lenis } = useNuxtApp();
+
+// ページ遷移ごとのリフレッシュ処理
+watch(() => route.fullPath, async () => {
+  await nextTick();
+  
+  // iOS Safari向けに少しだけ待機してからリサイズをかけると安定する
+  setTimeout(() => {
+    if ($lenis) {
+      $lenis.resize();
+      ScrollTrigger.refresh();
+    }
+  }, 100);
+});
+
+// ページ遷移時にトップへ戻す処理（必要な場合のみ）
+watch(() => route.path, () => {
+  // 遷移の瞬間に top 0 へ。
+  // ただし、もしページ自体が top 0 から始まるなら、ブラウザに任せた方がスムーズなこともある
+  $lenis?.scrollTo(0, { immediate: true });
+});
+
+// レイアウトでは destroy しない（ページを跨いで使い続けるため）
+</script>
+
+<template>
+  <div id="app-container">
+    <app-header />
+    <main>
+      <slot />
+    </main>
+    <app-footer />
+  </div>
+</template>
+
+<style>
+/* html に .lenis クラスが付与されることを前提とする
+  iOS Safariでは以下の設定が「生命線」です 
+*/
+html.lenis {
+  height: auto;
+}
+
+body {
+  /* iOSでのバウンスによるカクつきを抑制 */
+  overscroll-behavior-y: none; 
+}
+
+/* htmlタグに対して直接指定する。
+  lenis-smooth が効いている間は CSS のスムーズスクロールを絶対に OFF にする 
+*/
+html.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
 </style>
