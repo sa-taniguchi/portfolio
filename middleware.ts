@@ -17,8 +17,8 @@ export default function middleware(req: Request) {
 		const basicAuth = `Basic ${btoa(`${user}:${pass}`)}`;
 
 		if (authHeader === basicAuth) {
-      const response = next();
-      response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=0 must-revalidate');
+			const response = next();
+			response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=0 must-revalidate');
 			return next();
 		}
 	}

@@ -34,7 +34,6 @@ const titleAnime = useTemplateRef<HTMLElement>('titleAnime');
 // --- 1. 基本状態 ---
 const isFilterOpen = ref(false);
 const isSpFilterButton = ref(false);
-// const spFilterButton = ref<HTMLButtonElement | null>(null);
 const spFixedButton = ref<HTMLButtonElement | null>(null);
 const showSuggestions = ref(false);
 
@@ -371,9 +370,9 @@ const selectSuggestion = (title: string) => {
 	// 4. そのまま検索を確定させる
 	// applyFilters();
 	nextTick(() => {
-    filterRef.value?.inputRef?.blur();
+		filterRef.value?.inputRef?.blur();
 		showSuggestions.value = false;
-  });
+	});
 };
 
 const activeIndex = ref(-1);
