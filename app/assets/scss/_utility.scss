@@ -33,6 +33,12 @@
   }
 }
 
+.u-sp-full-width {
+  @include mq("tab"){
+    margin: 0 math.div(-16vw, $designBaseSp);
+  }
+}
+
 .u-mt1 {
   margin-top: 1.5em;
   display: block;

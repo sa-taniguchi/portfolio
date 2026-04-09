@@ -51,7 +51,7 @@ onMounted(() => {
 			<span ref="titleAnime">{{ workTitle }}</span>
 		</h2>
 		<section v-if="work && !store.pending" class="l-container">
-			<div v-if="work.mvImages?.length" class="workDetail-mv">
+			<div v-if="work.mvImages?.length" class="workDetail-mv u-sp-full-width">
 				<template v-if="work.mvImages.length === 1">
 					<UiAppPicture
 						:src="`${work.mvImages[0]?.url}?w=1200&fm=webp&q=80`"
