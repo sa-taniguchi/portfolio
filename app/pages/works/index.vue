@@ -3,7 +3,8 @@ import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
 import { useWorkStore } from '~~/stores/work';
 import Fuse from 'fuse.js';
 
-const { backfaceFixed } = useBackfaceFixed();
+const { $lenis } = useNuxtApp();
+// const { backfaceFixed } = useBackfaceFixed();
 const store = useWorkStore();
 const filterRef = ref();
 const { isMobile } = useViewport();
@@ -34,7 +35,6 @@ const titleAnime = useTemplateRef<HTMLElement>('titleAnime');
 // --- 1. 基本状態 ---
 const isFilterOpen = ref(false);
 const isSpFilterButton = ref(false);
-const spFixedButton = ref<HTMLButtonElement | null>(null);
 const showSuggestions = ref(false);
 
 // --- 2. SP用の一時的な状態 (反映ボタンを押すまで保持) ---
@@ -128,22 +128,19 @@ const toggleFilter = () => {
 		tempSelectedWorkTypes.value = [...selectedWorkTypes.value];
 	}
 	isFilterOpen.value = !isFilterOpen.value;
-	isSpFilterButton.value = !isSpFilterButton.value;
+	// isSpFilterButton.value = !isSpFilterButton.value;
 
 	if (isMobile.value) {
-		backfaceFixed(true);
+		$lenis.stop();
+		// backfaceFixed(true);
 	}
 };
 
 const closeFilter = () => {
-	isFilterOpen.value = false;
-	isSpFilterButton.value = true;
 	if (isMobile.value) {
-		backfaceFixed(false);
+		$lenis.start();
+		isFilterOpen.value = false;
 	}
-	setTimeout(() => {
-		spFixedButton.value?.classList.add('is-inview');
-	}, 100);
 };
 
 const applyFilters = () => {
@@ -211,12 +208,14 @@ onMounted(() => {
 			{ threshold: 0 },
 			(el, isIntersecting) => {
 				if (!isMobile.value) return;
-				const fixedBtn = filterRef.value.spFixedButton;
+				// const fixedBtn = filterRef.value.spFixedButton;
 				if (isIntersecting) {
-					fixedBtn?.classList.remove('is-inview');
+					isSpFilterButton.value = false;
+				// 	fixedBtn?.classList.remove('is-inview');
 				}
 				else {
-					fixedBtn?.classList.add('is-inview');
+					isSpFilterButton.value = true;
+				// 	fixedBtn?.classList.add('is-inview');
 				}
 			},
 		);
