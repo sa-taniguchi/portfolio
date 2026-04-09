@@ -40,6 +40,7 @@
 		"@studio-freight/lenis": "^1.0.42",
 		"@types/node": "^25.3.5",
 		"@vercel/edge": "^1.2.2",
+		"@vercel/functions": "^3.4.3",
 		"gsap": "^3.14.2",
 		"pinia": "^3.0.4",
 		"sass": "^1.97.3",
