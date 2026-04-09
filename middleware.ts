@@ -27,7 +27,8 @@ export default function middleware(req: Request) {
 	return new Response('Authentication Required', {
 		status: 401,
 		headers: {
-			'WWW-Authenticate': 'Basic realm="Secure Area"',
+			'www-authenticate': 'Basic realm="Secure Area"',
+			'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
 		},
 	});
 }
