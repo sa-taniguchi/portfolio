@@ -1,9 +1,9 @@
 export const useSmoothScroll = () => {
 	const { $lenis } = useNuxtApp();
-	const route = useRoute();
 
-	const scrollToAnchor = (target: string | number) => {
+	const scrollToAnchor = (e: MouseEvent,target: string | number) => {
 		if (!$lenis) return;
+		e.preventDefault();
 
 		// 前の命令を上書きして、今の位置から目的地へスムーズに飛ばす
 		$lenis.scrollTo(target, {
@@ -15,23 +15,5 @@ export const useSmoothScroll = () => {
 
 		$lenis.start();
 	};
-
-	const navigateWithSmoothScroll = async (e: MouseEvent, hash: string) => {
-		if (route.path === '/') {
-			e.preventDefault();
-
-			// 毎回最新の DOM 位置を計算することでズレを防止
-			const el = document.querySelector(hash) as HTMLElement;
-			if (!el) return;
-
-			let targetPos = el.offsetTop;
-			if (hash === '#top-skill') {
-				targetPos += 1000; // 目的地を調整
-			}
-
-			scrollToAnchor(targetPos);
-		}
-	};
-
-	return { scrollToAnchor, navigateWithSmoothScroll };
+	return { scrollToAnchor };
 };
