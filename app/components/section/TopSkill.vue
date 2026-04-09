@@ -169,7 +169,7 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   width: 100%;
-  aspect-ratio: 1/1.1;
+  aspect-ratio: 1/1.2;
   padding: math.div(24vw, $designBaseSp);
   @include mq("sp"){
     gap: math.div(40vw, $designBaseSp);
