@@ -6,5 +6,6 @@ export default defineEventHandler(async () => {
 		headers: {
 			'X-MICROCMS-API-KEY': config.microCmsApiKey,
 		},
+		method: 'GET',
 	});
 });
