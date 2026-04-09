@@ -28,6 +28,7 @@ const emit = defineEmits<{
 				type="button"
 				class="work-filter-button"
 				:class="{ 'is-active': selectedIds.includes(item.id), 'is-type': isType }"
+        :aria-pressed="selectedIds.includes(item.id)"
 				@click="emit('toggle', item.id)"
 			>
 				<span class="work-filter-text">{{ item.label }}</span>
