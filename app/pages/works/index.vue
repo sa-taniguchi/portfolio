@@ -33,6 +33,7 @@ const workTitle: string = 'WORKS';
 const titleAnime = useTemplateRef<HTMLElement>('titleAnime');
 // --- 1. 基本状態 ---
 const isFilterOpen = ref(false);
+const isSpFilterButton = ref(false);
 // const spFilterButton = ref<HTMLButtonElement | null>(null);
 const spFixedButton = ref<HTMLButtonElement | null>(null);
 const showSuggestions = ref(false);
@@ -128,6 +129,7 @@ const toggleFilter = () => {
 		tempSelectedWorkTypes.value = [...selectedWorkTypes.value];
 	}
 	isFilterOpen.value = !isFilterOpen.value;
+	isSpFilterButton.value = !isSpFilterButton.value;
 
 	if (isMobile.value) {
 		backfaceFixed(true);
@@ -136,6 +138,7 @@ const toggleFilter = () => {
 
 const closeFilter = () => {
 	isFilterOpen.value = false;
+	isSpFilterButton.value = true;
 	if (isMobile.value) {
 		backfaceFixed(false);
 	}
@@ -364,10 +367,13 @@ const selectSuggestion = (title: string) => {
 
 	// 3. 【重要】入力欄からフォーカスを外すことで、サジェストを物理的に消す
 	// filterRef.value は SectionWorkFilter に付けている ref
-	filterRef.value?.inputRef?.blur();
 
 	// 4. そのまま検索を確定させる
 	// applyFilters();
+	nextTick(() => {
+    filterRef.value?.inputRef?.blur();
+		showSuggestions.value = false;
+  });
 };
 
 const activeIndex = ref(-1);
@@ -425,6 +431,7 @@ const onEnter = (event: KeyboardEvent) => {
 				ref="filterRef"
 				v-model:search-query="currentSearchQuery"
 				:is-filter-open="isFilterOpen"
+				:is-sp-filter-button="isSpFilterButton"
 				:total-count="filteredWorks.length"
 				:categories="categories"
 				:work-types="workTypes"
@@ -495,7 +502,6 @@ const onEnter = (event: KeyboardEvent) => {
 					<li v-for="item in sortedWorks" :key="item.id" class="work-item">
 						<UiWorkCard :item="item" />
 					</li>
-					<li><NuxtLink to="/#top-about">テスト</NuxtLink></li>
 				</ul>
 
 				<div v-else-if="store.pending || workList.length === 0" class="work-list-container">

@@ -4,6 +4,7 @@ import type WorkFilterSearch from './WorkFilterSearch.vue';
 
 defineProps<{
 	isFilterOpen: boolean;
+	isSpFilterButton: boolean;
 	isMobile: boolean;
 	totalCount: number;
 	categories: Category[];
@@ -49,7 +50,7 @@ defineExpose({
 		<button
 			ref="spFixedButton"
 			class="work-filter-spOpen-button"
-			:class="{ 'is-active': isFilterOpen }"
+			:class="{ 'is-inview': isSpFilterButton }"
 			@click="emit('toggle')"
 		>
 			<svg

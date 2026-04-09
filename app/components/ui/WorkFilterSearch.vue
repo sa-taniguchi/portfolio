@@ -137,9 +137,9 @@ defineExpose({
 
 .work-filter-suggestions-item {
   text-align: left;
-  font-size: math.div(12vw, $designBaseSp);
+  font-size: math.div(14vw, $designBaseSp);
   @include mq("pc"){
-    font-size: math.div(12vw, $designBasePc);
+    font-size: math.div(14vw, $designBasePc);
   }
   &:not(:last-of-type){
     border-bottom: 1px solid rgb(var(--gray02));
@@ -150,7 +150,7 @@ defineExpose({
   display: block;
   width: 100%;
   text-align: left;
-  padding: math.div(10vw, $designBaseSp) math.div(10vw, $designBaseSp);
+  padding: math.div(15vw, $designBaseSp) math.div(10vw, $designBaseSp);
   line-height: 140%;
   @include mq("pc"){
     padding: math.div(10vw, $designBasePc) math.div(10vw, $designBasePc);
