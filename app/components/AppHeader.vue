@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { navigateWithSmoothScroll } = useSmoothScroll();
 const isOpen = ref(false);
 const { isMobile } = useViewport();
 const { $lenis } = useNuxtApp();
@@ -20,19 +19,6 @@ const toggleMenu = () => {
 	}
 };
 
-const onLinkClick = async (e: MouseEvent, hash: string) => {
-	isOpen.value = false;
-
-	// 重要：まずはスクロールを「許可」状態に戻す
-	$lenis.start();
-
-	// ブラウザが「スクロール可能」になったことを認識してから実行
-	await nextTick();
-	await new Promise(resolve => setTimeout(resolve, 200));
-	navigateWithSmoothScroll(e, hash);
-};
-
-const getLinkPath = (hash: string) => `/${hash}`;
 
 // ルート変更（ページ遷移）を検知して確実に閉じる
 watch(() => route.path, (newPath) => {
@@ -100,35 +86,23 @@ onUnmounted(() => {
 				</svg>
 				<svg :class="{ 'u-hidden': !isOpen }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><polygon points="512 52.535 459.467 0.002 256.002 203.462 52.538 0.002 0 52.535 203.47 256.005 0 459.465 52.533 511.998 256.002 308.527 459.467 511.998 512 459.475 308.536 256.005" fill="currentColor" /></svg>
 			</button>
-			<ul
-				id="header-menu"
-				class="header-nav-list"
-				:class="{ 'is-active': isOpen }"
-				:aria-hidden="!isOpen"
-			>
-				<li class="header-nav-item">
-					<NuxtLink to="/">トップ</NuxtLink>
-				</li>
-				<li class="header-nav-item">
-					<NuxtLink
-						:to="getLinkPath('#top-about')"
-						@click="onLinkClick($event, '#top-about')"
-					>
-						-自己紹介
-					</NuxtLink>
-				</li>
-				<li class="header-nav-item">
-					<NuxtLink
-						:to="getLinkPath('#top-skill')"
-						@click="onLinkClick($event, '#top-skill')"
-					>
-						-スキル
-					</NuxtLink>
-				</li>
-				<li class="header-nav-item">
-					<NuxtLink to="/works/">作品一覧</NuxtLink>
-				</li>
-			</ul>
+      <div
+        id="header-menu"
+        :aria-hidden="!isOpen"
+        class="header-nav-inner"
+        :class="{ 'is-active': isOpen }"
+      >
+        <ul
+          class="header-nav-list"
+        >
+          <li class="header-nav-item">
+            <NuxtLink to="/">トップ</NuxtLink>
+          </li>
+          <li class="header-nav-item">
+            <NuxtLink to="/works/">作品一覧</NuxtLink>
+          </li>
+        </ul>
+      </div>
 		</nav>
 	</header>
 </template>
@@ -194,16 +168,17 @@ onUnmounted(() => {
   }
 }
 
-.header-nav-list{
-  background: rgb(var(--white01));
+.header-nav-inner{
   @include mq("tab"){
+    background: rgb(var(--black01));
     position: fixed;
     inset: 0;
     z-index: -1;
     opacity: 0;
     visibility: hidden;
     transition: opacity .3s, visibility .3s, z-index .3s;
-    padding: math.div(80vw, $designBaseSp) math.div(20vw, $designBaseSp) math.div(40vw, $designBaseSp);
+    padding: math.div(80vw, $designBaseSp) math.div(20vw, $designBaseSp);
+    display: flex;
   }
   @include mq("pc"){
     display: none;
@@ -220,15 +195,28 @@ onUnmounted(() => {
   }
 }
 
+.header-nav-list{
+  background: rgb(var(--white01));
+  display: flex;
+  width: 100%;
+  @include mq("tab"){
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .header-nav-item{
   @include mq("tab"){
     text-align: center;
+    width: 100%;
   }
   a{
     color: rgb(var(--black01));
     font-weight: 500;
     display: block;
     letter-spacing: .06em;
+    transition: color .3s;
     @include mq("tab"){
       padding: math.div(20vw, $designBaseSp) 0;
       font-size: math.div(21vw, $designBaseSp);
@@ -236,6 +224,17 @@ onUnmounted(() => {
     @include mq("pc"){
       padding: 10px;
       font-size: 20px;
+    }
+    @include mq("hover"){
+      &:hover{
+        color: rgb(var(--blue03));
+      }
+    }
+    &.router-link-exact-active{
+      color: rgb(var(--blue03));
+      text-decoration: line-through;
+      text-decoration-color: rgb(var(--blue03));
+      text-decoration-thickness: 3px;
     }
   }
 }
@@ -266,8 +265,21 @@ onUnmounted(() => {
       height: 40px;
     }
     *{
-      fill: rgb(var(--black01));
+      // @include mq("pc"){
+        fill: rgb(var(--black01));
+      // }
     }
   }
+  &:has(+.header-nav-inner.is-active){
+    svg{
+      *{
+        @include mq("tab"){
+          fill: rgb(var(--white01));
+        }
+      }
+    }
+  }
+    
 }
+
 </style>

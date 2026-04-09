@@ -206,7 +206,7 @@ onMounted(async () => {
 						<NuxtLink
 							to="#top-about"
 							class="kv-name-button"
-							@click.prevent="scrollToAnchor('#top-about')"
+							@click.prevent="scrollToAnchor($event, '#top-about')"
 						>
 							<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
 								<path fill="currentColor" d="M469.7 213.7H145.3l130.4-129c16.6-16.4 16.8-43.3.3-59.9-16.4-16.6-43.2-16.8-59.9-.3L12.6 225.9c-8 8-12.6 18.8-12.6 30.1s4.5 22.1 12.6 30.1l203.6 201.4c16.6 16.4 43.4 16.3 59.9-.3 16.4-16.6 16.3-43.4-.3-59.9L145.3 298.3h324.4c23.4 0 42.3-18.9 42.3-42.3s-19-42.3-42.3-42.3z" />
