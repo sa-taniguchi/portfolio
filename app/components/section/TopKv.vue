@@ -234,9 +234,13 @@ onMounted(async () => {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
   z-index: 15;
   pointer-events: none;
+  height: 100dvh;
+  @include mq("pc"){
+    height: 100vh;
+    
+  }
   &::after{
     content: '';
     background: radial-gradient(#8ac0ff, #8ac0ff00 50%);
@@ -439,13 +443,16 @@ onMounted(async () => {
   position: fixed;
   inset: 0;
   z-index: 150;
-  height: 100vh;
+  height: 100dvh;
   &::before{
     content: "";
     display: block;
     position: absolute;
     inset: 0;
-    height: 100vh;
+    height: 100dvh;
+    @include mq('pc'){
+      height: 100vh;
+    }
   }
   .is-done &{
     &::before{

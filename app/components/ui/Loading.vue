@@ -13,15 +13,21 @@
     position: fixed;
     inset: 0;
     z-index: 150;
-    height: 100vh;
+    height: 100dvh;
+    @include mq("pc"){
+      height: 100vh;
+    }
     &::before{
       content: "";
       display: block;
       position: absolute;
       inset: 0;
       background: #8ac0ff;
-      height: 100vh;
+      height: 100dvh;
       animation: loadingShow .5s cubic-bezier(1, 0, 0, 1) both;
+      @include mq("pc"){
+        height: 100vh;
+      }
     }
     body.is-load &{
       &::before{

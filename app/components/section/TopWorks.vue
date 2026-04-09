@@ -227,12 +227,15 @@ onUnmounted(() => {
 }
 
 .work-text{
-  height: 100vh;
-  display: flex;
+	display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
+	height: 100dvh;
+	@include mq("pc"){
+		height: 100vh;
+	}
 }
 
 .work-text-inner{
