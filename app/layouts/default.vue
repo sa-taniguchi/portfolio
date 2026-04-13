@@ -445,19 +445,17 @@ watch(() => route.fullPath, async () => {
   setTimeout(() => {
     if ($lenis) {
       $lenis.resize();
-      ScrollTrigger.refresh();
+      ScrollTrigger.refresh(true);
     }
-  }, 100);
+  }, 200);
 });
 
 // ページ遷移時にトップへ戻す処理（必要な場合のみ）
 watch(() => route.path, () => {
   // 遷移の瞬間に top 0 へ。
-  // ただし、もしページ自体が top 0 から始まるなら、ブラウザに任せた方がスムーズなこともある
   $lenis?.scrollTo(0, { immediate: true });
 });
 
-// レイアウトでは destroy しない（ページを跨いで使い続けるため）
 </script>
 
 <template>
