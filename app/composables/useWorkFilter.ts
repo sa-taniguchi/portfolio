@@ -44,6 +44,7 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 	const isSpFilterButton = ref(false);
 	const showSuggestions = ref(false);
 	const activeIndex = ref(-1);
+	const skipWatchUpdate = ref(false); // watch をスキップするフラグ
 
 	// ============ モバイル用一時状態 ============
 	const tempSearchQuery = ref('');
@@ -198,6 +199,7 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 		currentSearchQuery.value = title;
 		showSuggestions.value = false;
 		activeIndex.value = -1;
+		skipWatchUpdate.value = true; // 次の watch 実行をスキップ
 	};
 
 	const onArrowDown = () => {
@@ -241,6 +243,11 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 	
 	// サジェスト表示制御
 	watch(currentSearchQuery, (newVal) => {
+		// suggestion 選択後の watch スキップ
+		if (skipWatchUpdate.value) {
+			skipWatchUpdate.value = false;
+			return;
+		}
 		// 2文字以上でサジェスト表示
 		if (newVal.length >= 2) {
 			showSuggestions.value = true;
