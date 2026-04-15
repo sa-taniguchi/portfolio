@@ -3,6 +3,7 @@ import { useWorkStore } from '~~/stores/work';
 import { useWorkFilter } from '~/composables/useWorkFilter';
 import { useTextAnimation } from '~/composables/useTextAnimation';
 import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
+import { storeToRefs } from 'pinia';
 
 const store = useWorkStore();
 const { animateText } = useTextAnimation();

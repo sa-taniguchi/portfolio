@@ -4,8 +4,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
 import { useSkillStore } from '~~/stores/skill';
-
+import { storeToRefs } from 'pinia';
 const { animateText } = useTextAnimation();
+
 const store = useSkillStore();
 const { skill, skillList } = storeToRefs(store);
 

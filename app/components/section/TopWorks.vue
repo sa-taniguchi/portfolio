@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, watch, onUnmounted } from 'vue';
+import { ref, onMounted, watch, onUnmounted, nextTick } from 'vue';
+import { storeToRefs } from 'pinia';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
 import { useTextAnimation } from '~/composables/useTextAnimation';
+import { useViewport } from '~/composables/useViewport';
 import { useWorkStore } from '~~/stores/work';
 import type { WorkItem } from '~/types/microcms';
 

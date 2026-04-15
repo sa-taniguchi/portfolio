@@ -2,6 +2,7 @@
 import { useWorkStore } from '~~/stores/work';
 import type { WorkItem } from '~/types/microcms';
 import type { Category, WorkType } from '~/types/work';
+import { storeToRefs } from 'pinia';
 import Fuse from 'fuse.js';
 
 type SortOrder = 'asc' | 'desc';

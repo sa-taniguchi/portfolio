@@ -2,6 +2,7 @@
 import { useWorkStore } from '~~/stores/work';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { storeToRefs } from 'pinia';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
