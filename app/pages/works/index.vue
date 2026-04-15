@@ -12,7 +12,7 @@ const { animateText } = useTextAnimation();
 
 definePageMeta({
 	title: '作品一覧',
-	description: 'アバウトページの詳しい説明文です。',
+	description: 'フロントエンドエンジニア 谷口聡のこれまで携わってきた作品一覧を記載しております。',
 });
 
 const {

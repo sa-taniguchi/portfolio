@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { onMounted } from 'vue';
 
-const { currentUrl, titleStr, descStr, fullTitle, domain } = usePageMetadata();
+const { currentUrl, titleStr, descStr, fullTitle, domain, ogImage, ogTitle, ogDescription } = usePageMetadata();
 
 // SEOメタ情報の設定（OGP / Twitter / 基本Meta）
 useSeoMeta({
@@ -10,23 +10,23 @@ useSeoMeta({
 
 	// Facebook / OGP
 	ogType: 'website',
-	ogSiteName: 'xxxx',
-	ogTitle: () => fullTitle.value,
-	ogDescription: () => descStr.value,
+	ogSiteName: '谷口聡のポートフォリオ',
+	ogTitle: () => ogTitle.value,
+	ogDescription: () => ogDescription.value,
 	ogUrl: () => currentUrl.value,
-	ogImage: `${domain}/ogp.jpg`,
+	ogImage: () => ogImage.value,
 	ogLocale: 'ja_JP',
 
 	// Twitter
 	twitterCard: 'summary_large_image',
-	twitterTitle: () => fullTitle.value,
-	twitterDescription: () => descStr.value,
-	twitterImage: `${domain}/ogp.jpg`,
+	twitterTitle: () => ogTitle.value,
+	twitterDescription: () => ogDescription.value,
+	twitterImage: () => ogImage.value,
 });
 
 // その他の Head 情報の設定
 useHead({
-	titleTemplate: '%s | xxx',
+	titleTemplate: '%s | 谷口聡のポートフォリオ',
 	htmlAttrs: {
 		lang: 'ja',
 	},

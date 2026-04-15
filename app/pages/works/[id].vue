@@ -6,6 +6,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 // 使用するモジュールを配列に入れる
+
+
 const modules = [Autoplay, Pagination];
 const store = useWorkStore();
 const { animateText } = useTextAnimation();
@@ -22,22 +24,24 @@ if (!store.works) {
 }
 
 const route = useRoute();
-const id = route.params.id; // URLの [id] 部分を取得
+const id = route.params.id as string; // URLの [id] 部分を取得
 
-// SEO設定（詳細ページごとにタイトルを変える）
-useHead({
-	title: computed(() => work.value ? `${work.value.title} | ポートフォリオ` : ''),
-	meta: [
-		{
-			name: 'description',
-			content: computed(() => {
-				// work.value?.content など、説明文が入っているプロパティを指定
-				// さらに substring を使う前に存在チェックをする
-				const desc = work.value?.content || '';
-				return desc.substring(0, 100);
-			}),
-		},
-	],
+const currentUrl = computed(() => `${useRuntimeConfig().public.domain}${route.path}`);
+
+const pageTitle = computed(() => work.value ? `${work.value.title} | 谷口聡のポートフォリオ` : '作品詳細 | 谷口聡のポートフォリオ');
+const pageDescription = computed(() => {
+	const desc = work.value?.content || '';
+	return desc ? desc.substring(0, 100) : '作品詳細ページです。';
+});
+
+useSeoMeta({
+	title: pageTitle,
+	description: pageDescription,
+	ogTitle: pageTitle,
+	ogDescription: pageDescription,
+	ogUrl: currentUrl,
+	twitterTitle: pageTitle,
+	twitterDescription: pageDescription,
 });
 
 onMounted(() => {

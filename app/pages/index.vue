@@ -18,9 +18,10 @@ onMounted(async () => {
 	console.log('両方のデータ取得（またはスキップ）が完了しました');
 });
 
+
 definePageMeta({
-	title: 'テスト',
-	description: 'テストディスクリプション',
+  title: 'トップページ',
+  description: 'フロントエンドエンジニア 谷口聡のポートフォリオサイトです。トップページでは自己紹介、スキル、作品を掲載しています。',
 });
 </script>
 
