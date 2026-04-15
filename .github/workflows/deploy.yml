@@ -44,6 +44,7 @@ jobs:
           NUXT_MICRO_CMS_API_KEY: ${{ secrets.NUXT_MICRO_CMS_API_KEY }}
           NUXT_BASIC_AUTH_USER: ${{ secrets.NUXT_BASIC_AUTH_USER }}
           NUXT_BASIC_AUTH_PASSWORD: ${{ secrets.NUXT_BASIC_AUTH_PASSWORD }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
 
       - name: Deploy to Vercel
         # 【最速】ビルド済みの成果物（--prebuilt）をアップロードするだけ
