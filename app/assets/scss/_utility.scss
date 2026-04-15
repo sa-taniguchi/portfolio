@@ -35,7 +35,7 @@
 
 .u-sp-full-width {
   @include mq("tab"){
-    margin: 0 math.div(-16vw, $designBaseSp);
+    margin: 0 math.div(-20vw, $designBaseSp);
   }
 }
 
