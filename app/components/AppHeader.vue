@@ -19,7 +19,6 @@ const toggleMenu = () => {
 	}
 };
 
-
 // ルート変更（ページ遷移）を検知して確実に閉じる
 watch(() => route.path, (newPath) => {
 	// メニューを閉じてスクロールを再開
@@ -86,23 +85,23 @@ onUnmounted(() => {
 				</svg>
 				<svg :class="{ 'u-hidden': !isOpen }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><polygon points="512 52.535 459.467 0.002 256.002 203.462 52.538 0.002 0 52.535 203.47 256.005 0 459.465 52.533 511.998 256.002 308.527 459.467 511.998 512 459.475 308.536 256.005" fill="currentColor" /></svg>
 			</button>
-      <div
-        id="header-menu"
-        :aria-hidden="!isOpen"
-        class="header-nav-inner"
-        :class="{ 'is-active': isOpen }"
-      >
-        <ul
-          class="header-nav-list"
-        >
-          <li class="header-nav-item">
-            <NuxtLink to="/">トップ</NuxtLink>
-          </li>
-          <li class="header-nav-item">
-            <NuxtLink to="/works/">作品一覧</NuxtLink>
-          </li>
-        </ul>
-      </div>
+			<div
+				id="header-menu"
+				:aria-hidden="!isOpen"
+				class="header-nav-inner"
+				:class="{ 'is-active': isOpen }"
+			>
+				<ul
+					class="header-nav-list"
+				>
+					<li class="header-nav-item">
+						<NuxtLink to="/">トップ</NuxtLink>
+					</li>
+					<li class="header-nav-item">
+						<NuxtLink to="/works/">作品一覧</NuxtLink>
+					</li>
+				</ul>
+			</div>
 		</nav>
 	</header>
 </template>
@@ -279,7 +278,6 @@ onUnmounted(() => {
       }
     }
   }
-    
-}
 
+}
 </style>

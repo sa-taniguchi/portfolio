@@ -364,10 +364,8 @@ router.afterEach((to, from) => {
   to {
     opacity: 0;
   }
-} 
+}
 <!-- </style> -->
-
-
 
 <!-- <script setup lang="ts">
 import { onUnmounted, watch, nextTick } from 'vue';
@@ -431,7 +429,7 @@ html.lenis, html.lenis body {
 </style> -->
 
 <script setup lang="ts">
-import { onUnmounted, watch, nextTick } from 'vue';
+import { watch, nextTick } from 'vue';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const route = useRoute();
@@ -439,38 +437,37 @@ const { $lenis } = useNuxtApp();
 
 // ページ遷移ごとのリフレッシュ処理
 watch(() => route.fullPath, async () => {
-  await nextTick();
-  
-  // iOS Safari向けに少しだけ待機してからリサイズをかけると安定する
-  setTimeout(() => {
-    if ($lenis) {
-      $lenis.resize();
-      ScrollTrigger.refresh(true);
-    }
-  }, 200);
+	await nextTick();
+
+	// iOS Safari向けに少しだけ待機してからリサイズをかけると安定する
+	setTimeout(() => {
+		if ($lenis) {
+			$lenis.resize();
+			ScrollTrigger.refresh(true);
+		}
+	}, 200);
 });
 
 // ページ遷移時にトップへ戻す処理（必要な場合のみ）
 watch(() => route.path, () => {
-  // 遷移の瞬間に top 0 へ。
-  $lenis?.scrollTo(0, { immediate: true });
+	// 遷移の瞬間に top 0 へ。
+	$lenis?.scrollTo(0, { immediate: true });
 });
-
 </script>
 
 <template>
-  <div id="app-container">
-    <app-header />
-    <main>
-      <slot />
-    </main>
-    <app-footer />
-  </div>
+	<div id="app-container">
+		<app-header />
+		<main>
+			<slot />
+		</main>
+		<app-footer />
+	</div>
 </template>
 
 <style>
 /* html に .lenis クラスが付与されることを前提とする
-  iOS Safariでは以下の設定が「生命線」です 
+  iOS Safariでは以下の設定が「生命線」です
 */
 html.lenis {
   height: auto;
@@ -478,11 +475,11 @@ html.lenis {
 
 body {
   /* iOSでのバウンスによるカクつきを抑制 */
-  overscroll-behavior-y: none; 
+  overscroll-behavior-y: none;
 }
 
 /* htmlタグに対して直接指定する。
-  lenis-smooth が効いている間は CSS のスムーズスクロールを絶対に OFF にする 
+  lenis-smooth が効いている間は CSS のスムーズスクロールを絶対に OFF にする
 */
 html.lenis-smooth {
   scroll-behavior: auto !important;

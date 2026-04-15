@@ -1,7 +1,7 @@
 export const useSmoothScroll = () => {
 	const { $lenis } = useNuxtApp();
 
-	const scrollToAnchor = (e: MouseEvent,target: string | number) => {
+	const scrollToAnchor = (e: MouseEvent, target: string | number) => {
 		if (!$lenis) return;
 		e.preventDefault();
 

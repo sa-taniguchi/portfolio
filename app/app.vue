@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { onMounted } from 'vue';
 
-const { currentUrl, titleStr, descStr, fullTitle, domain, ogImage, ogTitle, ogDescription } = usePageMetadata();
+const { currentUrl, titleStr, descStr, domain, ogImage, ogTitle, ogDescription } = usePageMetadata();
 
 // SEOメタ情報の設定（OGP / Twitter / 基本Meta）
 useSeoMeta({

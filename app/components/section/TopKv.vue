@@ -239,7 +239,7 @@ onMounted(async () => {
   height: 100dvh;
   @include mq("pc"){
     height: 100vh;
-    
+
   }
   &::after{
     content: '';
