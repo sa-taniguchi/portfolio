@@ -421,7 +421,7 @@ const onEnter = (event: KeyboardEvent) => {
 
 <template>
 	<div class="l-lg-container">
-		<h2 class="work-title font-audio animation-text">
+		<h2 class="work-title font-audio anime-textBorder-bk">
 			<span ref="titleAnime">{{ workTitle }}</span>
 		</h2>
 		<div class="work-inner">
@@ -536,7 +536,6 @@ const onEnter = (event: KeyboardEvent) => {
 .work-title{
   font-size: math.div(70vw, $designBaseSp);
   margin: math.div(50vw, $designBaseSp) 0;
- @include text-border(rgb(var(--black01)));
   @include mq("pc"){
     font-size: math.div(200vw, $designBasePc);
     margin: math.div(60vw, $designBasePc) 0;

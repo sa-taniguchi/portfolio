@@ -98,7 +98,7 @@ onUnmounted(() => {
 	<section id="top-skill" class="l-section-pb skill">
 		<div id="js-skill" class="skill-inner">
 			<div class="l-lg-container">
-				<h2 class="skill-title">
+				<h2 class="skill-title anime-textBorder-wh">
 					<span ref="titleAnime">{{ skillTitle }}</span>
 				</h2>
 				<ul class="skill-list">
@@ -138,7 +138,6 @@ onUnmounted(() => {
   line-height: 100%;
   font-size: math.div(80vw, $designBaseSp);
   width: 2.8em;
-  @include text-border();
   @include mq("sp"){
     margin-bottom: math.div(50vw, $designBaseSp);
   }

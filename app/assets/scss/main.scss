@@ -2,6 +2,9 @@
 
 @use "./variables" as *;
 @use "./mq" as *;
+@use "./utility" as *;
+@use "./layout/" as *;
+@use "./animation/" as *;
 
 // リセットcss
 /* Box sizing rules */

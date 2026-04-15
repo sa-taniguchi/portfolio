@@ -179,7 +179,7 @@ onUnmounted(() => {
 		</div>
 		<div class="work-btmBg">
 			<div class="l-container">
-				<h2 class="work-title animation-text">
+				<h2 class="work-title anime-textBorder-bk">
 					<span ref="titleAnime">{{ workTitle }}</span>
 				</h2>
 				<ul ref="workListRef" class="work-list">
@@ -271,7 +271,6 @@ onUnmounted(() => {
   margin-bottom: math.div(20vw, $designBaseSp);
   scale: .8;
   transform-origin: left;
-  @include text-border(rgb(var(--black01)));
   @include mq("pc"){
     font-size: math.div(170vw, $designBasePc);
     margin-bottom: math.div(20vw, $designBasePc);

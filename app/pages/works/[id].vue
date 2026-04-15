@@ -7,7 +7,6 @@ import 'swiper/css/pagination';
 
 // 使用するモジュールを配列に入れる
 
-
 const modules = [Autoplay, Pagination];
 const store = useWorkStore();
 const { animateText } = useTextAnimation();
@@ -51,7 +50,7 @@ onMounted(() => {
 
 <template>
 	<article>
-		<h2 class="work-title font-audio animation-text">
+		<h2 class="work-title font-audio anime-textBorder-bk">
 			<span ref="titleAnime">{{ workTitle }}</span>
 		</h2>
 		<section v-if="work && !store.pending" class="l-container">
@@ -193,7 +192,6 @@ onMounted(() => {
 .work-title{
   font-size: math.div(70vw, $designBaseSp);
   margin: math.div(50vw, $designBaseSp) 0;
-  @include text-border(rgb(var(--black01)));
   @include mq("pc"){
     font-size: math.div(200vw, $designBasePc);
     margin: math.div(60vw, $designBasePc) 0;

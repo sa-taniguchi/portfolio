@@ -12,3 +12,11 @@
     padding-right: 5px;
   }
 }
+
+.anime-textBorder-wh {
+  @include text-border(rgb(var(--white01)));
+}
+
+.anime-textBorder-bk {
+  @include text-border(rgb(var(--black01)));
+}
