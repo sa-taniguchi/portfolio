@@ -55,6 +55,7 @@ export default defineNuxtConfig({
 		basicAuthUser: '',
 		basicAuthPassword: '',
 		REVALIDATE_SECRET: '',
+		VERCEL_AUTOMATION_BYPASS_SECRET: '',
 		public: {
 			domain: process.env.NUXT_PUBLIC_DOMAIN || '',
 			apiBase: process.env.NUXT_PUBLIC_API_BASE || '',
@@ -82,6 +83,11 @@ export default defineNuxtConfig({
 		prerender: {
 			crawlLinks: true,
 			routes: [],
+		},
+		vercel: {
+			config: {
+				bypassToken: process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+			},
 		},
 	},
 

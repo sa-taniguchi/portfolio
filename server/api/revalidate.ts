@@ -1,42 +1,61 @@
+// export default defineEventHandler(async (event) => {
+//   const query = getQuery(event);
+
+//   // ① まずは microCMS からのアクセスを「自分」でチェック
+//   // ここで REVALIDATE_SECRET を使います
+//   if (query.secret !== process.env.REVALIDATE_SECRET) {
+//     throw createError({ statusCode: 401, statusMessage: 'Invalid token' });
+//   }
+
+//   try {
+//     const bypassToken = process.env.VERCEL_AUTOMATION_BYPASS_SECRET; // ② Vercelの設定画面で取ったトークン
+//     const siteUrl = 'https://st-portfolio2026.vercel.app';
+
+//     // 自分自身のAPIに対して、Vercelのキャッシュを無視するようにリクエストを送る
+//     await $fetch(`${siteUrl}/api/works`, {
+//       headers: {
+//         // Vercelはこのヘッダーを見て「キャッシュを無視してNitroまで通す」と判断します
+//         'x-vercel-protection-bypass': bypassToken,
+//         'x-prerender-revalidate': bypassToken,
+//       }
+//     });
+
+//     return { revalidated: true };
+//   } catch (error) {
+//     throw createError({ statusCode: 500, statusMessage: 'Revalidation failed' });
+//   }
+// });
+
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig();
-	// POSTのみ許可
-	if (event.node.req.method !== 'POST') {
-		throw createError({ statusCode: 405, statusMessage: 'Method not allowed' });
-	}
-
+	const config = useRuntimeConfig();
 	const query = getQuery(event);
-	const secret = query.secret;
 
-	// シークレットトークンの検証
-	if (secret !== config.REVALIDATE_SECRET) {
+	// ① まずは microCMS からのアクセスを「自分」でチェック
+	// ここで REVALIDATE_SECRET を使います
+	if (query.secret !== config.REVALIDATE_SECRET) {
 		throw createError({ statusCode: 401, statusMessage: 'Invalid token' });
 	}
 
-	// MicroCMSからのWebhookデータを取得
-	const body = await readBody(event);
-	console.log('Revalidate webhook received:', body);
-
 	try {
-		// キャッシュをクリア
-		const storage = useStorage('cache');
-		await storage.clear();
+		const bypassToken = config.VERCEL_AUTOMATION_BYPASS_SECRET; // ② Vercelの設定画面で取ったトークン
 
-		// Vercel ISR revalidate（本番環境のみ）
-		if (process.env.VERCEL_ENV === 'production') {
-			await $fetch('/api/revalidate', {
-				method: 'POST',
-				body: { paths: ['/'] },
-				headers: {
-					'x-prerender-revalidate': config.REVALIDATE_SECRET,
-				},
-			});
-		}
+		// 自分自身のAPIに対して、Vercelのキャッシュを無視するようにリクエストを送る
+		await $fetch(`${config.public.domain}/api/works`, {
+			headers: {
+				// Vercelはこのヘッダーを見て「キャッシュを無視してNitroまで通す」と判断します
+				'x-vercel-protection-bypass': bypassToken,
+				'x-prerender-revalidate': bypassToken,
+			},
+		});
 
-		return { revalidated: true, cacheCleared: true };
+		return { revalidated: true };
 	}
 	catch (error) {
-		console.error('ISR revalidation failed:', error);
-		throw createError({ statusCode: 500, statusMessage: 'Revalidation failed' });
+		console.error('ISR Revalidation Error:', error);
+
+		throw createError({
+			statusCode: 500,
+			statusMessage: `Revalidation failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+		});
 	}
 });
