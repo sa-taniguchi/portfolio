@@ -18,19 +18,10 @@ defineProps<{
 
 const searchQuery = defineModel<string>('searchQuery');
 const emit = defineEmits<{
-	(e: 'toggle'): void;
-	(e: 'close'): void;
-	(e: 'apply'): void;
-	(e: 'reset'): void;
-	(e: 'clearInput'): void;
-	(e: 'toggleCategory', id: string): void;
-	(e: 'toggleWorkType', id: string): void;
-	(e: 'selectSuggestion', title: string): void;
+	(e: 'toggle' | 'close' | 'apply' | 'reset' | 'clearInput' | 'keydownDown' | 'keydownUp' | 'onFocus'): void;
+	(e: 'toggleCategory' | 'toggleWorkType' | 'selectSuggestion', value: string): void;
 	(e: 'updateActiveIndex', index: number): void;
-	(e: 'keydownDown'): void;
-	(e: 'keydownUp'): void;
 	(e: 'keydownEnter', event: KeyboardEvent): void;
-	(e: 'onFocus'): void;
 	(e: 'onBlur', event: FocusEvent): void;
 }>();
 

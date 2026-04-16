@@ -73,18 +73,19 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 		set(newValue) {
 			if (isMobile.value && isFilterOpen.value) {
 				tempSearchQuery.value = newValue;
-			} else {
+			}
+			else {
 				searchQuery.value = newValue;
 			}
 		},
 	});
 
 	const currentSelectedCategories = computed(() =>
-		isMobile.value && isFilterOpen.value ? tempSelectedCategories.value : selectedCategories.value
+		isMobile.value && isFilterOpen.value ? tempSelectedCategories.value : selectedCategories.value,
 	);
 
 	const currentSelectedWorkTypes = computed(() =>
-		isMobile.value && isFilterOpen.value ? tempSelectedWorkTypes.value : selectedWorkTypes.value
+		isMobile.value && isFilterOpen.value ? tempSelectedWorkTypes.value : selectedWorkTypes.value,
 	);
 
 	// ============ フィルタリング & ソート ============
@@ -144,13 +145,18 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 		}
 		isFilterOpen.value = !isFilterOpen.value;
 		if (isMobile.value) {
-			isFilterOpen.value ? $lenis.stop() : $lenis.start();
+			if (isFilterOpen.value) {
+				$lenis.stop();
+			}
+			else {
+				$lenis.start();
+			}
 		}
 	};
 
 	const closeFilter = () => {
 		if (isMobile.value) {
-			$lenis.start();
+			void $lenis.start();
 			isFilterOpen.value = false;
 		}
 	};
@@ -167,13 +173,23 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 	const toggleCategory = (id: string) => {
 		const target = isMobile.value && isFilterOpen.value ? tempSelectedCategories.value : selectedCategories.value;
 		const idx = target.indexOf(id);
-		idx > -1 ? target.splice(idx, 1) : target.push(id);
+		if (idx > -1) {
+			target.splice(idx, 1);
+		}
+		else {
+			target.push(id);
+		}
 	};
 
 	const toggleWorkType = (id: string) => {
 		const target = isMobile.value && isFilterOpen.value ? tempSelectedWorkTypes.value : selectedWorkTypes.value;
 		const idx = target.indexOf(id);
-		idx > -1 ? target.splice(idx, 1) : target.push(id);
+		if (idx > -1) {
+			target.splice(idx, 1);
+		}
+		else {
+			target.push(id);
+		}
 	};
 
 	const resetFilters = (isConfirmed: boolean) => {
@@ -181,7 +197,8 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 			tempSearchQuery.value = '';
 			tempSelectedCategories.value = [];
 			tempSelectedWorkTypes.value = [];
-		} else {
+		}
+		else {
 			searchQuery.value = '';
 			selectedCategories.value = [];
 			selectedWorkTypes.value = [];
@@ -191,7 +208,8 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 	const clearInput = () => {
 		if (isMobile.value && isFilterOpen.value) {
 			tempSearchQuery.value = '';
-		} else {
+		}
+		else {
 			searchQuery.value = '';
 		}
 	};
@@ -241,7 +259,7 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 	};
 
 	// ============ ウォッチャー ============
-	
+
 	// サジェスト表示制御
 	watch(currentSearchQuery, (newVal) => {
 		// suggestion 選択後の watch スキップ
@@ -252,7 +270,8 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 		// 2文字以上でサジェスト表示
 		if (newVal.length >= 2) {
 			showSuggestions.value = true;
-		} else {
+		}
+		else {
 			showSuggestions.value = false;
 		}
 	});
@@ -271,7 +290,7 @@ export const useWorkFilter = (workList: Ref<WorkItem[]>) => {
 				replace: true,
 			});
 		},
-		{ deep: true }
+		{ deep: true },
 	);
 
 	// URLから状態復元

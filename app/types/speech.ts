@@ -29,15 +29,15 @@ interface SpeechRecognitionErrorEvent extends Event {
 	error: SpeechRecognitionErrorCode;
 }
 
-type SpeechRecognitionErrorCode =
-	| 'no-speech'
-	| 'audio-capture'
-	| 'network'
-	| 'network-timeout'
-	| 'permission-denied'
-	| 'service-not-allowed'
-	| 'bad-grammar'
-	| 'service-unavailable';
+type SpeechRecognitionErrorCode
+	= | 'no-speech'
+		| 'audio-capture'
+		| 'network'
+		| 'network-timeout'
+		| 'permission-denied'
+		| 'service-not-allowed'
+		| 'bad-grammar'
+		| 'service-unavailable';
 
 interface SpeechRecognition extends EventTarget {
 	continuous: boolean;
@@ -48,10 +48,10 @@ interface SpeechRecognition extends EventTarget {
 	abort(): void;
 	start(): void;
 	stop(): void;
-	onerror: ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any) | null;
-	onstart: ((this: SpeechRecognition, ev: Event) => any) | null;
-	onend: ((this: SpeechRecognition, ev: Event) => any) | null;
-	onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any) | null;
+	onerror: ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => void) | null;
+	onstart: ((this: SpeechRecognition, ev: Event) => void) | null;
+	onend: ((this: SpeechRecognition, ev: Event) => void) | null;
+	onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => void) | null;
 }
 
 interface SpeechRecognitionConstructor {

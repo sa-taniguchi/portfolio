@@ -39,7 +39,7 @@ const initSpeechRecognition = () => {
 	};
 
 	recognition.onresult = (event: SpeechRecognitionEvent) => {
-		let interimTranscript = '';
+		let _interimTranscript = '';
 		for (let i = event.resultIndex; i < event.results.length; i++) {
 			const result = event.results[i];
 			if (!result || !result[0]) continue;
@@ -51,8 +51,9 @@ const initSpeechRecognition = () => {
 					inputRef.value?.focus();
 					emit('onFocus');
 				});
-			} else {
-				interimTranscript += transcript;
+			}
+			else {
+				_interimTranscript += transcript;
 			}
 		}
 	};
@@ -79,7 +80,8 @@ const toggleVoiceInput = () => {
 	if (isListening.value) {
 		recognition?.stop();
 		isListening.value = false;
-	} else {
+	}
+	else {
 		recognition?.start();
 	}
 };
@@ -104,10 +106,21 @@ defineExpose({
 			@keydown.up.prevent="emit('keydownUp')"
 			@keydown.enter.prevent="emit('keydownEnter', $event)"
 		>
-		<button v-if="searchQuery" type="button" class="work-filter-input-delete-button" @click="emit('clear')">
+		<button
+			v-if="searchQuery"
+			type="button"
+			class="work-filter-input-delete-button"
+			@click="emit('clear')"
+		>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><polygon points="512 52.535 459.467 0.002 256.002 203.462 52.538 0.002 0 52.535 203.47 256.005 0 459.465 52.533 511.998 256.002 308.527 459.467 511.998 512 459.475 308.536 256.005" fill="currentColor" /></svg>
 		</button>
-		<button v-else type="button" class="work-filter-voice-button" :class="{ 'is-listening': isListening }" @click="toggleVoiceInput">
+		<button
+			v-else
+			type="button"
+			class="work-filter-voice-button"
+			:class="{ 'is-listening': isListening }"
+			@click="toggleVoiceInput"
+		>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 				<path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
 				<path d="M17 16.91c-1.48 1.46-3.51 2.36-5.77 2.36-2.26 0-4.29-.9-5.77-2.36l-1.1 1.1c1.71 1.71 4.06 2.75 6.87 2.75s5.16-1.04 6.87-2.75l-1.1-1.1zM19 12h2c0 .04-.06 2.16-1.58 3.64l1.41 1.41C23.02 15.26 24 13.06 24 12h-5z" />
@@ -185,7 +198,7 @@ defineExpose({
   cursor: pointer;
   color: rgb(var(--black01));
   transition: background-color 0.3s, color .3s;
-  
+
   svg{
     display: inline-block;
     visibility: visible;

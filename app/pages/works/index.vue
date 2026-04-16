@@ -3,10 +3,8 @@ import { useWorkStore } from '~~/stores/work';
 import { useWorkFilter } from '~/composables/useWorkFilter';
 import { useTextAnimation } from '~/composables/useTextAnimation';
 import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
+import UiWorkFilter from '~/components/ui/WorkFilter.vue';
 import { storeToRefs } from 'pinia';
-
-const store = useWorkStore();
-const { animateText } = useTextAnimation();
 
 definePageMeta({
 	title: '作品一覧',
@@ -14,6 +12,8 @@ definePageMeta({
 });
 
 // ========== ストア & コンポーザブル ==========
+const store = useWorkStore();
+const { animateText } = useTextAnimation();
 const { workList } = storeToRefs(store);
 const {
 	isFilterOpen,
@@ -48,7 +48,7 @@ const {
 
 // ========== テンプレートリファレンス ==========
 const titleAnime = useTemplateRef<HTMLElement>('titleAnime');
-const filterRef = ref<any>(null);
+const filterRef = ref<InstanceType<typeof UiWorkFilter> | null>(null);
 const workTitle = 'WORKS';
 
 // ========== 初期化 ==========
@@ -61,9 +61,10 @@ onMounted(() => {
 	animateText(titleAnime, workTitle, 1, 0.5);
 
 	// IntersectionObserver: フィルターボタンの表示/非表示
-	if (filterRef.value?.spFilterButton) {
+	const spButton = filterRef.value?.spFilterButton;
+	if (spButton) {
 		useIntersectionObserver(
-			computed(() => filterRef.value.spFilterButton),
+			computed(() => spButton),
 			{ threshold: 0 },
 			(el, isIntersecting) => {
 				isSpFilterButton.value = !isIntersecting;
@@ -97,16 +98,16 @@ onMounted(() => {
 				@close="closeFilter"
 				@apply="applyFilters"
 				@reset="resetFilters(false)"
-				@clearInput="clearInput"
-				@toggleCategory="toggleCategory"
-				@toggleWorkType="toggleWorkType"
-				@selectSuggestion="selectSuggestion"
-				@updateActiveIndex="(i: number) => activeIndex = i"
-				@keydownDown="onArrowDown"
-				@keydownUp="onArrowUp"
-				@keydownEnter="onEnter"
-				@onFocus="onInputFocus"
-				@onBlur="onInputBlur"
+				@clear-input="clearInput"
+				@toggle-category="toggleCategory"
+				@toggle-work-type="toggleWorkType"
+				@select-suggestion="selectSuggestion"
+				@update-active-index="(i: number) => activeIndex = i"
+				@keydown-down="onArrowDown"
+				@keydown-up="onArrowUp"
+				@keydown-enter="onEnter"
+				@on-focus="onInputFocus"
+				@on-blur="onInputBlur"
 			/>
 
 			<div class="work-content">
@@ -121,13 +122,25 @@ onMounted(() => {
 					</div>
 					<ul class="work-sort-list">
 						<li class="work-sort-item">
-							<button type="button" class="work-sort-item-button" :class="{ 'is-active': sortOrder === 'asc' }" @click="sortOrder = 'asc'">
+							<button
+								type="button"
+								class="work-sort-item-button"
+								:class="{ 'is-active': sortOrder === 'asc' }"
+								@click="sortOrder = 'asc'"
+							>
 								新しい順
 							</button>
 						</li>
-						<li class="work-sort-item"><span>/</span></li>
 						<li class="work-sort-item">
-							<button type="button" class="work-sort-item-button" :class="{ 'is-active': sortOrder === 'desc' }" @click="sortOrder = 'desc'">
+							<span>/</span>
+						</li>
+						<li class="work-sort-item">
+							<button
+								type="button"
+								class="work-sort-item-button"
+								:class="{ 'is-active': sortOrder === 'desc' }"
+								@click="sortOrder = 'desc'"
+							>
 								古い順
 							</button>
 						</li>
