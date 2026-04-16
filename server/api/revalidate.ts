@@ -12,11 +12,13 @@ export default defineEventHandler(async (event) => {
 	console.log('Revalidate webhook received:', body);
 
 	try {
-		// ISRキャッシュの再検証（APIを呼び出してキャッシュ更新）
 		await $fetch('/api/works');
 		await $fetch('/api/skills');
 
-		return { revalidated: true, timestamp: new Date().toISOString() };
+		// Vercelに「このリクエストはキャッシュ更新用だよ」と教える魔法のヘッダー
+		setResponseHeader(event, 'x-prerender-revalidate', process.env.REVALIDATE_SECRET);
+
+		return { revalidated: true };
 	}
 	catch (error) {
 		console.error('ISR revalidation failed:', error);

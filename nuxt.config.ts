@@ -63,7 +63,8 @@ export default defineNuxtConfig({
 
 	// --- ルーティング・レンダリングルール ---
 	routeRules: {
-		'/**': isProd ? { isr: true } : {}, // 本番のみISRを有効化
+		'/api/**': isProd ? { isr: true } : {},
+		'/**': isProd ? { isr: true } : {},
 	},
 
 	// --- 実験的機能 ---

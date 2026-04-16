@@ -35,7 +35,7 @@ function initSkillAnimation(): void {
 
 	const tl = gsap.timeline({
 		scrollTrigger: {
-      id: 'skill-trigger',
+			id: 'skill-trigger',
 			trigger: '#js-skill',
 			start: 'top top',
 			end: () => `+=${items.length * 1000}`,
@@ -84,9 +84,7 @@ watch(skillList, async (newVal) => {
 		ScrollTrigger.sort();
 		ScrollTrigger.refresh();
 
-
 		initSkillAnimation();
-
 	}
 }, { immediate: true });
 
