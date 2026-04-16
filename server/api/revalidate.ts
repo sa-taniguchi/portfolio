@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
 		const bypassToken = config.VERCEL_AUTOMATION_BYPASS_SECRET; // ② Vercelの設定画面で取ったトークン
 
 		// 自分自身のAPIに対して、Vercelのキャッシュを無視するようにリクエストを送る
-		await $fetch(`${config.public.domain}/api/works`, {
+		await $fetch(`${config.public.domain}/api/skills`, {
 			headers: {
 				// Vercelはこのヘッダーを見て「キャッシュを無視してNitroまで通す」と判断します
 				'x-vercel-protection-bypass': bypassToken,
