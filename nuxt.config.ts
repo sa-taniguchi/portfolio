@@ -54,6 +54,7 @@ export default defineNuxtConfig({
 		microCmsApiKey: '',
 		basicAuthUser: '',
 		basicAuthPassword: '',
+		REVALIDATE_SECRET: '',
 		public: {
 			domain: process.env.NUXT_PUBLIC_DOMAIN || '',
 			apiBase: process.env.NUXT_PUBLIC_API_BASE || '',

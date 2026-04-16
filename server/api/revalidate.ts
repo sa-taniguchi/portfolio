@@ -1,4 +1,5 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
 	// POSTのみ許可
 	if (event.node.req.method !== 'POST') {
 		throw createError({ statusCode: 405, statusMessage: 'Method not allowed' });
@@ -8,7 +9,7 @@ export default defineEventHandler(async (event) => {
 	const secret = query.secret;
 
 	// シークレットトークンの検証
-	if (secret !== process.env.REVALIDATE_SECRET) {
+	if (secret !== config.REVALIDATE_SECRET) {
 		throw createError({ statusCode: 401, statusMessage: 'Invalid token' });
 	}
 
@@ -27,7 +28,7 @@ export default defineEventHandler(async (event) => {
 				method: 'POST',
 				body: { paths: ['/'] },
 				headers: {
-					'x-prerender-revalidate': process.env.REVALIDATE_SECRET,
+					'x-prerender-revalidate': config.REVALIDATE_SECRET,
 				},
 			});
 		}
