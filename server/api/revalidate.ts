@@ -1,4 +1,9 @@
 export default defineEventHandler(async (event) => {
+	// POSTのみ許可
+	if (event.node.req.method !== 'POST') {
+		throw createError({ statusCode: 405, statusMessage: 'Method not allowed' });
+	}
+
 	const query = getQuery(event);
 	const secret = query.secret;
 
@@ -12,13 +17,22 @@ export default defineEventHandler(async (event) => {
 	console.log('Revalidate webhook received:', body);
 
 	try {
-		await $fetch('/api/works');
-		await $fetch('/api/skills');
+		// キャッシュをクリア
+		const storage = useStorage('cache');
+		await storage.clear();
 
-		// Vercelに「このリクエストはキャッシュ更新用だよ」と教える魔法のヘッダー
-		setResponseHeader(event, 'x-prerender-revalidate', process.env.REVALIDATE_SECRET);
+		// Vercel ISR revalidate（本番環境のみ）
+		if (process.env.VERCEL_ENV === 'production') {
+			await $fetch('/api/revalidate', {
+				method: 'POST',
+				body: { paths: ['/'] },
+				headers: {
+					'x-prerender-revalidate': process.env.REVALIDATE_SECRET,
+				},
+			});
+		}
 
-		return { revalidated: true };
+		return { revalidated: true, cacheCleared: true };
 	}
 	catch (error) {
 		console.error('ISR revalidation failed:', error);
