@@ -150,13 +150,14 @@ watch(workList, async (newVal) => {
 		});
 		ScrollTrigger.getById('work-title-trigger')?.kill();
 
-		workTitleAnimation(workText.value);
-
+		
 		ScrollTrigger.sort();
 		ScrollTrigger.refresh();
 		// 3. アニメーション初期化
-
+		
 		// 4. シャッフル用の Observer 登録
+		await workTitleAnimation(workText.value);
+		
 		if (workListRef.value) {
 			useIntersectionObserver(
 				workListRef,
