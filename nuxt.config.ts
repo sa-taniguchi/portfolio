@@ -51,11 +51,11 @@ export default defineNuxtConfig({
 
 	// --- 環境変数・実行時設定 ---
 	runtimeConfig: {
-		microCmsApiKey: '',
-		basicAuthUser: '',
-		basicAuthPassword: '',
-		REVALIDATE_SECRET: '',
-		VERCEL_AUTOMATION_BYPASS_SECRET: '',
+		REVALIDATE_SECRET: process.env.REVALIDATE_SECRET,
+    VERCEL_AUTOMATION_BYPASS_SECRET: process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+    microCmsApiKey: process.env.MICROCMS_API_KEY, 
+    basicAuthUser: process.env.BASIC_AUTH_USER,
+    basicAuthPassword: process.env.BASIC_AUTH_PASSWORD,
 		public: {
 			domain: process.env.NUXT_PUBLIC_DOMAIN || '',
 			apiBase: process.env.NUXT_PUBLIC_API_BASE || '',
@@ -65,6 +65,7 @@ export default defineNuxtConfig({
 
 	// --- ルーティング・レンダリングルール ---
 	routeRules: {
+		'/api/revalidate': { isr: false, cache: false },
 		'/api/**': isProd ? { isr: true } : {},
 		'/**': isProd ? { isr: true } : {},
 	},
