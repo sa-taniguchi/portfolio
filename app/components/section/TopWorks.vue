@@ -18,6 +18,8 @@ const workListRef = ref<HTMLElement | null>(null);
 const titleAnime = useTemplateRef<HTMLElement>('titleAnime');
 const shuffleAnimeGuard = ref<boolean>(true);
 
+let handleResetWorkAnimation: () => void;
+
 // const { data: works, error: worksError } = await useFetch<MicroCMSListResponse<WorkItem>>('/api/works');
 
 const workTitle: string = 'WORKS';
@@ -84,6 +86,7 @@ function workTitleAnimation(el: HTMLElement | null): void {
 			force3D: false,
 			ease: 'power2.in',
 			scrollTrigger: {
+				id: 'work-title-trigger',
 				trigger: '.work-text',
 				start: 'bottom bottom',
 				end: isMobile ? '+=2000' : '+=1400',
@@ -124,6 +127,13 @@ onMounted(() => {
 			ScrollTrigger.refresh();
 		}
 	});
+
+	// 遷移時のアニメーションリセット
+	handleResetWorkAnimation = () => {
+		ScrollTrigger.getById('work-title-trigger')?.kill();
+		workTitleAnimation(workText.value);
+	};
+	window.addEventListener('reset-work-animation', handleResetWorkAnimation);
 });
 
 watch(workList, async (newVal) => {
@@ -138,6 +148,7 @@ watch(workList, async (newVal) => {
 			// このコンポーネントに関連するトリガーだけ消す場合は ID 指定が安全です
 			if (t.vars.trigger === '.work-text') t.kill();
 		});
+		ScrollTrigger.getById('work-title-trigger')?.kill();
 
 		workTitleAnimation(workText.value);
 
@@ -165,6 +176,7 @@ watch(workList, async (newVal) => {
 onUnmounted(() => {
 	if (shuffleIntervalId) clearInterval(shuffleIntervalId);
 	ScrollTrigger.getAll().forEach(t => t.kill());
+	window.removeEventListener('reset-work-animation', handleResetWorkAnimation);
 });
 </script>
 

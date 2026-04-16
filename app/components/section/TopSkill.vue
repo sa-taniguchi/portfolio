@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch, onUnmounted } from 'vue';
+import { watch, onUnmounted, onMounted } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
@@ -14,6 +14,9 @@ const { skill, skillList } = storeToRefs(store);
 const titleAnime = useTemplateRef<HTMLElement>('titleAnime');
 
 const skillTitle: string = 'SKILL';
+
+let handlePageshow: (e: PageTransitionEvent) => void;
+let handleResetSkillAnimation: () => void;
 
 // const { data: skill, error: skillsError } = await useFetch<SkillResponse>('/api/skill');
 
@@ -32,6 +35,7 @@ function initSkillAnimation(): void {
 
 	const tl = gsap.timeline({
 		scrollTrigger: {
+      id: 'skill-trigger',
 			trigger: '#js-skill',
 			start: 'top top',
 			end: () => `+=${items.length * 1000}`,
@@ -77,22 +81,43 @@ watch(skillList, async (newVal) => {
 		ScrollTrigger.getById('skill-trigger')?.kill();
 
 		// DOMが確実に存在する状態で初期化
-		initSkillAnimation();
-
 		ScrollTrigger.sort();
 		ScrollTrigger.refresh();
+
+
+		initSkillAnimation();
+
 	}
 }, { immediate: true });
 
-// onMounted(async() => {
-// if (!store.skill) {
-//   await store.fetchSkill();
-// }
-// await initSkillAnimation();
-// });
+onMounted(() => {
+	handlePageshow = (e: PageTransitionEvent) => {
+		if (e.persisted) {
+			ScrollTrigger.refresh();
+			// アニメーションを再初期化
+			setTimeout(() => {
+				ScrollTrigger.getById('skill-trigger')?.kill();
+				initSkillAnimation();
+			}, 100);
+		}
+	};
+
+	handleResetSkillAnimation = () => {
+		ScrollTrigger.getById('skill-trigger')?.kill();
+		initSkillAnimation();
+	};
+
+	// pageshowイベント（ブラウザバック検知）でアニメーションを再初期化
+	window.addEventListener('pageshow', handlePageshow);
+
+	// 遷移時のアニメーションリセット
+	window.addEventListener('reset-skill-animation', handleResetSkillAnimation);
+});
 
 onUnmounted(() => {
 	ScrollTrigger.getAll().forEach(t => t.kill());
+	window.removeEventListener('pageshow', handlePageshow);
+	window.removeEventListener('reset-skill-animation', handleResetSkillAnimation);
 });
 </script>
 

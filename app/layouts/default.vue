@@ -443,8 +443,13 @@ watch(() => route.fullPath, async () => {
 	setTimeout(() => {
 		if ($lenis) {
 			$lenis.resize();
-			ScrollTrigger.refresh(true);
 		}
+		ScrollTrigger.clearScrollMemory();
+		ScrollTrigger.refresh(true);
+		// TopSkillアニメーションをリセット
+		window.dispatchEvent(new CustomEvent('reset-skill-animation'));
+		// TopWorksアニメーションをリセット
+		window.dispatchEvent(new CustomEvent('reset-work-animation'));
 	}, 200);
 });
 
