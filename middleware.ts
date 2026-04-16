@@ -1,3 +1,4 @@
+// vercelBasic認証
 import { next } from '@vercel/functions';
 
 export const config = {
