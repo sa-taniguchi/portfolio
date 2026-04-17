@@ -154,8 +154,8 @@ defineProps<Props>();
 }
 
 .work-item-hash-container{
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  align-items: baseline;
   gap: math.div(10vw, $designBaseSp);
   @include mq("pc"){
     gap: math.div(10vw, $designBasePc);
