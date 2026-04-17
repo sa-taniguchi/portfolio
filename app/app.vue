@@ -36,22 +36,6 @@ useHead({
 	],
 });
 
-// onMounted(() => {
-// 	const setLoadClass = () => {
-// 		setTimeout(() => {
-// 			document.body.classList.add('is-load');
-// 		}, 500);
-// 	};
-
-// 	// すでにリソース読み込みが完了（complete）していれば即実行
-// 	if (document.readyState === 'complete') {
-// 		setLoadClass();
-// 	}
-// 	else {
-// 		// まだなら、完了した瞬間に一度だけ実行
-// 		window.addEventListener('load', setLoadClass, { once: true });
-// 	}
-// });
 </script>
 
 <template>
